@@ -17,16 +17,26 @@ boletins `.html` que ainda não existem no aparelho. Leitura 100% offline depois
 
 ### Automático (padrão — roadmap 2.8)
 
-Toda segunda 07:12 (BRT) o workflow **Gerar rascunho semanal** chama a API do
-Claude (com busca web), gera os boletins das especialidades ativas em
+Toda segunda 07:12 (BRT) o workflow **Gerar rascunho semanal** chama a API de
+IA (com busca web), gera os boletins das especialidades ativas em
 `prompts/especialidades.json` e abre um **PR de rascunho**. A publicação só
 acontece após **revisão médica**: merge do PR → o workflow **Publicar feed**
 regenera o `feed.json` → o app baixa a edição sozinho. Edição extra fora do
 cron: aba *Actions → Gerar rascunho semanal → Run workflow*.
 
-Configuração única: criar o secret `ANTHROPIC_API_KEY` em
-*Settings → Secrets and variables → Actions*. Ajustes editoriais (especialidades,
-foco, quantidade de itens, modelo) ficam em `prompts/` — sem mexer em código.
+**Provedores** (`scripts/gerar-boletins.mjs`, env `PROVIDER`; padrão `claude`):
+
+| Provedor | Secret | Env de modelo (padrão) |
+|---|---|---|
+| `claude` | `ANTHROPIC_API_KEY` | `ANTHROPIC_MODEL` (`claude-sonnet-4-5`) |
+| `openai` | `OPENAI_API_KEY` | `OPENAI_MODEL` (`gpt-5`) |
+| `kimi` | `MOONSHOT_API_KEY` | `MOONSHOT_MODEL` (`kimi-latest`) |
+
+Secrets em *Settings → Secrets and variables → Actions*. No *Run workflow*,
+escolher `todos` roda o **comparativo A/B/C**: um PR por provedor
+(`rascunho/DATA-provedor`); a revisão médica faz merge de no máximo um.
+Ajustes editoriais (especialidades, foco, quantidade de itens, modelo) ficam
+em `prompts/` — sem mexer em código.
 
 ### Manual (fallback)
 

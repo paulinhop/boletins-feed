@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# Gera os rascunhos da edição (um provedor ou o comparativo A/B/C) e abre um PR
+# por provedor. Chamado pelo workflow gerar-rascunho.yml; também roda local:
+#   ESCOLHA=todos GH_TOKEN=... ANTHROPIC_API_KEY=... bash scripts/gerar-rascunho-e-pr.sh
+set -euo pipefail
+
+DATA=$(TZ=America/Sao_Paulo date +%F)
+ESCOLHA="${ESCOLHA:-claude}"
+
+git config user.name "boletim-med-bot"
+git config user.email "bot@users.noreply.github.com"
+
+if [ "$ESCOLHA" = "todos" ]; then LISTA="claude openai kimi"; else LISTA="$ESCOLHA"; fi
+
+for PROV in $LISTA; do
+  KEY_VAR=$(echo "$PROV" | tr 'a-z' 'A-Z' | sed 's/KIMI/MOONSHOT/')_API_KEY
+  if [ -z "${!KEY_VAR:-}" ]; then
+    echo "::warning::Secret $KEY_VAR ausente — pulando $PROV."
+    continue
+  fi
+
+  PROVIDER=$PROV node scripts/gerar-boletins.mjs
+
+  BRANCH="rascunho/$DATA-$PROV"
+  git checkout -B "$BRANCH"
+  git add boletim-*-"$DATA".html
+  if git diff --cached --quiet; then
+    echo "Nenhum boletim novo gerado por $PROV; sem PR."
+    git checkout main
+    continue
+  fi
+  git commit -m "Rascunho da edicao de $DATA ($PROV — pendente de revisao medica)"
+  git push -u origin "$BRANCH"
+
+  gh pr create --title "Rascunho: edição de $DATA [$PROV]" --body-file - <<EOF
+Boletins gerados automaticamente (**$PROV** + busca web).
+
+**Revisão médica obrigatória antes do merge** — verifique:
+- referências reais e corretas (sem alucinação);
+- linguagem e relevância clínica;
+- sem nomes de pessoas nem referência à FAMERP.
+
+No comparativo A/B/C, faça merge de **no máximo um** PR da edição; feche os
+demais. Ao fazer merge, o workflow de publicação atualiza o \`feed.json\` e o
+app passa a baixar a edição automaticamente. Para descartar, basta fechar o PR.
+EOF
+
+  git checkout main
+  git branch -D "$BRANCH" 2>/dev/null || true
+done
