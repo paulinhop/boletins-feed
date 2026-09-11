@@ -1,0 +1,33 @@
+# Publicação efetiva: quando um rascunho aprovado entra na main (merge do PR
+# de revisão médica), regenera o feed.json. O app sincroniza a partir daí.
+name: Publicar feed após revisão
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'boletim-*.html'
+
+permissions:
+  contents: write
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Regenera o manifesto
+        run: node scripts/build-feed.mjs .
+
+      - name: Commita feed.json se mudou
+        run: |
+          git config user.name "boletim-med-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add feed.json
+          if git diff --cached --quiet; then
+            echo "feed.json já estava atualizado."
+            exit 0
+          fi
+          git commit -m "Atualiza feed.json com a edicao aprovada"
+          git push

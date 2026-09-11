@@ -1,0 +1,52 @@
+# Gera o rascunho semanal dos boletins via API do Claude e abre PR para
+# revisão médica (roadmap 2.8). A publicação real só acontece no merge —
+# ver publicar-feed.yml.
+name: Gerar rascunho semanal
+
+on:
+  schedule:
+    # Segundas 07:12 em America/Sao_Paulo (10:12 UTC)
+    - cron: '12 10 * * 1'
+  workflow_dispatch: # botão "Run workflow" na aba Actions, para edições extras
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  gerar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Gera boletins via API do Claude
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/gerar-boletins.mjs
+
+      - name: Abre PR com o rascunho
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DATA=$(TZ=America/Sao_Paulo date +%F)
+          git config user.name "boletim-med-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git checkout -b "rascunho/$DATA"
+          git add "boletim-*-$DATA.html"
+          if git diff --cached --quiet; then
+            echo "Nenhum boletim novo gerado; nada a revisar."
+            exit 0
+          fi
+          git commit -m "Rascunho da edicao de $DATA (geracao automatica, pendente de revisao medica)"
+          git push -u origin "rascunho/$DATA"
+          gh pr create \
+            --title "Rascunho: edição de $DATA" \
+            --body "Boletins gerados automaticamente (API do Claude + busca web).
+
+**Revisão médica obrigatória antes do merge** — verifique:
+- referências reais e corretas (sem alucinação);
+- linguagem e relevância clínica;
+- sem nomes de pessoas nem referência à FAMERP.
+
+Ao fazer merge, o workflow de publicação atualiza o \`feed.json\` e o app
+passa a baixar a edição automaticamente. Para descartar, basta fechar o PR."

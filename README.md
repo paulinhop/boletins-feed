@@ -15,9 +15,23 @@ boletins `.html` que ainda não existem no aparelho. Leitura 100% offline depois
 
 ## Como publicar uma edição nova
 
+### Automático (padrão — roadmap 2.8)
+
+Toda segunda 07:12 (BRT) o workflow **Gerar rascunho semanal** chama a API do
+Claude (com busca web), gera os boletins das especialidades ativas em
+`prompts/especialidades.json` e abre um **PR de rascunho**. A publicação só
+acontece após **revisão médica**: merge do PR → o workflow **Publicar feed**
+regenera o `feed.json` → o app baixa a edição sozinho. Edição extra fora do
+cron: aba *Actions → Gerar rascunho semanal → Run workflow*.
+
+Configuração única: criar o secret `ANTHROPIC_API_KEY` em
+*Settings → Secrets and variables → Actions*. Ajustes editoriais (especialidades,
+foco, quantidade de itens, modelo) ficam em `prompts/` — sem mexer em código.
+
+### Manual (fallback)
+
 1. Coloque os `.html` da semana numa pasta local.
-2. Gere o manifesto com o script do repo principal:
-   `node scripts/build-feed.mjs <pasta>`
+2. Gere o manifesto: `node scripts/build-feed.mjs <pasta>`
 3. Suba os `.html` + `feed.json` aqui (pelo site do GitHub: *Add file → Upload files*,
    ou por git).
 

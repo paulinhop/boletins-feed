@@ -1,0 +1,37 @@
+{
+  "edicaoPadrao": {
+    "artigosPorBoletim": 5,
+    "modelo": "claude-sonnet-4-5",
+    "observacao": "O modelo pode ser trocado aqui ou pela env ANTHROPIC_MODEL no workflow."
+  },
+  "especialidades": [
+    {
+      "slug": "urologia",
+      "nome": "Urologia",
+      "ativa": true,
+      "foco": "Principais ensaios clínicos e diretrizes recentes em urologia: câncer de próstata, litíase, HPB, disfunção erétil, infecções urinárias. Priorizar NEJM, Lancet, JAMA, European Urology, Journal of Urology e diretrizes EAU/AUA.",
+      "cor": "#005EB8"
+    },
+    {
+      "slug": "andrologia-medicina-sexual",
+      "nome": "Andrologia e Medicina Sexual",
+      "ativa": true,
+      "foco": "Saúde sexual masculina, infertilidade, terapia de reposição hormonal, disfunções sexuais. Priorizar Journal of Sexual Medicine, Andrology e diretrizes ISSM/EAU.",
+      "cor": "#B45A41"
+    },
+    {
+      "slug": "ia-gestao",
+      "nome": "IA e Gestão em Saúde",
+      "ativa": true,
+      "foco": "Inteligência artificial aplicada à saúde, gestão hospitalar, telemedicina, regulamentação (FDA/ANVISA) de software como dispositivo médico. Priorizar NEJM AI, Lancet Digital Health, npj Digital Medicine, JAMA.",
+      "cor": "#00857A"
+    },
+    {
+      "slug": "cardiologia",
+      "nome": "Cardiologia",
+      "ativa": true,
+      "foco": "Ensaios clínicos e diretrizes em cardiologia: insuficiência cardíaca, arritmias, prevenção, hipertensão. Priorizar NEJM, Lancet, JAMA Cardiology, Circulation, European Heart Journal e diretrizes ESC/AHA/ACC.",
+      "cor": "#B03A46"
+    }
+  ]
+}
