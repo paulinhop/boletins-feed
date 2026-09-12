@@ -41,7 +41,9 @@ const PROVEDORES = {
         },
         body: JSON.stringify({
           model: modelo,
-          max_tokens: 8192,
+          // O template rico (seções + detalhamento + refs) gera HTML longo;
+          // 8192 cortava a resposta no meio ("resposta sem HTML completo").
+          max_tokens: 32768,
           tools: [{ type: 'web_search_20250305', name: 'web_search' }],
           messages: [{ role: 'user', content: prompt }],
         }),
