@@ -27,8 +27,10 @@ para médicos brasileiros. Gere o boletim da especialidade informada abaixo.
 
 ### Anatomia de cada item (acordeão)
 
-- `button.head` contém: `span.chev` ("▼ detalhes"), **tags** (subespecialidade
-  e/ou natureza tipo "Prática muda", "Diretriz", "Regulatório"), `h3` com o
+- `button.head` contém: `span.chev` ("▼ detalhes"), **tags coloridas** —
+  **sempre** com a classe do assunto (`t-onco`, `t-sex`, `t-andro`, `t-ped`,
+  `t-geral`) e, quando couber, uma segunda tag de natureza com `t-reg`
+  ("Prática muda", "Diretriz", "Regulatório") — `h3` com o
   título jornalístico-científico (pode trazer o achado principal), `p.resumo`
   de 2–4 frases **com os números-chave**, e `div.fonte-curta`
   ("The Lancet, 06/08/2026 · Tagawa et al.").
@@ -55,6 +57,12 @@ abaixo, trocando apenas os textos/links/itens — não mude classes nem estrutur
     --azul:{{COR}}; --azul2:{{COR}}; --acc:{{COR}};
     --bg:#f4f6f8; --card:#ffffff; --txt:#1c2733; --mut:#5b6b7a; --bord:#dde4ea;
     --tag-bg:#e8f1f8;
+    --c-onco:#7c2d12; --c-onco-bg:#fef0e7;
+    --c-sex:#7e22ce;  --c-sex-bg:#f5ecfd;
+    --c-andro:#0f766e;--c-andro-bg:#e6f4f2;
+    --c-ped:#0369a1;  --c-ped-bg:#e8f3fb;
+    --c-geral:#155a8a;--c-geral-bg:#e8f1f8;
+    --c-reg:#9a3412;  --c-reg-bg:#fdf0e0;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{-webkit-text-size-adjust:100%}
@@ -69,6 +77,13 @@ abaixo, trocando apenas os textos/links/itens — não mude classes nem estrutur
   .item{background:var(--card);border:1px solid var(--bord);border-radius:10px;margin-bottom:12px;overflow:hidden;box-shadow:0 1px 2px rgba(16,42,67,.05)}
   .item>button.head{display:block;width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:14px 16px;font-family:inherit;color:inherit}
   .tag{display:inline-block;font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;border-radius:4px;padding:2px 7px;margin-bottom:7px;margin-right:6px;color:var(--azul);background:var(--tag-bg)}
+  /* Badges coloridas por assunto — use a que combinar com o item: */
+  .t-onco{color:var(--c-onco);background:var(--c-onco-bg)}   /* Uro-oncologia / câncer */
+  .t-sex{color:var(--c-sex);background:var(--c-sex-bg)}       /* Medicina sexual */
+  .t-andro{color:var(--c-andro);background:var(--c-andro-bg)} /* Andrologia / saúde do homem */
+  .t-ped{color:var(--c-ped);background:var(--c-ped-bg)}       /* Pediátrica / congênito */
+  .t-geral{color:var(--c-geral);background:var(--c-geral-bg)} /* Urologia geral / litíase / HPB */
+  .t-reg{color:var(--c-reg);background:var(--c-reg-bg)}       /* Regulatório / diretriz / prática muda */
   .item h3{font-size:1.02rem;color:var(--azul);line-height:1.35;margin-bottom:6px}
   .item .resumo{font-size:.92rem;color:var(--txt)}
   .item .fonte-curta{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.74rem;color:var(--mut);margin-top:8px}
@@ -93,13 +108,19 @@ abaixo, trocando apenas os textos/links/itens — não mude classes nem estrutur
     :root{
       --bg:#000000; --card:#1C1C1E; --txt:#E5E5EA; --mut:#98989F; --bord:#38383A;
       --tag-bg:rgba(255,255,255,.10);
+      --c-onco:#FF9F6E; --c-onco-bg:rgba(255,159,110,.14);
+      --c-sex:#D8B4FE;  --c-sex-bg:rgba(216,180,254,.14);
+      --c-andro:#5EEAD4;--c-andro-bg:rgba(94,234,212,.13);
+      --c-ped:#7DD3FC;  --c-ped-bg:rgba(125,211,252,.14);
+      --c-geral:#64A8FF;--c-geral-bg:rgba(100,168,255,.15);
+      --c-reg:#FDBA74;  --c-reg-bg:rgba(253,186,116,.14);
     }
     body{background:var(--bg);color:var(--txt)}
     .item,.fontes-finais{box-shadow:none}
     .item h3{color:#FFFFFF}
     h2.sec .n,.chev,a{color:#0A84FF}
     h2.sec{border-bottom-color:#0A84FF}
-    .tag{color:#E5E5EA}
+    .tag:not([class*="t-"]){color:#E5E5EA}
     header .data{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25)}
   }
 </style>
@@ -117,7 +138,7 @@ abaixo, trocando apenas os textos/links/itens — não mude classes nem estrutur
   <div class="item">
     <button class="head" aria-expanded="false">
       <span class="chev">▼ detalhes</span>
-      <span class="tag">Subespecialidade</span><span class="tag">Prática muda</span>
+      <span class="tag t-geral">Subespecialidade</span><span class="tag t-reg">Prática muda</span>
       <h3>Título do estudo com o achado principal</h3>
       <p class="resumo">Resumo de 2–4 frases com os números-chave (HR, IC 95%, p, n).</p>
       <div class="fonte-curta">Periódico, data · Autores</div>
