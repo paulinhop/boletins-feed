@@ -71,9 +71,35 @@ export function formatarParaPrompt(itens) {
         `[${i + 1}] ${a.titulo}`,
         `    Periódico: ${a.periodico} · Data: ${a.data} · Tipos: ${a.tipos.join(', ') || 'n/a'}`,
         `    Autores: ${a.autores.join(', ')}${a.autores.length >= 6 ? ' et al.' : ''}`,
-        `    DOI: ${a.doi || 'n/a'} · PMID: ${a.pmid} (https://pubmed.ncbi.nlm.nih.gov/${a.pmid}/)`,
+        `    Citações (OpenAlex): ${a.citacoes ?? 'n/a'} · DOI: ${a.doi || 'n/a'} · PMID: ${a.pmid} (https://pubmed.ncbi.nlm.nih.gov/${a.pmid}/)`,
         a.resumo ? `    Resumo: ${a.resumo}` : '    (sem resumo no PubMed)',
       ].join('\n')
     )
     .join('\n\n');
+}
+
+/**
+ * Contagem real de citações via OpenAlex (API gratuita), em lote por DOI.
+ * Preenche item.citacoes; falha silenciosa (citações ficam "n/a").
+ */
+export async function enriquecerCitacoes(itens) {
+  const comDoi = itens.filter((a) => a.doi);
+  if (comDoi.length === 0) return itens;
+  try {
+    const filtro = comDoi.map((a) => a.doi).join('|');
+    const url = `https://api.openalex.org/works?per-page=50&filter=doi:${encodeURIComponent(filtro)}` +
+      `&select=doi,cited_by_count&mailto=boletim-med@users.noreply.github.com`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`OpenAlex HTTP ${res.status}`);
+    const porDoi = new Map(
+      ((await res.json())?.results ?? []).map((w) => [String(w.doi).replace('https://doi.org/', '').toLowerCase(), w.cited_by_count])
+    );
+    for (const a of comDoi) {
+      const n = porDoi.get(a.doi.toLowerCase());
+      if (n !== undefined) a.citacoes = n;
+    }
+  } catch (erro) {
+    console.warn(`  OpenAlex falhou: ${erro.message} — seleção segue sem contagem de citações`);
+  }
+  return itens;
 }

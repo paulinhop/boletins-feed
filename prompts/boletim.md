@@ -27,11 +27,11 @@ para médicos brasileiros. Gere o boletim da especialidade informada abaixo.
     Essencial quando mudam prática; senão, em Outras novidades.
   - **Tier 3**: demais periódicos revisados por pares — só quando o achado for
     realmente prático e inédito.
-- **Número de citações pesa**: quanto mais citado (ou mais comentado na
-  comunidade — editoriais, guidelines citando, cobertura de sociedades
-  médicas), maior a chance de o artigo ser referência no tema. Prefira o
-  estudo que já virou referência ao estudo isolado. Artigos muito recentes
-  têm poucas citações — compense olhando o tier do veículo e o porte do ensaio.
+- **Número de citações pesa**: o material traz a contagem real (OpenAlex).
+  Quanto mais citado, maior a chance de o artigo ser referência no tema —
+  prefira o estudo que já virou referência ao estudo isolado. Artigos muito
+  recentes têm poucas citações — compense olhando o tier do veículo e o porte
+  do ensaio.
 - **Diretrizes/guidelines NÃO são artigos**: uma diretriz nova ou atualizada
   (EAU, AUA, ACOG, FIGO, ESC...) merece tratamento próprio — tag `t-reg`
   "Diretriz", lugar no Essencial quando a mudança for relevante, e o detalhe

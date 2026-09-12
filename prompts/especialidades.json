@@ -11,7 +11,16 @@
       "ativa": true,
       "foco": "Principais ensaios clínicos e diretrizes recentes em urologia: câncer de próstata, litíase, HPB, disfunção erétil, infecções urinárias. Priorizar NEJM, Lancet, JAMA, European Urology, Journal of Urology e diretrizes EAU/AUA.",
       "cor": "#005EB8",
-      "pubmed": "(\"urology\"[MeSH Terms] OR urolog*[tiab] OR prostate[tiab] OR urolithiasis[tiab]) AND (randomized controlled trial[pt] OR guideline[pt] OR meta-analysis[pt] OR \"N Engl J Med\"[ta] OR \"Lancet\"[ta] OR \"JAMA\"[ta] OR \"Eur Urol\"[ta] OR \"J Urol\"[ta])"
+      "pubmed": "(\"urology\"[MeSH Terms] OR urolog*[tiab] OR prostate[tiab] OR urolithiasis[tiab]) AND (randomized controlled trial[pt] OR guideline[pt] OR meta-analysis[pt] OR \"N Engl J Med\"[ta] OR \"Lancet\"[ta] OR \"JAMA\"[ta] OR \"Eur Urol\"[ta] OR \"J Urol\"[ta])",
+      "regulatorioKeywords": [
+        "prostate",
+        "bladder",
+        "urolog",
+        "kidney",
+        "renal",
+        "erectile",
+        "urinary"
+      ]
     },
     {
       "slug": "andrologia-medicina-sexual",
@@ -33,7 +42,17 @@
       "ativa": true,
       "foco": "Ensaios clínicos e diretrizes em ginecologia: endometriose, miomas, sangramento uterino anormal, contracepção, climatério/menopausa, oncologia ginecológica (colo, endométrio, ovário), rastreamento e HPV. Priorizar NEJM, Lancet, JAMA, Obstetrics & Gynecology (Green Journal), BJOG, Fertility and Sterility e diretrizes ACOG/FIGO/ESGO.",
       "cor": "#B84574",
-      "pubmed": "(\"gynecology\"[MeSH Terms] OR gynecolog*[tiab] OR endometriosis[tiab] OR \"uterine fibroids\"[tiab] OR menopause[tiab]) AND (randomized controlled trial[pt] OR guideline[pt] OR meta-analysis[pt] OR \"N Engl J Med\"[ta] OR \"Lancet\"[ta] OR \"JAMA\"[ta] OR \"Obstet Gynecol\"[ta] OR \"BJOG\"[ta] OR \"Fertil Steril\"[ta])"
+      "pubmed": "(\"gynecology\"[MeSH Terms] OR gynecolog*[tiab] OR endometriosis[tiab] OR \"uterine fibroids\"[tiab] OR menopause[tiab]) AND (randomized controlled trial[pt] OR guideline[pt] OR meta-analysis[pt] OR \"N Engl J Med\"[ta] OR \"Lancet\"[ta] OR \"JAMA\"[ta] OR \"Obstet Gynecol\"[ta] OR \"BJOG\"[ta] OR \"Fertil Steril\"[ta])",
+      "regulatorioKeywords": [
+        "gynecolog",
+        "ovarian",
+        "uterine",
+        "cervical",
+        "endometri",
+        "hpv",
+        "menopaus",
+        "contracepti"
+      ]
     },
     {
       "slug": "obstetricia",
@@ -41,7 +60,15 @@
       "ativa": false,
       "foco": "Ensaios clínicos e diretrizes em obstetrícia: pré-eclâmpsia, diabetes gestacional, parto prematuro, hemorragia pós-parto, pré-natal e medicina fetal. Priorizar NEJM, Lancet, JAMA, Obstetrics & Gynecology, American Journal of Obstetrics & Gynecology (AJOG), Ultrasound in Obstetrics & Gynecology e diretrizes ACOG/FIGO/SMFM.",
       "cor": "#B8683C",
-      "pubmed": "(\"obstetrics\"[MeSH Terms] OR preeclampsia[tiab] OR \"gestational diabetes\"[tiab] OR \"postpartum hemorrhage\"[tiab] OR \"preterm birth\"[tiab]) AND (randomized controlled trial[pt] OR guideline[pt] OR meta-analysis[pt] OR \"N Engl J Med\"[ta] OR \"Lancet\"[ta] OR \"JAMA\"[ta] OR \"Am J Obstet Gynecol\"[ta] OR \"Obstet Gynecol\"[ta])"
+      "pubmed": "(\"obstetrics\"[MeSH Terms] OR preeclampsia[tiab] OR \"gestational diabetes\"[tiab] OR \"postpartum hemorrhage\"[tiab] OR \"preterm birth\"[tiab]) AND (randomized controlled trial[pt] OR guideline[pt] OR meta-analysis[pt] OR \"N Engl J Med\"[ta] OR \"Lancet\"[ta] OR \"JAMA\"[ta] OR \"Am J Obstet Gynecol\"[ta] OR \"Obstet Gynecol\"[ta])",
+      "regulatorioKeywords": [
+        "pregnan",
+        "preeclampsia",
+        "obstetric",
+        "prenatal",
+        "maternal",
+        "fetal"
+      ]
     },
     {
       "slug": "cardiologia",

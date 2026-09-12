@@ -29,7 +29,8 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 
-import { pesquisar, formatarParaPrompt } from './pubmed.mjs';
+import { pesquisar, formatarParaPrompt, enriquecerCitacoes } from './pubmed.mjs';
+import { regulatorio, formatarRegulatorio } from './fontes-extra.mjs';
 
 const MESES = [
   'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
@@ -139,17 +140,21 @@ const dataIso = agora.toISOString().slice(0, 10);
 const dataExtenso = `${agora.getDate()} de ${MESES[agora.getMonth()]} de ${agora.getFullYear()}`;
 
 async function montarPrompt(esp) {
-  // Estágio 1 (grátis): material verificado do PubMed — a IA só redige em cima.
+  // Estágio 1 (grátis): material verificado do PubMed (com contagem real de
+  // citações via OpenAlex) + notícias regulatórias de FDA/ANVISA — a IA só redige.
   let material = '(Especialidade sem query PubMed configurada — gere menos itens.)';
   if (esp.pubmed) {
     try {
-      const itens = await pesquisar(esp.pubmed, 30, 40);
+      const itens = await enriquecerCitacoes(await pesquisar(esp.pubmed, 30, 40));
       material = formatarParaPrompt(itens);
       console.log(`  PubMed: ${itens.length} artigo(s) encontrados para ${esp.slug}`);
     } catch (erro) {
       console.warn(`  PubMed falhou para ${esp.slug}: ${erro.message} — seguindo sem material`);
     }
   }
+  const noticias = await regulatorio(esp.regulatorioKeywords ?? [], 30);
+  if (noticias.length) console.log(`  Regulatório: ${noticias.length} notícia(s) para ${esp.slug}`);
+  material += `\n\nNOTÍCIAS REGULATÓRIAS (FDA/ANVISA — verificadas, podem virar itens com tag t-reg "Regulatório"):\n${formatarRegulatorio(noticias)}`;
   return template
     .replaceAll('{{NOME}}', esp.nome)
     .replaceAll('{{SLUG}}', esp.slug)
