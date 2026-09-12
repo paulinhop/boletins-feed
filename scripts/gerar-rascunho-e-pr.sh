@@ -31,7 +31,9 @@ for PROV in $LISTA; do
     continue
   fi
   git commit -m "Rascunho da edicao de $DATA ($PROV — pendente de revisao medica)"
-  git push -u origin "$BRANCH"
+  # -f: o branch de rascunho é descartável e pode já existir de um run anterior
+  # no mesmo dia (re-geração após ajuste de template, por exemplo).
+  git push -f -u origin "$BRANCH"
 
   gh pr create --title "Rascunho: edição de $DATA [$PROV]" --body-file - <<EOF
 Boletins gerados automaticamente (**$PROV** + busca web).
