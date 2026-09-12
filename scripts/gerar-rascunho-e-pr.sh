@@ -35,7 +35,9 @@ for PROV in $LISTA; do
   # no mesmo dia (re-geração após ajuste de template, por exemplo).
   git push -f -u origin "$BRANCH"
 
-  gh pr create --title "Rascunho: edição de $DATA [$PROV]" --body-file - <<EOF
+  # Se o PR do branch já existe (re-geração no mesmo dia), o push acima já o
+  # atualizou — não tratar como erro.
+  gh pr create --title "Rascunho: edição de $DATA [$PROV]" --body-file - <<EOF || echo "PR já existia; branch atualizado."
 Boletins gerados automaticamente (**$PROV** + busca web).
 
 **Revisão médica obrigatória antes do merge** — verifique:
