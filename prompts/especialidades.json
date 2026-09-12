@@ -1,7 +1,7 @@
 {
   "edicaoPadrao": {
     "artigosPorBoletim": 5,
-    "modelo": "claude-fable-5-1",
+    "modelo": "claude-sonnet-5",
     "observacao": "O modelo pode ser trocado aqui ou pela env ANTHROPIC_MODEL no workflow."
   },
   "especialidades": [
