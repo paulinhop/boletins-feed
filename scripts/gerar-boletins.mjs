@@ -84,12 +84,7 @@ const PROVEDORES = {
       });
       if (!res.ok) throw new Error(`API ${res.status}: ${(await res.text()).slice(0, 300)}`);
       const data = await res.json();
-      if (data.output_text) return data.output_text;
-      return (data.output ?? [])
-        .flatMap((item) => item.content ?? [])
-        .filter((c) => c.type === 'output_text')
-        .map((c) => c.text)
-        .join('\n');
+      return openaiExtrairTexto(data);
     },
   },
   kimi: {
@@ -219,11 +214,122 @@ function extrairHtml(texto) {
   return match[0];
 }
 
+/** Extrai o texto de um corpo de resposta da OpenAI Responses API. */
+function openaiExtrairTexto(data) {
+  if (data.output_text) return data.output_text;
+  return (data.output ?? [])
+    .flatMap((item) => item.content ?? [])
+    .filter((c) => c.type === 'output_text')
+    .map((c) => c.text)
+    .join('\n');
+}
+
+/**
+ * Batch API da OpenAI (roadmap 2.12): 50% de desconto, janela de 24h — como a
+ * geração semanal não é urgente, trocamos latência por custo. Envia UM batch
+ * com um request por especialidade, faz polling e grava os HTMLs. Em caso de
+ * falha/expiração do batch, o chamador cai no modo síncrono (fallback).
+ */
+async function gerarViaBatchOpenAI(ativas, modelo, apiKey, saidaDir, dataIsoEdicao) {
+  const headers = { authorization: `Bearer ${apiKey}`, 'content-type': 'application/json' };
+
+  // 1. Monta os prompts (estágio 1 PubMed/FDA roda aqui, grátis) e o JSONL.
+  const linhas = [];
+  for (const esp of ativas) {
+    const prompt = await montarPrompt(esp);
+    linhas.push(JSON.stringify({
+      custom_id: esp.slug,
+      method: 'POST',
+      url: '/v1/responses',
+      body: { model: modelo, input: prompt },
+    }));
+  }
+
+  // 2. Upload do arquivo de entrada.
+  const form = new FormData();
+  form.append('purpose', 'batch');
+  form.append('file', new Blob([linhas.join('\n') + '\n'], { type: 'application/jsonl' }), 'boletins.jsonl');
+  const upRes = await fetch('https://api.openai.com/v1/files', {
+    method: 'POST',
+    headers: { authorization: `Bearer ${apiKey}` },
+    body: form,
+  });
+  if (!upRes.ok) throw new Error(`upload ${upRes.status}: ${(await upRes.text()).slice(0, 300)}`);
+  const inputFile = await upRes.json();
+
+  // 3. Cria o batch.
+  const batchRes = await fetch('https://api.openai.com/v1/batches', {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      input_file_id: inputFile.id,
+      endpoint: '/v1/responses',
+      completion_window: '24h',
+    }),
+  });
+  if (!batchRes.ok) throw new Error(`batch ${batchRes.status}: ${(await batchRes.text()).slice(0, 300)}`);
+  let batch = await batchRes.json();
+  console.log(`  Batch ${batch.id} criado (${ativas.length} especialidades, ~50% off)`);
+
+  // 4. Polling — batches pequenos costumam fechar em minutos; o teto evita
+  //    travar o job do Actions (padrão 55 min, BATCH_TIMEOUT_MIN sobrescreve).
+  const tetoMs = Number(process.env.BATCH_TIMEOUT_MIN ?? 55) * 60 * 1000;
+  const inicio = Date.now();
+  while (!['completed', 'failed', 'expired', 'cancelled'].includes(batch.status)) {
+    if (Date.now() - inicio > tetoMs) throw new Error(`batch não concluiu em ${tetoMs / 60000} min (status ${batch.status})`);
+    await new Promise((r) => setTimeout(r, 30000));
+    const stRes = await fetch(`https://api.openai.com/v1/batches/${batch.id}`, { headers });
+    if (!stRes.ok) throw new Error(`status ${stRes.status}: ${(await stRes.text()).slice(0, 300)}`);
+    batch = await stRes.json();
+    console.log(`  Batch ${batch.id}: ${batch.status}`);
+  }
+  if (batch.status !== 'completed') throw new Error(`batch terminou com status ${batch.status}`);
+
+  // 5. Baixa a saída e grava um HTML por especialidade.
+  const outRes = await fetch(`https://api.openai.com/v1/files/${batch.output_file_id}/content`, { headers });
+  if (!outRes.ok) throw new Error(`saída ${outRes.status}: ${(await outRes.text()).slice(0, 300)}`);
+  const erros = [];
+  let geradosBatch = 0;
+  for (const linha of (await outRes.text()).trim().split('\n')) {
+    const item = JSON.parse(linha);
+    const arquivo = `boletim-${item.custom_id}-${dataIsoEdicao}.html`;
+    try {
+      if (item.response?.status_code !== 200) {
+        throw new Error(`request ${item.custom_id} falhou: ${item.response?.status_code}`);
+      }
+      writeFileSync(join(saidaDir, arquivo), extrairHtml(openaiExtrairTexto(item.response.body)) + '\n');
+      console.log(`✔ ${arquivo} (batch)`);
+      geradosBatch++;
+    } catch (erro) {
+      console.error(`✘ ${arquivo}: ${erro.message}`);
+      erros.push(item.custom_id);
+    }
+  }
+  return { gerados: geradosBatch, falhas: erros };
+}
+
 const ativas = config.especialidades.filter((e) => e.ativa);
 console.log(`Edição de ${dataExtenso} — provider ${provider}, modelo ${modelo}, ${ativas.length} especialidade(s)`);
 
+// Modo Batch (só OpenAI, env OPENAI_BATCH=1): 50% off, polling com teto; se o
+// batch falhar/expirar, cai no modo síncrono — boletim da semana não fica sem.
 let gerados = 0;
-for (const esp of ativas) {
+const usarBatch = provider === 'openai' && process.env.OPENAI_BATCH === '1';
+const pendentes = new Set(ativas.map((e) => e.slug));
+if (usarBatch) {
+  try {
+    const resultado = await gerarViaBatchOpenAI(ativas, modelo, apiKey, saida, dataIso);
+    gerados += resultado.gerados;
+    // Só as especialidades que o batch não entregou seguem para o modo síncrono.
+    for (const esp of ativas) {
+      if (!resultado.falhas.includes(esp.slug)) pendentes.delete(esp.slug);
+    }
+  } catch (erro) {
+    console.warn(`… Batch falhou (${erro.message}) — caindo no modo síncrono`);
+  }
+}
+
+for (const esp of ativas.filter((e) => pendentes.has(e.slug))) {
   const arquivo = `boletim-${esp.slug}-${dataIso}.html`;
   let feito = false;
   // Até 2 tentativas: com busca web no loop, a resposta pode vir truncada
