@@ -42,8 +42,9 @@ const PROVEDORES = {
         body: JSON.stringify({
           model: modelo,
           // O template rico (seções + detalhamento + refs) gera HTML longo;
-          // 8192 cortava a resposta no meio ("resposta sem HTML completo").
-          max_tokens: 32768,
+          // com a busca web no loop, 8192 cortava a resposta no meio
+          // ("resposta sem HTML completo"). 64k = teto de saída do Sonnet 4.5.
+          max_tokens: 64000,
           tools: [{ type: 'web_search_20250305', name: 'web_search' }],
           messages: [{ role: 'user', content: prompt }],
         }),
@@ -154,14 +155,24 @@ console.log(`Edição de ${dataExtenso} — provider ${provider}, modelo ${model
 let gerados = 0;
 for (const esp of ativas) {
   const arquivo = `boletim-${esp.slug}-${dataIso}.html`;
-  try {
-    const texto = await cfg.chamar(montarPrompt(esp), modelo, apiKey);
-    writeFileSync(join(saida, arquivo), extrairHtml(texto) + '\n');
-    console.log(`✔ ${arquivo}`);
-    gerados++;
-  } catch (erro) {
-    // Falha numa especialidade não derruba as outras — o revisor decide no PR.
-    console.error(`✘ ${arquivo}: ${erro.message}`);
+  let feito = false;
+  // Até 2 tentativas: com busca web no loop, a resposta pode vir truncada
+  // (max_tokens) ou pausada — uma segunda chamada costuma completar.
+  for (let tentativa = 1; tentativa <= 2 && !feito; tentativa++) {
+    try {
+      const texto = await cfg.chamar(montarPrompt(esp), modelo, apiKey);
+      writeFileSync(join(saida, arquivo), extrairHtml(texto) + '\n');
+      console.log(`✔ ${arquivo}${tentativa > 1 ? ` (tentativa ${tentativa})` : ''}`);
+      gerados++;
+      feito = true;
+    } catch (erro) {
+      if (tentativa === 2) {
+        // Falha numa especialidade não derruba as outras — o revisor decide no PR.
+        console.error(`✘ ${arquivo}: ${erro.message}`);
+      } else {
+        console.warn(`… ${arquivo}: ${erro.message} — tentando de novo`);
+      }
+    }
   }
 }
 
