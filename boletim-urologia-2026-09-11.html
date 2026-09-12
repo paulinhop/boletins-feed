@@ -9,6 +9,12 @@
     --azul:#005EB8; --azul2:#005EB8; --acc:#005EB8;
     --bg:#f4f6f8; --card:#ffffff; --txt:#1c2733; --mut:#5b6b7a; --bord:#dde4ea;
     --tag-bg:#e8f1f8;
+    --c-onco:#7c2d12; --c-onco-bg:#fef0e7;
+    --c-sex:#7e22ce;  --c-sex-bg:#f5ecfd;
+    --c-andro:#0f766e;--c-andro-bg:#e6f4f2;
+    --c-ped:#0369a1;  --c-ped-bg:#e8f3fb;
+    --c-geral:#155a8a;--c-geral-bg:#e8f1f8;
+    --c-reg:#9a3412;  --c-reg-bg:#fdf0e0;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{-webkit-text-size-adjust:100%}
@@ -23,6 +29,12 @@
   .item{background:var(--card);border:1px solid var(--bord);border-radius:10px;margin-bottom:12px;overflow:hidden;box-shadow:0 1px 2px rgba(16,42,67,.05)}
   .item>button.head{display:block;width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:14px 16px;font-family:inherit;color:inherit}
   .tag{display:inline-block;font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;border-radius:4px;padding:2px 7px;margin-bottom:7px;margin-right:6px;color:var(--azul);background:var(--tag-bg)}
+  .t-onco{color:var(--c-onco);background:var(--c-onco-bg)}
+  .t-sex{color:var(--c-sex);background:var(--c-sex-bg)}
+  .t-andro{color:var(--c-andro);background:var(--c-andro-bg)}
+  .t-ped{color:var(--c-ped);background:var(--c-ped-bg)}
+  .t-geral{color:var(--c-geral);background:var(--c-geral-bg)}
+  .t-reg{color:var(--c-reg);background:var(--c-reg-bg)}
   .item h3{font-size:1.02rem;color:var(--azul);line-height:1.35;margin-bottom:6px}
   .item .resumo{font-size:.92rem;color:var(--txt)}
   .item .fonte-curta{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.74rem;color:var(--mut);margin-top:8px}
@@ -47,13 +59,19 @@
     :root{
       --bg:#000000; --card:#1C1C1E; --txt:#E5E5EA; --mut:#98989F; --bord:#38383A;
       --tag-bg:rgba(255,255,255,.10);
+      --c-onco:#FF9F6E; --c-onco-bg:rgba(255,159,110,.14);
+      --c-sex:#D8B4FE;  --c-sex-bg:rgba(216,180,254,.14);
+      --c-andro:#5EEAD4;--c-andro-bg:rgba(94,234,212,.13);
+      --c-ped:#7DD3FC;  --c-ped-bg:rgba(125,211,252,.14);
+      --c-geral:#64A8FF;--c-geral-bg:rgba(100,168,255,.15);
+      --c-reg:#FDBA74;  --c-reg-bg:rgba(253,186,116,.14);
     }
     body{background:var(--bg);color:var(--txt)}
     .item,.fontes-finais{box-shadow:none}
     .item h3{color:#FFFFFF}
     h2.sec .n,.chev,a{color:#0A84FF}
     h2.sec{border-bottom-color:#0A84FF}
-    .tag{color:#E5E5EA}
+    .tag:not([class*="t-"]){color:#E5E5EA}
     header .data{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25)}
   }
 </style>
@@ -68,37 +86,34 @@
 </header>
 <div class="wrap">
   <h2 class="sec"><span class="n">1 ·</span> Essencial — os destaques do período</h2>
-  
+
   <div class="item">
     <button class="head" aria-expanded="false">
       <span class="chev">▼ detalhes</span>
-      <span class="tag">Câncer de próstata</span><span class="tag">Prática muda</span>
-      <h3>Apalutamida perioperatória reduz risco de metástase em 35% no câncer de próstata localizado de alto risco</h3>
-      <p class="resumo">Estudo PROTEUS fase 3 demonstrou que apalutamida + TPA perioperatória (antes e após prostatectomia) melhorou sobrevida livre de metástase (HR 0,65; IC 95% 0,47–0,89; p=0,007) e aumentou resposta patológica completa/mínima doença residual em 9 vezes (8,9% vs 1,0%; OR 10,17; IC 95% 5,27–19,64; p&lt;0,0001) em 2.109 pacientes. Eventos adversos foram mais frequentes com apalutamida.</p>
-      <div class="fonte-curta">New England Journal of Medicine, 31/05/2026 · Taplin et al.</div>
+      <span class="tag t-onco">Uro-oncologia</span><span class="tag t-reg">Prática muda</span>
+      <h3>FDA aprova belzutifan + pembrolizumab adjuvante para carcinoma renal de células claras</h3>
+      <p class="resumo">Combinação reduz em 28% o risco de recorrência ou morte (HR 0,72; IC 95% 0,59–0,87; p <0,001) em pacientes de risco intermediário-alto ou alto pós-nefrectomia. Sobrevida livre de doença em 24 meses foi de 80,7% vs. 73,7% com pembrolizumab isolado. Primeira aprovação de inibidor de HIF-2α no cenário adjuvante.</p>
+      <div class="fonte-curta">FDA, 12/06/2026 · LITESPARK-022</div>
     </button>
     <div class="det">
       <h4>Contexto</h4>
-      <p>Até 50% dos pacientes com câncer de próstata localizado de alto risco apresentam recidiva em 5 anos após prostatectomia radical. Não havia tratamento perioperatório comprovadamente eficaz para reduzir metástases nesta população.</p>
-      
+      <p>Aproximadamente 40% dos pacientes com carcinoma renal de células claras (ccRCC) apresentam recorrência após nefrectomia. Pembrolizumab adjuvante já era padrão de cuidado (estudo KEYNOTE-564), mas buscava-se intensificação terapêutica em pacientes de maior risco.</p>
       <h4>Desenho e achados</h4>
       <ul>
-        <li><strong>Desenho:</strong> Estudo fase 3, randomizado, duplo-cego, controlado por placebo (PROTEUS)</li>
-        <li><strong>População:</strong> 2.109 pacientes com câncer de próstata localizado ou localmente avançado de alto risco</li>
-        <li><strong>Intervenção:</strong> Apalutamida 240 mg/dia + terapia de privação androgênica (TPA) vs placebo + TPA, iniciando antes da cirurgia e continuando por 1 ano</li>
-        <li><strong>Desfecho primário 1 (sobrevida livre de metástase):</strong> HR 0,65 (IC 95% 0,47–0,89; p=0,007), representando redução de 35% no risco de metástase ou morte</li>
-        <li><strong>Desfecho primário 2 (resposta patológica):</strong> Resposta completa/mínima doença residual em 8,9% vs 1,0% (OR 10,17; IC 95% 5,27–19,64; p&lt;0,0001); resposta completa (ypT0) em 5,1% vs 0,4%</li>
+        <li><strong>Desenho:</strong> Estudo LITESPARK-022 (NCT05239728), fase III, duplo-cego, randomizado 1:1, com 1.841 pacientes pós-nefrectomia ou ressecção de metástases em risco intermediário-alto ou alto</li>
+        <li><strong>Intervenção:</strong> Belzutifan 120 mg VO diário + pembrolizumab 400 mg IV a cada 6 semanas (até 9 doses) vs. placebo + pembrolizumab, por até 1 ano</li>
+        <li><strong>Desfecho primário:</strong> Sobrevida livre de doença (DFS) — HR 0,72 (IC 95% 0,59–0,87; p <0,001)</li>
+        <li><strong>DFS em 24 meses:</strong> 80,7% (combinação) vs. 73,7% (pembrolizumab isolado)</li>
+        <li><strong>Sobrevida global:</strong> Dados ainda imaturos na primeira análise interina (HR 0,78; IC 95% 0,51–1,19; p=0,122)</li>
       </ul>
-      
       <h4>Implicação prática</h4>
-      <p>Este é o primeiro estudo a demonstrar benefício de intensificação sistêmica perioperatória no câncer de próstata localizado de alto risco. A abordagem quebra paradigma de décadas em que apenas cirurgia ou radioterapia eram oferecidas. O tratamento combinado pode tornar-se novo padrão para pacientes candidatos à prostatectomia radical neste cenário.</p>
-      
+      <p>A aprovação em 12 de junho de 2026 estabelece belzutifan + pembrolizumab como nova opção adjuvante para ccRCC de risco aumentado. Belzutifan, inibidor de HIF-2α, bloqueia via de hipóxia central na biologia do ccRCC. A combinação deve ser discutida com pacientes elegíveis, pesando benefício em DFS contra eventos adversos (anemia, hipóxia).</p>
       <h4>Limitações</h4>
-      <p>Eventos adversos foram mais comuns no grupo apalutamida. O seguimento mediano ainda é relativamente curto para avaliar sobrevida global. Dados de sobrevida livre de recidiva bioquímica ainda não estão maduros.</p>
-      
+      <p>Dados de sobrevida global ainda aguardam amadurecimento. Bula inclui advertência em caixa para toxicidade embrio-fetal e precauções para anemia e hipóxia. Custos e acesso ao belzutifan podem limitar uso em alguns cenários.</p>
       <div class="refs">
         <h4>Referências</h4>
-        <p><a href="https://doi.org/10.1056/NEJMoa2603878">Taplin ME et al. Perioperative Apalutamide in High-Risk Localized Prostate Cancer. N Engl J Med 2026;395(6):546-560</a></p>
+        <p><a href="https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-belzutifan-pembrolizumab-adjuvant-treatment-renal-cell-carcinoma">FDA approves belzutifan with pembrolizumab for adjuvant treatment of renal cell carcinoma</a></p>
+        <p><a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2518245">Adjuvant Pembrolizumab plus Belzutifan for Renal-Cell Carcinoma — NEJM</a></p>
       </div>
     </div>
   </div>
@@ -106,33 +121,30 @@
   <div class="item">
     <button class="head" aria-expanded="false">
       <span class="chev">▼ detalhes</span>
-      <span class="tag">Câncer de bexiga</span><span class="tag">Regulatório</span>
-      <h3>FDA amplia aprovação de pembrolizumab + enfortumab para todos os pacientes com câncer de bexiga músculo-invasivo</h3>
-      <p class="resumo">Em 10 de julho de 2026, o FDA expandiu a aprovação de pembrolizumab (ou pembrolizumab + berahyaluronidase) em combinação com enfortumab vedotin como tratamento neoadjuvante e adjuvante à cistectomia para todos os adultos com câncer de bexiga músculo-invasivo, estendendo indicação anterior limitada a pacientes inelegíveis a cisplatina. Dados do estudo PURE-01 mostram sobrevida global de 77% em 5 anos com pembrolizumab neoadjuvante.</p>
-      <div class="fonte-curta">FDA, 10/07/2026</div>
+      <span class="tag t-geral">Urologia geral</span><span class="tag t-reg">Diretriz</span>
+      <h3>AUA publica diretriz completa 2026 para manejo de LUTS/HPB em 3 partes</h3>
+      <p class="resumo">Revisão abrangente com 62 recomendações aborda avaliação, tratamento clínico e intervenções cirúrgicas. Destaque para upgrade da embolização arterial prostática (PAE) para nível de evidência B, expansão da Aquablation para próstatas até 150 mL e novas combinações com tadalafil. Publicada em 07/05/2026 no Journal of Urology.</p>
+      <div class="fonte-curta">Journal of Urology, 07/05/2026 · AUA Guideline Panel</div>
     </button>
     <div class="det">
       <h4>Contexto</h4>
-      <p>O câncer de bexiga músculo-invasivo tradicionalmente é tratado com quimioterapia neoadjuvante à base de cisplatina seguida de cistectomia radical. Cerca de 50% dos pacientes não são elegíveis para cisplatina por função renal ou comorbidades. Imunoterapia perioperatória emergiu como alternativa promissora.</p>
-      
+      <p>Sintomas do trato urinário inferior atribuídos à hiperplasia prostática benigna (LUTS/HPB) afetam milhões de homens nos EUA. A diretriz anterior (2021, emenda 2023) necessitava atualização abrangente para incorporar novas evidências em terapia médica e procedimentos minimamente invasivos.</p>
       <h4>Desenho e achados</h4>
       <ul>
-        <li><strong>Aprovação regulatória:</strong> FDA aprovou pembrolizumab ou pembrolizumab + berahyaluronidase alfa-pmph, ambos em combinação com enfortumab vedotin-ejfv, como tratamento neoadjuvante (pré-cirúrgico) e adjuvante (pós-cistectomia)</li>
-        <li><strong>Ampliação:</strong> Indicação anterior era restrita a pacientes cisplatina-inelegíveis; agora abrange todos os pacientes com MIBC candidatos à cistectomia</li>
-        <li><strong>Dados de suporte (PURE-01):</strong> Estudo fase 2 com pembrolizumab neoadjuvante (n=155) mostrou sobrevida global de 77% em 5 anos, sobrevida livre de eventos de 68%, e taxa de resposta patológica completa de 42%</li>
-        <li><strong>Resposta por categoria:</strong> Sobrevida global de ~90% em 5 anos nos pacientes com resposta completa ou major (p&lt;0,001)</li>
+        <li><strong>Metodologia:</strong> Revisão sistemática em MEDLINE, Cochrane CENTRAL e Cochrane Reviews até janeiro/2025, com atualização em dezembro/2025; terapias médicas desde 2009 e cirúrgicas desde 2014</li>
+        <li><strong>Estrutura:</strong> Parte I (apresentação e avaliação), Parte II (tratamento clínico), Parte III (tratamento cirúrgico/procedimentos)</li>
+        <li><strong>Principais mudanças:</strong> PAE elevada a evidência grau B; Aquablation expandida para próstatas até 150 mL; novas recomendações sobre combinações de tadalafil; esclarecimento sobre segurança dos inibidores 5-alfa-redutase</li>
+        <li><strong>Foco:</strong> Decisão compartilhada, individualização da terapia balanceando eficácia, durabilidade e eventos adversos</li>
       </ul>
-      
       <h4>Implicação prática</h4>
-      <p>A decisão FDA representa mudança no padrão de cuidado para câncer de bexiga músculo-invasivo. Médicos brasileiros podem esperar discussões regulatórias similares na ANVISA. A combinação imunoterapia + conjugado anticorpo-droga oferece alternativa robusta à quimioterapia convencional, particularmente relevante para população cisplatina-inelegível.</p>
-      
+      <p>A diretriz 2026 orienta médicos na escolha entre observação, terapia medicamentosa (alfa-bloqueadores, inibidores 5-ARI, inibidores PDE5, antimuscarínicos) e procedimentos (TURP, HoLEP, terapias minimamente invasivas como Rezūm, UroLift, PAE, Aquablation). O upgrade da PAE e a expansão da Aquablation ampliam o arsenal terapêutico para próstatas maiores.</p>
       <h4>Limitações</h4>
-      <p>Dados de ensaios randomizados fase 3 para a combinação pembrolizumab + enfortumab ainda não foram publicados em periódicos revisados por pares. Custo do tratamento pode limitar acesso em sistemas públicos de saúde.</p>
-      
+      <p>Evidências ainda limitadas para algumas terapias emergentes; estudos de longo prazo são necessários para confirmar durabilidade. Custos e disponibilidade de tecnologias mais recentes variam conforme região e sistema de saúde.</p>
       <div class="refs">
         <h4>Referências</h4>
-        <p><a href="https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-pembrolizumab-or-pembrolizumab-and-berahyaluronidase-alfa-pmph-each-enfortumab-vedotin">FDA approves pembrolizumab or pembrolizumab and berahyaluronidase alfa-pmph each with enfortumab vedotin-ejfv for muscle invasive bladder cancer. 10 de julho de 2026</a></p>
-        <p><a href="https://pubmed.ncbi.nlm.nih.gov/41633898/">Tateo V et al. Updated 5-year Survival Results from PURE-01. Eur Urol. 2026 Feb 2</a></p>
+        <p><a href="https://www.auajournals.org/doi/10.1097/JU.0000000000005097">Management of LUTS Attributed to BPH: AUA Guideline (2026) Part I — Journal of Urology</a></p>
+        <p><a href="https://www.auajournals.org/doi/10.1097/JU.0000000000005098">Management of LUTS Attributed to BPH: AUA Guideline (2026) Part II — Journal of Urology</a></p>
+        <p><a href="https://www.auajournals.org/doi/10.1097/JU.0000000000005099">Management of LUTS Attributed to BPH: AUA Guideline (2026) Part III — Journal of Urology</a></p>
       </div>
     </div>
   </div>
@@ -140,33 +152,30 @@
   <div class="item">
     <button class="head" aria-expanded="false">
       <span class="chev">▼ detalhes</span>
-      <span class="tag">Diretriz</span><span class="tag">HPB</span>
-      <h3>AUA 2026: nova diretriz de HPB/LUTS reformula espectro de tratamento cirúrgico e clínico</h3>
-      <p class="resumo">Diretriz atualizada da AUA sobre sintomas do trato urinário inferior atribuídos à hiperplasia prostática benigna (LUTS/HPB) publicada em maio-agosto de 2026 incorpora evidências de janeiro de 2025. Revisão sistemática baseou-se em estudos de terapias médicas desde 2009 e cirúrgicas desde 2014, utilizando framework GRADE. Documento em três partes aborda avaliação, tratamento médico e procedimentos cirúrgicos expandidos.</p>
-      <div class="fonte-curta">Journal of Urology, 01/08/2026 · Goueli et al.</div>
+      <span class="tag t-onco">Uro-oncologia</span>
+      <h3>Estudo ALBAN: atezolizumab + BCG não supera BCG isolado em câncer de bexiga não músculo-invasivo</h3>
+      <p class="resumo">Ensaio de fase III (GETUG-AFU 37) com 517 pacientes virgens de BCG e câncer de bexiga de alto risco não demonstrou benefício em sobrevida livre de eventos com a adição de atezolizumab IV ao BCG (HR 0,98; IC 95% 0,71–1,36; p=0,91). Eventos adversos relacionados ao tratamento foram mais frequentes no braço combinado.</p>
+      <div class="fonte-curta">Annals of Oncology, janeiro/2026 · Roupret et al.</div>
     </button>
     <div class="det">
       <h4>Contexto</h4>
-      <p>LUTS/HPB representa condição multifatorial que afeta milhões de homens globalmente. A última diretriz AUA necessitava atualização para incorporar novas tecnologias cirúrgicas minimamente invasivas e evidências sobre terapias médicas combinadas. Existe interação delicada entre abordagens clínicas e procedimentais.</p>
-      
+      <p>Câncer de bexiga não músculo-invasivo (NMIBC) de alto risco é tratado com ressecção transuretral seguida de BCG intravesical (indução + manutenção), mas 30–40% dos pacientes falham. Expressão de PD-L1 e alterações imunes sugerem potencial benefício com inibidores de checkpoint, e estudos anteriores (POTOMAC, CREST) mostraram resultados variados.</p>
       <h4>Desenho e achados</h4>
       <ul>
-        <li><strong>Metodologia:</strong> Revisão sistemática em Ovid MEDLINE, Cochrane até janeiro de 2025, com busca atualizada em dezembro de 2025</li>
-        <li><strong>Estrutura:</strong> Documento dividido em três partes: Parte I (avaliação e tratamento geral), Parte II (tratamento médico), Parte III (tratamento procedural/cirúrgico)</li>
-        <li><strong>Painel multidisciplinar:</strong> Incluiu urologistas, endourologistas, endocrinologistas, nutricionistas urológicos e representantes de pacientes</li>
-        <li><strong>Novidades:</strong> Incorporação de tratamentos emergentes, tecnologias avançadas, estratificação aprimorada de pacientes, e discussão sobre influência de obesidade e síndrome metabólica</li>
+        <li><strong>Desenho:</strong> ALBAN (NCT03799835), fase III, randomizado 1:1, aberto, internacional</li>
+        <li><strong>População:</strong> 517 pacientes virgens de BCG com NMIBC de alto risco (CIS ± Ta/T1 de alto grau)</li>
+        <li><strong>Intervenção:</strong> Atezolizumab 1.200 mg IV a cada 3 semanas (8 ciclos) + BCG intravesical (indução + manutenção) vs. BCG isolado</li>
+        <li><strong>Desfecho primário:</strong> Sobrevida livre de eventos (EFS) — HR 0,98 (IC 95% 0,71–1,36; p=0,91); eventos: 73/262 (combinação) vs. 72/255 (BCG isolado)</li>
+        <li><strong>Desfechos secundários:</strong> Sobrevida livre de recorrência de alto grau também sem diferença (HR 1,06; IC 95% 0,73–1,55)</li>
+        <li><strong>Segurança:</strong> Eventos adversos relacionados ao tratamento e grau ≥3 mais frequentes no braço combinado, mas sem novos sinais de toxicidade</li>
       </ul>
-      
       <h4>Implicação prática</h4>
-      <p>A diretriz oferece framework atualizado para decisão compartilhada com pacientes sobre manejo de LUTS/HPB. Médicos devem considerar fatores do paciente, anatomia do trato urinário, características da pedra e preferências individuais. Documento serve como recurso para discussões baseadas em evidências sobre opções terapêuticas.</p>
-      
+      <p>O ALBAN contrasta com o POTOMAC (durvalumab + BCG positivo), sugerindo que benefício de checkpoint + BCG pode ser contexto-específico ou dependente do agente, não um efeito de classe. Atezolizumab + BCG não deve ser adotado fora de ensaios clínicos em NMIBC virgem de BCG. Pesquisas futuras devem focar em seleção de pacientes por biomarcadores e otimização de timing e via de administração.</p>
       <h4>Limitações</h4>
-      <p>Persistem lacunas substanciais no conhecimento, particularmente sobre novos tratamentos e tecnologias emergentes. Diretriz aponta necessidades de pesquisa futura em etiologia da doença e estratificação de pacientes.</p>
-      
+      <p>Diferenças em duração e dose de atezolizumab vs. durvalumab (POTOMAC) podem ter impactado resultados. Falta de biomarcadores preditivos impede identificar subgrupos que possam se beneficiar.</p>
       <div class="refs">
         <h4>Referências</h4>
-        <p><a href="https://www.auanet.org/guidelines-and-quality/guidelines/bph-guideline">Management of Lower Urinary Tract Symptoms Attributed to Benign Prostatic Hyperplasia: AUA Guideline (2026). American Urological Association</a></p>
-        <p><a href="https://pubmed.ncbi.nlm.nih.gov/42284178/">Wymer KM, Koo K. Reframing the Spectrum of Benign Prostatic Hyperplasia Management: Impact and Implications of the 2026 AUA Guideline. J Urol. 2026 Jun 12</a></p>
+        <p><a href="https://www.annalsofoncology.org/article/S0923-7534(25)04787-8/fulltext">ALBAN (GETUG-AFU 37): phase III trial of atezolizumab + BCG vs BCG alone — Annals of Oncology</a></p>
       </div>
     </div>
   </div>
@@ -174,34 +183,29 @@
   <div class="item">
     <button class="head" aria-expanded="false">
       <span class="chev">▼ detalhes</span>
-      <span class="tag">Diretriz</span><span class="tag">Litíase</span>
-      <h3>Diretrizes AUA 2026 para manejo cirúrgico de cálculos renais e ureterais atualizam recomendações para URS, LEC e NLPC</h3>
-      <p class="resumo">Diretrizes AUA 2026 em três partes para tratamento cirúrgico de litíase urinária recomendam fortemente terapia expulsiva médica com alfabloqueadores por 30 dias para cálculos ureterais distais ≤10 mm (recomendação condicional para ureter médio/proximal). Mais de 370.000 pacientes segurados nos EUA foram submetidos a cirurgia de cálculos em 2019. Revisão sistemática incluiu estudos de 2000–2025 utilizando GRADE.</p>
-      <div class="fonte-curta">Journal of Urology, 01/02/2026 · Pearle et al.</div>
+      <span class="tag t-geral">Urologia geral</span><span class="tag t-reg">Diretriz</span>
+      <h3>AUA atualiza diretrizes de manejo cirúrgico de litíase renal e ureteral em 3 partes</h3>
+      <p class="resumo">Publicadas em fevereiro/2026, as diretrizes revistas cobrem avaliação e tratamento de cálculos renais e ureterais, com atualização de evidências até 2025. Recomendações incluem terapia expulsiva médica com alfa-bloqueadores por 30 dias para cálculos ureterais ≤10 mm, abordagens para litotripsia extracorpórea (SWL), ureteroscopia (URS) e nefrolitotomia percutânea (PCNL).</p>
+      <div class="fonte-curta">Journal of Urology, fevereiro/2026 · Pearle et al.</div>
     </button>
     <div class="det">
       <h4>Contexto</h4>
-      <p>Urolitíase afeta milhões de pessoas globalmente, com crescente incidência. A última diretriz AUA (2016) necessitava atualização com novas evidências sobre litotripsia extracorpórea por ondas de choque (LEC), ureteroscopia (URS) e nefrolitotomia percutânea (NLPC). Seleção de modalidade terapêutica ideal depende de múltiplos fatores.</p>
-      
+      <p>Mais de 370.000 pacientes nos EUA foram submetidos a cirurgia para cálculos ureterais e renais em 2019. A última diretriz AUA data de 2016, necessitando atualização com base em evidências de 2000 a 2025 usando framework GRADE.</p>
       <h4>Desenho e achados</h4>
       <ul>
-        <li><strong>Metodologia:</strong> Revisão sistemática de literatura 2000–2025 usando GRADE; painel multidisciplinar incluindo urologistas, endourologistas e pacientes</li>
-        <li><strong>Estrutura:</strong> Três partes: Parte I (avaliação e tratamento de pacientes), Parte II (tratamento de cálculos renais), Parte III (tratamento e direções futuras)</li>
-        <li><strong>Terapia expulsiva médica:</strong> Forte recomendação para alfabloqueadores por 30 dias em cálculos ureterais distais ≤10 mm; recomendação condicional para ureter médio/proximal</li>
-        <li><strong>Falha de LEC:</strong> Se segunda sessão de LEC falhar, deve-se oferecer URS (recomendação condicional; nível de evidência C)</li>
-        <li><strong>Cálculos >2 cm ou falha de tratamento:</strong> Oferecer abordagem percutânea anterógrada para cálculos ureterais (opinião de especialistas)</li>
+        <li><strong>Metodologia:</strong> Revisão sistemática de literatura 2000–2025, painel multidisciplinar (urologia, endourologia, endocrinologia, nutrição urológica)</li>
+        <li><strong>Parte I:</strong> Avaliação e tratamento de pacientes com cálculos renais/ureterais; terapia expulsiva médica (alfa-bloqueadores) fortemente recomendada para cálculos ureterais distais ≤10 mm por 30 dias, recomendação condicional para cálculos médios/proximais</li>
+        <li><strong>Parte II:</strong> Seleção de modalidades (SWL, URS, PCNL/mini-PCNL) baseada em fatores do paciente, anatomia e características do cálculo</li>
+        <li><strong>Parte III:</strong> Tratamento cirúrgico detalhado e direções futuras; TC pré-operatória recomendada para PCNL; se SWL falhar após 2 sessões, oferecer URS</li>
       </ul>
-      
       <h4>Implicação prática</h4>
-      <p>Diretrizes fornecem base para decisão compartilhada médico-paciente sobre tratamento de litíase. Seleção da modalidade terapêutica deve considerar fatores do paciente, anatomia, características do cálculo, disponibilidade de recursos e expertise do cirurgião. Recomendações fortalecem uso de alfabloqueadores para cálculos distais pequenos.</p>
-      
+      <p>As diretrizes 2026 fornecem recurso atualizado para decisão compartilhada entre médicos e pacientes, orientando escolha entre observação, terapia expulsiva, SWL, URS e PCNL com base em evidências atuais. Ênfase em individualização conforme preferências do paciente, disponibilidade de recursos e expertise cirúrgica.</p>
       <h4>Limitações</h4>
-      <p>Muitas recomendações são condicionais ou baseadas em opinião de especialistas devido a evidências limitadas. Estudos comparativos diretos de alta qualidade entre modalidades ainda são escassos para muitos cenários clínicos.</p>
-      
+      <p>Algumas recomendações baseiam-se em evidências de qualidade moderada ou baixa. Estudos futuros são necessários para definir intervalos ótimos entre sessões repetidas de SWL e comparar técnicas emergentes.</p>
       <div class="refs">
         <h4>Referências</h4>
-        <p><a href="https://www.auajournals.org/doi/10.1097/JU.0000000000004842">Pearle MS et al. Surgical Management of Kidney and Ureteral Stones: AUA Guideline (2026) Part I. J Urol. 2026;215(2):113-123</a></p>
-        <p><a href="https://www.renalandurologynews.com/features/kidney-stone-surgery-aua-guidelines-2026/">Kidney Stone Surgery: AUA Releases 2026 Guidelines. Renal and Urology News, abril de 2026</a></p>
+        <p><a href="https://www.auajournals.org/doi/10.1097/JU.0000000000004842">Surgical Management of Kidney and Ureteral Stones: AUA Guideline (2026) Part I — Journal of Urology</a></p>
+        <p><a href="https://www.auajournals.org/doi/10.1097/JU.0000000000004844">Surgical Management of Kidney and Ureteral Stones: AUA Guideline (2026) Part III — Journal of Urology</a></p>
       </div>
     </div>
   </div>
@@ -209,34 +213,28 @@
   <div class="item">
     <button class="head" aria-expanded="false">
       <span class="chev">▼ detalhes</span>
-      <span class="tag">Diretriz</span><span class="tag">Câncer de próstata</span>
-      <h3>AUA/SUO 2026: diretrizes de câncer de próstata avançado recomendam teste genético para todos e intensificam terapia combinada</h3>
-      <p class="resumo">Atualização de maio de 2026 das diretrizes AUA/SUO de câncer de próstata avançado incorpora evidências de 2022–2025, consolidando terapia combinada como padrão em quase todos os estágios da doença. Teste germline deve ser oferecido a todos os pacientes com doença avançada; teste tumoral somático para pacientes com doença metastática. Sobrevida mediana histórica de mCRPC era &lt;2 anos; pacientes contemporâneos vivem substancialmente mais.</p>
-      <div class="fonte-curta">AUA/SUO, 12/05/2026</div>
+      <span class="tag t-onco">Uro-oncologia</span><span class="tag t-reg">Diretriz</span>
+      <h3>EAU publica diretrizes atualizadas 2026 para câncer testicular</h3>
+      <p class="resumo">Versão 2026 da diretriz EAU sobre câncer testicular coleta evidências científicas de mais alta qualidade para padronizar manejo de pacientes. Equipe multidisciplinar revisou literatura publicada desde última atualização em 2023. Recomendações cobrem diagnóstico, tratamento primário, detecção/tratamento de recidiva e cuidados de sobrevivência, com ênfase em estratégias de desintensificação terapêutica.</p>
+      <div class="fonte-curta">European Urology, abril/2026 · Heidenreich et al.</div>
     </button>
     <div class="det">
       <h4>Contexto</h4>
-      <p>Câncer de próstata avançado passou por transformação substancial nos últimos anos com múltiplos novos agentes e combinações. Evidências publicadas entre início de 2022 e meados de 2025 mudaram significativamente recomendações ao longo do continuum da doença, desde recorrência bioquímica até mCRPC.</p>
-      
+      <p>Câncer testicular (tumores germinativos em 90–95%) representa 1% de neoplasias adultas e 5% de tumores urológicos, sendo o câncer mais frequente em homens jovens. Taxas de cura permanecem >95% em todos os estágios, mas minimizar toxicidades de longo prazo é crítico dado população crescente de sobreviventes.</p>
       <h4>Desenho e achados</h4>
       <ul>
-        <li><strong>Escopo:</strong> Abrange desde recorrência de PSA após terapia local até doença metastática resistente à castração (mCRPC)</li>
-        <li><strong>Teste genético:</strong> Teste germline recomendado para todos os pacientes com câncer de próstata avançado; teste somático tumoral para pacientes com doença metastática</li>
-        <li><strong>Terapia combinada:</strong> Consolidada como padrão de cuidado em praticamente todos os estágios da doença</li>
-        <li><strong>Ênfase em testes moleculares:</strong> Uso expandido de testes genômicos e moleculares para guiar tratamento individualizado</li>
-        <li><strong>Sobrevida melhorada:</strong> Pacientes contemporâneos com mCRPC vivem substancialmente mais que histórico de &lt;2 anos, alguns alcançando controle durável por muitos anos</li>
+        <li><strong>Metodologia:</strong> Equipe multidisciplinar (urologistas, oncologistas médicos, radio-oncologistas, patologistas) revisou literatura desde 2023</li>
+        <li><strong>Principais atualizações:</strong> Vias diagnósticas refinadas, avaliação padronizada de espécimes de orquiectomia, algoritmos de tratamento adaptados ao estágio para seminomas e não-seminomas</li>
+        <li><strong>Ênfase em desintensificação:</strong> Estratégias de tratamento adaptadas ao risco para estágio I, reduzindo exposição a quimioterapia/radioterapia em pacientes de baixo risco</li>
+        <li><strong>Novas orientações:</strong> Manejo de metástases ósseas com abordagens multimodais; discussão sobre colocação de prótese testicular; limitações atuais impedem adoção rotineira de miRNA-371 circulante como ferramenta diagnóstica/vigilância</li>
       </ul>
-      
       <h4>Implicação prática</h4>
-      <p>Diretrizes enfatizam personalização do tratamento baseada em características da doença, perfil genômico, comorbidades e preferências do paciente. Teste genético universal para doença avançada permite identificar pacientes que se beneficiam de terapias direcionadas (ex: inibidores PARP). Médicos devem estar familiarizados com múltiplas combinações terapêuticas disponíveis.</p>
-      
+      <p>As diretrizes EAU 2026 oferecem algoritmos atualizados para diagnóstico e manejo em todas as fases do câncer testicular, permitindo individualização do tratamento e redução de toxicidades em longo prazo. Urologistas devem considerar vigilância ativa em estágio I de baixo risco e discutir opções de preservação de fertilidade antes do tratamento.</p>
       <h4>Limitações</h4>
-      <p>Custo de testes genéticos e novas terapias pode limitar acesso. Algumas áreas promissoras (ex: terapia metástase-direcionada) ainda carecem de dados de fase 3 para recomendação formal, embora dados de fase 2 sejam encorajadores.</p>
-      
+      <p>Áreas de falta de consenso forte persistem, especialmente em terapias emergentes. Biomarcadores como miRNA-371 necessitam padronização antes de uso clínico rotineiro.</p>
       <div class="refs">
         <h4>Referências</h4>
-        <p><a href="https://www.guidelinecentral.com/insights/may-2026-auasuo-prostatecancer-guideline-video/">AUA/SUO Advanced Prostate Cancer 2026 Guideline Update. Guideline Central, maio de 2026</a></p>
-        <p><a href="https://www.urologytimes.com/view/2026-advanced-prostate-cancer-guideline-key-updates-clinical-faqs">2026 AUA/SUO Advanced Prostate Cancer Guideline: Key updates and clinical FAQs. Urology Times, junho de 2026</a></p>
+        <p><a href="https://pubmed.ncbi.nlm.nih.gov/42049597/">European Association of Urology Guidelines on Testicular Cancer: Summary of the 2026 Guidelines — PubMed</a></p>
       </div>
     </div>
   </div>
@@ -246,21 +244,21 @@
   <div class="item">
     <button class="head" aria-expanded="false">
       <span class="chev">▼ detalhes</span>
-      <span class="tag">Diretriz</span><span class="tag">Detecção precoce</span>
-      <h3>AUA/SUO atualizam diretriz de detecção precoce de câncer de próstata com 35 recomendações</h3>
-      <p class="resumo">Em 26 de fevereiro de 2026, AUA e SUO divulgaram emenda à diretriz de detecção precoce de câncer de próstata. Documento com 35 recomendações fornece framework para rastreamento com PSA, biópsias iniciais e repetidas, e técnicas de biópsia. Atualizações incorporam dados mais recentes para estratégias de rastreamento e seguimento personalizadas.</p>
-      <div class="fonte-curta">American Urological Association, 26/02/2026 · Lin et al.</div>
+      <span class="tag t-geral">Urologia geral</span>
+      <h3>Novo teste rápido de urina pode transformar tratamento de ITU com resultados no mesmo dia</h3>
+      <p class="resumo">Método de teste de suscetibilidade antimicrobiana direta microcapilar identifica antibiótico correto em menos de 6 horas, pulando etapa de cultivo laboratorial. Em ensaios com centenas de amostras, precisão >96% comparada a métodos padrão. Publicado em JAC-Antimicrobial Resistance, março/2026.</p>
+      <div class="fonte-curta">JAC-Antimicrobial Resistance, 31/03/2026 · Needs et al.</div>
     </button>
     <div class="det">
       <h4>Contexto</h4>
-      <p>Rastreamento de câncer de próstata permanece tema controverso, equilibrando benefícios de detecção precoce com riscos de sobrediagnóstico e sobretratamento. Evolução contínua da ciência demanda atualizações regulares das diretrizes.</p>
-      
+      <p>Infecções do trato urinário (ITU) estão entre as infecções bacterianas mais comuns, mas resistência antibiótica complica tratamento empírico. Métodos tradicionais de cultura e antibiograma demoram 2–3 dias, atrasando terapia direcionada.</p>
+      <h4>Achados principais</h4>
+      <p>Teste analisa amostras de urina diretamente, mostrando rapidamente quais antibióticos interrompem crescimento bacteriano. Precisão de concordância >96% com métodos padrão permite escolha antimicrobiana no mesmo dia da consulta.</p>
       <h4>Implicação prática</h4>
-      <p>Diretriz atualizada serve como referência útil para antígeno prostático específico (PSA), biópsias e técnicas. Fornece suporte para decisões clínicas informadas e personalizadas sobre rastreamento e seguimento de pacientes em risco.</p>
-      
+      <p>Se validado em larga escala e implementado, pode reduzir prescrição empírica inadequada, melhorar desfechos clínicos e limitar seleção de resistência antimicrobiana em ITUs.</p>
       <div class="refs">
         <h4>Referências</h4>
-        <p><a href="https://www.auanet.org/about-us/media-center/press-center/aua-announces-updates-to-the-early-detection-of-prostate-cancer-guideline">AUA Announces Updates to the Early Detection of Prostate Cancer Guideline. 26 de fevereiro de 2026</a></p>
+        <p><a href="https://www.sciencedaily.com/releases/2026/03/260331001054.htm">This new test could transform UTI treatment with same-day results — ScienceDaily</a></p>
       </div>
     </div>
   </div>
@@ -268,22 +266,21 @@
   <div class="item">
     <button class="head" aria-expanded="false">
       <span class="chev">▼ detalhes</span>
-      <span class="tag">Infecção urinária</span><span class="tag">Regulatório</span>
-      <h3>FDA aprova gepotidacin, primeiro antibiótico oral de nova classe para ITU não complicada</h3>
-      <p class="resumo">Gepotidacin foi aprovado pelo FDA em março de 2025 para tratamento de infecção do trato urinário não complicada (ITU-NC) em mulheres ≥12 anos. Trata-se do primeiro antibiótico oral triazaacenaftilenona, inibidor bacteriano de topoisomerase com mecanismo de ação único. Ensaios EAGLE-2 e EAGLE-3 demonstraram eficácia similar ou superior à nitrofurantoína.</p>
-      <div class="fonte-curta">FDA, março de 2025</div>
+      <span class="tag t-geral">Urologia geral</span><span class="tag t-reg">Diretriz</span>
+      <h3>EAU atualiza diretrizes 2026 de urolitíase com 126 estudos incorporados</h3>
+      <p class="resumo">Atualização inclui revisões em manejo de cólica renal, terapia expulsiva médica, profilaxia antibiótica em litotripsia, ureteroscopia e nefrolitotomia percutânea. Revisão de terapia antitrombótica e procedimentos endourológicos. Avaliação estruturada da literatura para todas as seções.</p>
+      <div class="fonte-curta">EAU Guidelines on Urolithiasis, 2026 · EAU Guideline Panel</div>
     </button>
     <div class="det">
       <h4>Contexto</h4>
-      <p>Resistência antimicrobiana em ITUs representa desafio crescente. Gepotidacin é primeira molécula de nova classe aprovada para ITU em décadas, oferecendo mecanismo de ação distinto dos fluoroquinolones e outros agentes tradicionais.</p>
-      
+      <p>Urolitíase é condição prevalente com opções terapêuticas em evolução. Diretrizes EAU anteriores necessitavam atualização para incorporar evidências emergentes em manejo médico e cirúrgico.</p>
+      <h4>Achados principais</h4>
+      <p>Principais mudanças incluem: revisão de evidências e recomendações para manejo de cólica renal; seção 3.4.3 (terapia expulsiva médica) revisada; informações sobre profilaxia antibiótica em litotripsia (seção 3.4.5); revisões em ureteroscopia (3.4.6) e nefrolitotomia percutânea (3.4.7); terapia antitrombótica e tratamento de cálculos (3.4.8.b); procedimentos endourológicos com ureteroscopia rígida/semi-rígida (3.4.15.e).</p>
       <h4>Implicação prática</h4>
-      <p>Gepotidacin oferece alternativa para ITUs não complicadas, especialmente em infecções resistentes a outros antibióticos. Mecanismo único de inibição de DNA girase e topoisomerase IV reduz resistência cruzada com fluoroquinolones. Bem tolerado com menos efeitos adversos.</p>
-      
+      <p>Urologistas devem consultar as diretrizes EAU 2026 atualizadas para manejo baseado em evidências de urolitíase, alinhando-se com práticas europeias e internacionais.</p>
       <div class="refs">
         <h4>Referências</h4>
-        <p><a href="https://pubmed.ncbi.nlm.nih.gov/41091154/">Kumari C et al. New Era for Urinary Tract Infection Treatment: Gepotidacin Receives FDA Approval. Int Urogynecol J. 2026 May;37(5):1477-1478</a></p>
-        <p><a href="https://www.benthamscience.com/article/155258">Ahmed Nazik et al. Treatment of Urinary Tract Infections with Gepotidacin: The Promising Antibiotic. Curr Drug Targets. 2026;27(13):889-900</a></p>
+        <p><a href="https://uroweb.org/guidelines/urolithiasis/summary-of-changes">EAU Guidelines on Urolithiasis — Summary of Changes 2026</a></p>
       </div>
     </div>
   </div>
@@ -291,21 +288,22 @@
   <div class="item">
     <button class="head" aria-expanded="false">
       <span class="chev">▼ detalhes</span>
-      <span class="tag">Diretriz</span><span class="tag">Infecção urinária</span>
-      <h3>EAU 2026 adiciona capítulo sobre infecções urinárias fúngicas à diretriz de infecções urológicas</h3>
-      <p class="resumo">Atualização 2026 da diretriz EAU sobre infecções urológicas incluiu 36 estudos adicionais e novo capítulo sobre infecções fúngicas do trato urinário (seção 3.17). Recomendações atualizadas para avaliação diagnóstica e terapia antimicrobiana de cistite também foram incorporadas.</p>
-      <div class="fonte-curta">European Association of Urology, 2026</div>
+      <span class="tag t-onco">Uro-oncologia</span><span class="tag t-reg">Diretriz</span>
+      <h3>AUA/SUO publicam emendas 2026 às diretrizes de rastreio e câncer de próstata avançado</h3>
+      <p class="resumo">Emenda de fevereiro/2026 à diretriz de detecção precoce de câncer de próstata inclui recomendações atualizadas para rastreio e seguimento. Emenda de junho/2026 à diretriz de câncer de próstata avançado incorpora evidências de 2022 a 2025, com recomendações sobre intensificação de tratamento, imagem, testes genéticos e saúde óssea.</p>
+      <div class="fonte-curta">AUA/SUO, fevereiro e junho/2026</div>
     </button>
     <div class="det">
       <h4>Contexto</h4>
-      <p>Infecções urinárias fúngicas representam desafio crescente, especialmente em pacientes imunocomprometidos, diabéticos e com cateteres de longa permanência. Lacuna nas diretrizes anteriores foi preenchida com novo capítulo dedicado.</p>
-      
+      <p>Diretrizes de câncer de próstata necessitam atualizações periódicas conforme novos ensaios clínicos e evidências surgem. AUA e SUO colaboram para manter recomendações baseadas em evidências mais recentes.</p>
+      <h4>Achados principais</h4>
+      <p><strong>Detecção precoce (fevereiro/2026):</strong> Framework para decisão clínica em rastreio e seguimento de câncer de próstata, refletindo compromisso com recomendações baseadas em evidências atuais. <strong>Câncer avançado (junho/2026):</strong> Incorpora evidências de início de 2022 a meados/final de 2025, com mudanças substanciais em recorrência bioquímica pós-terapia local até mCRPC; recomendações sobre intensificação de tratamento, imagem, testes genéticos e saúde óssea; objetivo de garantir acesso ao espectro completo de opções baseadas em evidências, com decisões personalizadas.</p>
       <h4>Implicação prática</h4>
-      <p>Adição de orientações específicas para ITUs fúngicas auxilia manejo deste subgrupo desafiador de pacientes. Atualizações em cistite refletem evidências mais recentes sobre diagnóstico e tratamento antimicrobiano.</p>
-      
+      <p>Médicos devem revisar as emendas 2026 para atualizar práticas de rastreio, estadiamento e tratamento de câncer de próstata localizado e avançado. Ênfase em medicina de precisão e cuidados personalizados.</p>
       <div class="refs">
         <h4>Referências</h4>
-        <p><a href="https://uroweb.org/guidelines/urological-infections/summary-of-changes">EAU Guidelines on Urological Infections - Summary of Changes. 2026</a></p>
+        <p><a href="https://www.auanet.org/about-us/media-center/press-center/aua-announces-updates-to-the-early-detection-of-prostate-cancer-guideline">AUA Announces Updates to the Early Detection of Prostate Cancer Guideline</a></p>
+        <p><a href="https://www.urologytimes.com/view/2026-advanced-prostate-cancer-guideline-key-updates-clinical-faqs">2026 AUA/SUO Advanced Prostate Cancer Guideline: Key updates and clinical FAQs — Urology Times</a></p>
       </div>
     </div>
   </div>
@@ -313,22 +311,21 @@
   <div class="item">
     <button class="head" aria-expanded="false">
       <span class="chev">▼ detalhes</span>
-      <span class="tag">Diretriz</span><span class="tag">Câncer testicular</span>
-      <h3>Diretriz EAU 2026 para câncer testicular incorpora recomendações sobre prótese testicular e metástases ósseas</h3>
-      <p class="resumo">Versão 2026 da diretriz EAU de câncer testicular incluiu nova recomendação sobre prótese testicular (capítulo 5), reestruturação substancial com nova seção sobre tratamento de metástases ósseas (6.3.7), e recomendações atualizadas sobre abordagens de de-escalação terapêutica. Taxa de cura permanece alta, >95% de sobrevida em longo prazo em todos os estágios.</p>
-      <div class="fonte-curta">European Urology, 27/04/2026 · Heidenreich et al.</div>
+      <span class="tag t-onco">Uro-oncologia</span>
+      <h3>Imunoterapia em câncer de bexiga: avanços recentes em mecanismos e aplicações clínicas</h3>
+      <p class="resumo">Revisão publicada em março/2026 na Frontiers in Oncology discute paradigma de tratamento transformado por imunoterapia em câncer de bexiga localizado e metastático. Aborda inibidores de checkpoint (PD-1/PD-L1, CTLA-4), terapias celulares adotivas (CAR-T), vírus oncolíticos e novos agentes imunomoduladores.</p>
+      <div class="fonte-curta">Frontiers in Oncology, março/2026</div>
     </button>
     <div class="det">
       <h4>Contexto</h4>
-      <p>Câncer testicular é a neoplasia mais comum em homens jovens (15–40 anos), com incidência crescente mas taxas de cura excepcionais. Diretriz EAU é atualizada anualmente para refletir evidências mais recentes e padronizar manejo.</p>
-      
+      <p>Câncer de bexiga (principalmente carcinoma urotelial) possui alta carga mutacional e é candidato ideal para imunoterapia. FDA aprovou cinco inibidores PD-1/PD-L1 para carcinoma urotelial avançado, mas taxa de resposta objetiva é apenas 13,4–21,1%.</p>
+      <h4>Achados principais</h4>
+      <p>Última década testemunhou mudança de paradigma com aprovações de anticorpos monoclonais (atezolizumab, pembrolizumab, nivolumab, durvalumab, avelumab). Revisão aborda mecanismos de resistência, biomarcadores preditivos e combinações emergentes (checkpoint + quimioterapia, radioterapia, conjugados anticorpo-droga).</p>
       <h4>Implicação prática</h4>
-      <p>Novas recomendações sobre prótese testicular abordam aspecto importante de qualidade de vida. Orientações sobre metástases ósseas fornecem abordagem multimodal para apresentações complexas. Enfoque em de-escalação terapêutica busca minimizar toxicidades em população de sobreviventes em crescimento.</p>
-      
+      <p>Oncologistas e urologistas devem considerar imunoterapia em NMIBC BCG-não responsivo e carcinoma urotelial avançado, e acompanhar ensaios clínicos de combinações e novas estratégias.</p>
       <div class="refs">
         <h4>Referências</h4>
-        <p><a href="https://pubmed.ncbi.nlm.nih.gov/42049597/">Heidenreich A et al. European Association of Urology Guidelines on Testicular Cancer: Summary of the 2026 Guidelines. Eur Urol. 2026 Apr 27</a></p>
-        <p><a href="https://uroweb.org/guidelines/testicular-cancer">EAU Guidelines on Testicular Cancer. 2026</a></p>
+        <p><a href="https://www.frontiersin.org/journals/oncology/articles/10.3389/fonc.2026.1908307/full">Immunotherapy role in bladder cancer treatment: a review of literature — Frontiers in Oncology</a></p>
       </div>
     </div>
   </div>
@@ -336,21 +333,21 @@
   <div class="item">
     <button class="head" aria-expanded="false">
       <span class="chev">▼ detalhes</span>
-      <span class="tag">Diretriz</span><span class="tag">Saúde sexual</span>
-      <h3>EAU atualiza diretriz de saúde sexual e reprodutiva 2026 com foco em hipogonadismo e distúrbios ejaculatórios</h3>
-      <p class="resumo">Diretriz EAU 2026 de saúde sexual e reprodutiva masculina passou por revisão estruturada com inclusão de 116 estudos atualizados. Revisões significativas em capítulos sobre hipogonadismo, distúrbios de ejaculação, curvatura peniana e priapismo. Período de busca cobriu literatura de janeiro de 2019 a maio de 2025.</p>
-      <div class="fonte-curta">European Association of Urology, 2026</div>
+      <span class="tag t-geral">Urologia geral</span>
+      <h3>Padrões de resistência antimicrobiana em ITU: estudos regionais destacam desafios</h3>
+      <p class="resumo">Estudos retrospectivos publicados em 2026 descrevem padrões de resistência de uropatógenos em diferentes regiões. E. coli permanece principal agente (36–48%), com resistência alta a ampicilina (76%), levofloxacino (59%) e quinolonas, mas baixa a carbapenêmicos (1%). Destacam necessidade de dados regionais para guiar terapia empírica.</p>
+      <div class="fonte-curta">Múltiplas publicações, 2026</div>
     </button>
     <div class="det">
       <h4>Contexto</h4>
-      <p>Saúde sexual e reprodutiva masculina abrange múltiplas condições com impacto significativo em qualidade de vida. Diretriz consolidada oferece orientação baseada em evidências para disfunção erétil, hipogonadismo, ejaculação precoce, priapismo e outras condições.</p>
-      
+      <p>Resistência antimicrobiana em ITU está aumentando globalmente, complicando tratamento empírico. Dados regionais de suscetibilidade são essenciais para otimizar escolha de antibióticos.</p>
+      <h4>Achados principais</h4>
+      <p>Estudos de Xangai (China, 61.450 pacientes, 2023), Gana (2020–2023) e outras regiões mostram E. coli como patógeno predominante (36,1–47,8%), com K. pneumoniae, S. aureus e Pseudomonas como seguintes. E. coli exibe resistência completa a ácido nalidíxico e ofloxacino em algumas regiões, e resistência variável a cefalosporinas e fluoroquinolonas, mas baixa resistência a carbapenêmicos.</p>
       <h4>Implicação prática</h4>
-      <p>Atualizações refletem evidências mais recentes em hipogonadismo masculino, incluindo critérios diagnósticos e indicações de reposição de testosterona. Seção expandida sobre distúrbios ejaculatórios fornece orientação atualizada para condição frequente na prática urológica.</p>
-      
+      <p>Médicos devem consultar antibiogramas locais ao prescrever tratamento empírico para ITU, evitando fluoroquinolonas e ampicilina em regiões de alta resistência, e considerando nitrofurantoína, fosfomicina ou carbapenêmicos quando apropriado.</p>
       <div class="refs">
         <h4>Referências</h4>
-        <p><a href="https://d56bochluxqnz.cloudfront.net/documents/full-guideline/EAU-Guidelines-on-Sexual-and-Reproductive-Health-2026.pdf">EAU Guidelines on Sexual and Reproductive Health. 2026</a></p>
+        <p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12927959/">Distribution and Drug‐Resistance Analysis of Uropathogens in Urinary Tract Infections — PMC</a></p>
       </div>
     </div>
   </div>
@@ -358,21 +355,43 @@
   <div class="item">
     <button class="head" aria-expanded="false">
       <span class="chev">▼ detalhes</span>
-      <span class="tag">Diretriz</span><span class="tag">Câncer de próstata</span>
-      <h3>EAU/EANM/ESTRO/ESUR/ISUP/SIOG publicam atualização 2026 de diretriz multidisciplinar de câncer de próstata</h3>
-      <p class="resumo">Atualização de março de 2026 da diretriz multissocietária europeia de câncer de próstata recomenda biópsia transperineal como abordagem preferencial devido ao baixo risco de complicações infecciosas e melhor administração de antibióticos. Teste germline recomendado para pacientes com múltiplos familiares diagnosticados &lt;60 anos ou história de mutações de alto risco.</p>
-      <div class="fonte-curta">Medscape/EAU, fevereiro de 2026</div>
+      <span class="tag t-sex">Medicina sexual</span>
+      <h3>Revisão sobre tratamentos emergentes para disfunção erétil publicada em abril/2026</h3>
+      <p class="resumo">Artigo em Trends in Urology & Men's Health revisa terapias alternativas para DE: medicações de venda livre, suplementos naturopáticos, terapia de ondas de choque extracorpóreas e plasma rico em plaquetas. Maioria com dados insuficientes ou evidência de ineficácia. Importante médicos conhecerem para aconselhar pacientes que buscam essas opções.</p>
+      <div class="fonte-curta">Trends in Urology & Men's Health, abril/2026 · Magill et al.</div>
     </button>
     <div class="det">
       <h4>Contexto</h4>
-      <p>Diretriz colaborativa EAU/EANM/ESTRO/ESUR/ISUP/SIOG representa consenso multidisciplinar europeu sobre câncer de próstata, abrangendo diagnóstico, estadiamento e tratamento. Atualização incorpora evidências mais recentes.</p>
-      
+      <p>Disfunção erétil (DE) é prevalente e possui tratamentos eficazes bem estudados (inibidores PDE5, injeções intracavernosas, dispositivos de vácuo, próteses). Apesar disso, muitos pacientes buscam terapias alternativas.</p>
+      <h4>Achados principais</h4>
+      <p>Revisão focou em medicações de venda livre, suplementos naturopáticos, terapia de ondas de choque extracorpóreas (ESWT) e plasma rico em plaquetas (PRP). Evidências são insuficientes ou mostram ineficácia para maioria dessas terapias; diretrizes urológicas não as recomendam como tratamento principal.</p>
       <h4>Implicação prática</h4>
-      <p>Recomendação preferencial de biópsia transperineal reflete evidências sobre redução de infecções pós-biópsia, tema de crescente preocupação com resistência antimicrobiana. Orientações sobre testes genéticos refletem reconhecimento crescente de componente hereditário em subgrupos de pacientes.</p>
-      
+      <p>Urologistas e médicos de atenção primária devem estar familiarizados com essas terapias para aconselhar pacientes adequadamente, orientando-os para opções baseadas em evidências e evitando gastos desnecessários ou atrasos no tratamento eficaz.</p>
       <div class="refs">
         <h4>Referências</h4>
-        <p><a href="https://reference.medscape.com/cc2/p10/prostate-cancer-2026a1000302">Prostate Cancer: EAU 2026 Guideline Summary. Medscape, fevereiro de 2026</a></p>
+        <p><a href="https://onlinelibrary.wiley.com/doi/10.1002/tre.70028">Emerging Treatments for Erectile Dysfunction — Trends in Urology & Men's Health</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">▼ detalhes</span>
+      <span class="tag t-onco">Uro-oncologia</span>
+      <h3>Revisão de estratégias de terapia-alvo em carcinoma renal avançado publicada em maio/2026</h3>
+      <p class="resumo">Artigo em Cancers (MDPI) discute carcinoma renal de células claras (ccRCC) e mecanismos moleculares (via HIF, fusões TFE3). Destaca inibidor HIF-2α (belzutifan) e combinações de imunoterapia + inibidores de tirosina quinase como avanços recentes. Enfatiza abordagens integrativas genômica, imunoterapia e estratégias moleculares-ortomoléculares.</p>
+      <div class="fonte-curta">Cancers (MDPI), maio/2026</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>Carcinoma renal (RCC) é complexo, impulsionado por alterações genéticas, metabólicas e interações imunológicas. Pesquisa molecular revelou mecanismos-chave (sinalização relacionada a hipóxia, eventos de fusão gênica) como alvos terapêuticos potenciais.</p>
+      <h4>Achados principais</h4>
+      <p>Revisão resume terapias atuais e emergentes para RCC avançado, com foco em proteínas de fusão TFE3 em RCC de translocação e inibidores HIF-2α (belzutifan) em ccRCC. Discute combinações de inibidores de checkpoint (PD-1/PD-L1) + inibidores de VEGF ou TKIs como padrão de primeira linha em doença metastática.</p>
+      <h4>Implicação prática</h4>
+      <p>Oncologistas devem considerar sequenciamento molecular em RCC avançado para identificar subtipos e alvos terapêuticos. Belzutifan representa nova classe terapêutica tanto em cenário avançado quanto adjuvante (conforme aprovação FDA junho/2026).</p>
+      <div class="refs">
+        <h4>Referências</h4>
+        <p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13162654/">Rethinking Advanced Renal Cell Carcinoma: Integrative Genomics, Immunotherapy, and Molecular–Orthomolecular Strategies — PMC</a></p>
       </div>
     </div>
   </div>
@@ -380,21 +399,25 @@
   <h2 class="sec"><span class="n">3 ·</span> Fontes consultadas nesta edição</h2>
   <div class="fontes-finais">
     <ol>
-      <li><a href="https://doi.org/10.1056/NEJMoa2603878">Taplin ME, Gleave M, Shore ND, et al. Perioperative Apalutamide in High-Risk Localized Prostate Cancer. N Engl J Med 2026;395(6):546-560. doi:10.1056/NEJMoa2603878</a></li>
-      <li><a href="https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-pembrolizumab-or-pembrolizumab-and-berahyaluronidase-alfa-pmph-each-enfortumab-vedotin">FDA approves pembrolizumab or pembrolizumab and berahyaluronidase alfa-pmph each with enfortumab vedotin-ejfv for muscle invasive bladder cancer. 10 de julho de 2026</a></li>
-      <li><a href="https://pubmed.ncbi.nlm.nih.gov/41633898/">Tateo V, et al. Updated 5-year Survival Results from PURE-01, a Phase 2 Study of Neoadjuvant Pembrolizumab Followed by Radical Cystectomy in Patients with Muscle-invasive Bladder Cancer. Eur Urol. 2026 Feb 2. doi:10.1016/j.eururo.2026.01.015</a></li>
-      <li><a href="https://www.auanet.org/guidelines-and-quality/guidelines/bph-guideline">Goueli R, Badlani GH, Welliver C, et al. Management of Lower Urinary Tract Symptoms Attributed to Benign Prostatic Hyperplasia: AUA Guideline (2026). American Urological Association</a></li>
-      <li><a href="https://www.auajournals.org/doi/10.1097/JU.0000000000004842">Pearle MS, Matlaga BR, Antonelli JA, et al. Surgical Management of Kidney and Ureteral Stones: AUA Guideline (2026) Part I. J Urol. 2026;215(2):113-123. doi:10.1097/JU.0000000000004842</a></li>
-      <li><a href="https://www.guidelinecentral.com/insights/may-2026-auasuo-prostatecancer-guideline-video/">AUA/SUO Advanced Prostate Cancer 2026 Guideline Update. Guideline Central, 12 de maio de 2026</a></li>
-      <li><a href="https://www.auanet.org/about-us/media-center/press-center/aua-announces-updates-to-the-early-detection-of-prostate-cancer-guideline">Lin DW, Carlsson S, Filson CP, et al. Updates to Early Detection of Prostate Cancer: AUA/SUO Guideline (2026). 26 de fevereiro de 2026</a></li>
-      <li><a href="https://pubmed.ncbi.nlm.nih.gov/41091154/">Kumari C, Tariq T, Memon M. New Era for Urinary Tract Infection Treatment: Gepotidacin Receives FDA Approval. Int Urogynecol J. 2026 May;37(5):1477-1478. doi:10.1007/s00192-025-06388-4</a></li>
-      <li><a href="https://uroweb.org/guidelines/urological-infections/summary-of-changes">EAU Guidelines on Urological Infections - Summary of Changes. European Association of Urology, 2026</a></li>
-      <li><a href="https://pubmed.ncbi.nlm.nih.gov/42049597/">Heidenreich A, Berney DM, Boormans JL, et al. European Association of Urology Guidelines on Testicular Cancer: Summary of the 2026 Guidelines. Eur Urol. 2026 Apr 27. doi:10.1016/j.eururo.2026.04.027</a></li>
-      <li><a href="https://d56bochluxqnz.cloudfront.net/documents/full-guideline/EAU-Guidelines-on-Sexual-and-Reproductive-Health-2026.pdf">EAU Guidelines on Sexual and Reproductive Health. European Association of Urology, 2026</a></li>
-      <li><a href="https://reference.medscape.com/cc2/p10/prostate-cancer-2026a1000302">EAU/EANM/ESTRO/ESUR/ISUP/SIOG. Prostate Cancer: EAU 2026 Guideline Summary. Medscape, fevereiro de 2026</a></li>
+      <li><a href="https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-belzutifan-pembrolizumab-adjuvant-treatment-renal-cell-carcinoma">FDA approves belzutifan with pembrolizumab for adjuvant treatment of renal cell carcinoma (12 de junho de 2026)</a></li>
+      <li><a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2518245">Adjuvant Pembrolizumab plus Belzutifan for Renal-Cell Carcinoma — New England Journal of Medicine (julho de 2026)</a></li>
+      <li><a href="https://www.auajournals.org/doi/10.1097/JU.0000000000005097">Management of Lower Urinary Tract Symptoms Attributed to Benign Prostatic Hyperplasia: AUA Guideline (2026) Part I — Journal of Urology</a></li>
+      <li><a href="https://www.auajournals.org/doi/10.1097/JU.0000000000005098">Management of Lower Urinary Tract Symptoms Attributed to Benign Prostatic Hyperplasia: AUA Guideline (2026) Part II — Journal of Urology</a></li>
+      <li><a href="https://www.auajournals.org/doi/10.1097/JU.0000000000005099">Management of Lower Urinary Tract Symptoms Attributed to Benign Prostatic Hyperplasia: AUA Guideline (2026) Part III — Journal of Urology</a></li>
+      <li><a href="https://www.annalsofoncology.org/article/S0923-7534(25)04787-8/fulltext">ALBAN (GETUG-AFU 37): a phase III, randomized, open-label international trial of intravenous atezolizumab and intravesical Bacillus Calmette–Guérin (BCG) versus BCG alone in BCG-naive high-risk, non-muscle-invasive bladder cancer (NMIBC) — Annals of Oncology (janeiro de 2026)</a></li>
+      <li><a href="https://www.auajournals.org/doi/10.1097/JU.0000000000004842">Surgical Management of Kidney and Ureteral Stones: AUA Guideline (2026) Part I — Journal of Urology (fevereiro de 2026)</a></li>
+      <li><a href="https://www.auajournals.org/doi/10.1097/JU.0000000000004844">Surgical Management of Kidney and Ureteral Stones: AUA Guideline (2026) Part III — Journal of Urology (fevereiro de 2026)</a></li>
+      <li><a href="https://pubmed.ncbi.nlm.nih.gov/42049597/">European Association of Urology Guidelines on Testicular Cancer: Summary of the 2026 Guidelines — PubMed (abril de 2026)</a></li>
+      <li><a href="https://www.sciencedaily.com/releases/2026/03/260331001054.htm">This new test could transform UTI treatment with same-day results — ScienceDaily (31 de março de 2026)</a></li>
+      <li><a href="https://uroweb.org/guidelines/urolithiasis/summary-of-changes">EAU Guidelines on Urolithiasis — Summary of Changes (2026)</a></li>
+      <li><a href="https://www.auanet.org/about-us/media-center/press-center/aua-announces-updates-to-the-early-detection-of-prostate-cancer-guideline">AUA Announces Updates to the Early Detection of Prostate Cancer Guideline (fevereiro de 2026)</a></li>
+      <li><a href="https://www.urologytimes.com/view/2026-advanced-prostate-cancer-guideline-key-updates-clinical-faqs">2026 AUA/SUO Advanced Prostate Cancer Guideline: Key updates and clinical FAQs — Urology Times (junho de 2026)</a></li>
+      <li><a href="https://www.frontiersin.org/journals/oncology/articles/10.3389/fonc.2026.1908307/full">Immunotherapy role in bladder cancer treatment: a review of literature — Frontiers in Oncology (março de 2026)</a></li>
+      <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12927959/">Distribution and Drug‐Resistance Analysis of Uropathogens in Urinary Tract Infections — PMC (fevereiro de 2026)</a></li>
+      <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/tre.70028">Emerging Treatments for Erectile Dysfunction — Trends in Urology & Men's Health (abril de 2026)</a></li>
+      <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13162654/">Rethinking Advanced Renal Cell Carcinoma: Integrative Genomics, Immunotherapy, and Molecular–Orthomolecular Strategies — PMC (maio de 2026)</a></li>
     </ol>
   </div>
-  
   <p class="nota">Boletim Med · conteúdo gerado com apoio de IA e revisão humana antes da publicação.</p>
 </div>
 <script>
