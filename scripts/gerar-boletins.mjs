@@ -61,6 +61,7 @@ const PROVEDORES = {
       });
       if (!res.ok) throw new Error(`API ${res.status}: ${(await res.text()).slice(0, 300)}`);
       const data = await res.json();
+      registrarUso(modelo, data.usage);
       return (data.content ?? [])
         .filter((b) => b.type === 'text')
         .map((b) => b.text)
@@ -84,6 +85,7 @@ const PROVEDORES = {
       });
       if (!res.ok) throw new Error(`API ${res.status}: ${(await res.text()).slice(0, 300)}`);
       const data = await res.json();
+      registrarUso(modelo, data.usage);
       return openaiExtrairTexto(data);
     },
   },
@@ -207,6 +209,55 @@ async function montarPrompt(esp) {
     .replaceAll('{{MATERIAL}}', material);
 }
 
+// ── Estimativa de custo (roadmap 2.12 — alerta semanal no PR) ─────────────
+// Tabela pública de preços (US$ por 1M tokens, input/output). Modelos sem
+// preço conhecido (Kimi, CLIs de assinatura) entram como null = sem estimativa.
+const PRECOS = {
+  'gpt-5-mini': { in: 0.25, out: 2.0 },
+  'gpt-5': { in: 1.25, out: 10.0 },
+  'claude-sonnet-4-5': { in: 3.0, out: 15.0 },
+};
+/** Usos registrados pelas chamadas: { modelo, input, output, batch }. */
+const usos = [];
+
+function registrarUso(modelo, usage, batch = false) {
+  if (!usage) return;
+  const input = usage.input_tokens ?? usage.prompt_tokens ?? 0;
+  const output = usage.output_tokens ?? usage.completion_tokens ?? 0;
+  usos.push({ modelo, input, output, batch });
+}
+
+function estimarCusto() {
+  let total = 0;
+  let conhecido = false;
+  for (const u of usos) {
+    const preco = PRECOS[u.modelo];
+    if (!preco) continue;
+    conhecido = true;
+    const fator = u.batch ? 0.5 : 1; // Batch API = 50% off
+    total += ((u.input * preco.in + u.output * preco.out) / 1_000_000) * fator;
+  }
+  return conhecido ? total : null;
+}
+
+/** Resume o custo da run em texto (PR do rascunho) e alerta se passar do teto. */
+function relatarCusto(saidaDir, dataIsoEdicao) {
+  const total = estimarCusto();
+  const teto = Number(process.env.CUSTO_ALERTA_USD ?? 0.1);
+  const linhas = usos.map(
+    (u) => `- ${u.modelo}${u.batch ? ' (batch −50%)' : ''}: ${u.input + u.output} tokens`
+  );
+  const texto = total == null
+    ? 'Custo estimado: n/d (provedor sem tabela de preços ou assinatura OAuth)'
+    : `Custo estimado da geração: **US$ ${total.toFixed(4)}** (teto de alerta: US$ ${teto.toFixed(2)})`;
+  console.log(texto.replace(/\*\*/g, ''));
+  linhas.forEach((l) => console.log(l));
+  writeFileSync(join(saidaDir, `custo-${dataIsoEdicao}.md`), `${texto}\n\n${linhas.join('\n')}\n`);
+  if (total != null && total > teto) {
+    console.log(`::warning::Custo estimado US$ ${total.toFixed(4)} acima do teto de US$ ${teto.toFixed(2)}`);
+  }
+}
+
 /** Extrai só o documento, mesmo se o modelo enrolar em cercas de código. */
 function extrairHtml(texto) {
   const match = texto.trim().match(/<!doctype html[\s\S]*<\/html>/i);
@@ -297,6 +348,7 @@ async function gerarViaBatchOpenAI(ativas, modelo, apiKey, saidaDir, dataIsoEdic
       if (item.response?.status_code !== 200) {
         throw new Error(`request ${item.custom_id} falhou: ${item.response?.status_code}`);
       }
+      registrarUso(modelo, item.response.body?.usage, true);
       writeFileSync(join(saidaDir, arquivo), extrairHtml(openaiExtrairTexto(item.response.body)) + '\n');
       console.log(`✔ ${arquivo} (batch)`);
       geradosBatch++;
@@ -353,4 +405,5 @@ for (const esp of ativas.filter((e) => pendentes.has(e.slug))) {
 }
 
 console.log(`${gerados}/${ativas.length} boletim(ns) gerado(s).`);
+relatarCusto(saida, dataIso);
 if (gerados === 0) process.exit(1);

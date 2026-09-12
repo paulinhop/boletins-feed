@@ -29,7 +29,7 @@ for PROV in $LISTA; do
 
   BRANCH="rascunho/$DATA-$PROV"
   git checkout -B "$BRANCH"
-  git add boletim-*-"$DATA".html
+  git add boletim-*-"$DATA".html "custo-$DATA.md"
   if git diff --cached --quiet; then
     echo "Nenhum boletim novo gerado por $PROV; sem PR."
     git checkout main
@@ -44,6 +44,8 @@ for PROV in $LISTA; do
   # atualizou — não tratar como erro.
   gh pr create --title "Rascunho: edição de $DATA [$PROV]" --body-file - <<EOF || echo "PR já existia; branch atualizado."
 Boletins gerados automaticamente (**$PROV** + busca web).
+
+$(cat "custo-$DATA.md" 2>/dev/null || echo "Custo estimado: n/d")
 
 **Revisão médica obrigatória antes do merge** — verifique:
 - referências reais e corretas (sem alucinação);
