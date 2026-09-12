@@ -12,10 +12,47 @@ para médicos brasileiros. Gere o boletim da especialidade informada abaixo.
   Use a ferramenta de busca web para verificar cada referência. Se não
   conseguir confirmar um artigo real, escreva menos itens — nunca invente
   referências, DOIs, números de ensaios ou resultados.
-- Cada item precisa de **link real** para a fonte (PubMed, site do periódico
-  ou órgão regulador), verificado pela busca web.
 - Português brasileiro, tom profissional e direto, foco no que muda na prática
   clínica. Resumos com números do estudo (HR, IC 95%, p, n) sempre que houver.
+
+## Seleção editorial (o que entra e por quê)
+
+- **Origem manda**: priorize pela graduação do veículo de publicação —
+  - **Tier 1 (medicina geral de altíssimo impacto)**: NEJM, The Lancet, JAMA,
+    BMJ, Nature Medicine. Quase sempre vão para o Essencial.
+  - **Tier 2 (periódicos top da especialidade)**: ex. European Urology,
+    Journal of Urology, Obstetrics & Gynecology, AJOG, Circulation. Entram no
+    Essencial quando mudam prática; senão, em Outras novidades.
+  - **Tier 3**: demais periódicos revisados por pares — só quando o achado for
+    realmente prático e inédito.
+- **Número de citações pesa**: quanto mais citado (ou mais comentado na
+  comunidade — editoriais, guidelines citando, cobertura de sociedades
+  médicas), maior a chance de o artigo ser referência no tema. Prefira o
+  estudo que já virou referência ao estudo isolado. Artigos muito recentes
+  têm poucas citações — compense olhando o tier do veículo e o porte do ensaio.
+- **Diretrizes/guidelines NÃO são artigos**: uma diretriz nova ou atualizada
+  (EAU, AUA, ACOG, FIGO, ESC...) merece tratamento próprio — tag `t-reg`
+  "Diretriz", lugar no Essencial quando a mudança for relevante, e o detalhe
+  focado em **o que mudou em relação à versão anterior** (não no resumo do
+  documento inteiro).
+- **FDA/ANVISA e comunicados regulatórios**: mesma lógica de diretriz —
+  tag `t-reg` "Regulatório", foco no que muda na prática prescritiva.
+
+## Estrutura obrigatória de CADA item (sem exceção)
+
+Todo item — do Essencial ou de Outras novidades — traz sempre os 5 blocos,
+nesta ordem:
+
+1. **Contexto** — por que este estudo/diretriz existe; o que se sabia antes.
+2. **Desenho e achados** — bullets com população, desenho, desfechos, números.
+   (Diretrizes: "O que mudou" — bullets com as recomendações novas/alteradas.)
+3. **Implicação prática** — o que muda (ou não) na conduta do consultório,
+   incluindo a realidade brasileira quando relevante.
+4. **Limitações** — seguimento curto, desenho aberto, financiamento,
+   aplicabilidade.
+5. **Fontes** — citação completa **com DOI/link real** (formato:
+   "Autores. Título. Periódico. Ano. DOI: link"), incluindo comentário
+   editorial associado quando existir.
 
 ## Estrutura obrigatória da edição
 
@@ -35,10 +72,10 @@ para médicos brasileiros. Gere o boletim da especialidade informada abaixo.
   título jornalístico-científico (pode trazer o achado principal), `p.resumo`
   de 2–4 frases **com os números-chave**, e `div.fonte-curta`
   ("The Lancet, 06/08/2026 · Tagawa et al.").
-- `div.det` (corpo expansível) com subseções `h4`, nesta ordem quando
-  aplicável: **Contexto**, **Desenho e achados** (bullets com população,
-  desenho, desfechos, números), **Implicação prática**, **Limitações**, e ao
-  final `div.refs` com `h4` "Referências" e os links reais.
+- `div.det` (corpo expansível) com subseções `h4` — **sempre os 5 blocos da
+  "Estrutura obrigatória" acima, sem exceção** — encerrando com `div.refs`
+  cujo `h4` é **"Fontes"** (não "Referências") e traz a citação completa com
+  DOI/link.
 
 ## Saída
 
@@ -154,7 +191,7 @@ abaixo, trocando apenas os textos/links/itens — não mude classes nem estrutur
       <h4>Limitações</h4>
       <p>...</p>
       <div class="refs">
-        <h4>Referências</h4>
+        <h4>Fontes</h4>
         <p><a href="https://...">Título da fonte — link real verificado</a></p>
       </div>
     </div>
