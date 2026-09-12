@@ -10,9 +10,51 @@
 const FONTES = [
   { nome: 'FDA (press)', url: 'https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/press-releases/rss.xml' },
   { nome: 'FDA (drugs)', url: 'https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/drugs/rss.xml' },
-  // ANVISA: o gov.br não expõe RSS da editoria de notícias — quando virar
-  // prioridade, implementar scraping da listagem (roadmap 2.11).
 ];
+
+/**
+ * ANVISA (roadmap 2.11): o gov.br é um portal Volto/Plone 6 sem RSS da
+ * editoria, mas expõe a REST API pública `/anvisa/++api++/@search`. Consulta
+ * as "News Item" mais recentes (pt-BR) e filtra por data e keywords — mesmo
+ * contrato das fontes RSS: falha só avisa, nunca derruba a geração.
+ */
+const ANVISA_API =
+  'https://www.gov.br/anvisa/++api++/@search?portal_type=News%20Item' +
+  '&sort_on=effective&sort_order=descending&b_size=60' +
+  '&metadata_fields=effective&metadata_fields=description';
+
+async function anvisa(keywords, dias) {
+  const corte = Date.now() - dias * 86400e3;
+  try {
+    const res = await fetch(ANVISA_API, {
+      headers: { 'User-Agent': 'boletim-med/1.0', Accept: 'application/json' },
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    const achados = [];
+    for (const item of data.items ?? []) {
+      const link = item['@id'] ?? '';
+      if (!link.includes('/pt-br/')) continue; // ignora a edição em inglês
+      const dataItem = new Date(item.effective ?? 0);
+      if (isNaN(dataItem.getTime()) || dataItem.getTime() < corte) continue;
+      const titulo = (item.title ?? '').trim();
+      const descricao = (item.description ?? '').trim();
+      const alvo = `${titulo} ${descricao}`.toLowerCase();
+      if (keywords.length && !keywords.some((k) => alvo.includes(k.toLowerCase()))) continue;
+      achados.push({
+        fonte: 'ANVISA',
+        titulo,
+        descricao: descricao.slice(0, 600),
+        data: dataItem.toISOString().slice(0, 10),
+        link,
+      });
+    }
+    return achados;
+  } catch (erro) {
+    console.warn(`  Fonte ANVISA falhou: ${erro.message} — seguindo sem ela`);
+    return [];
+  }
+}
 
 function texto(xml, tag) {
   const m = xml.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`));
@@ -22,7 +64,7 @@ function texto(xml, tag) {
 /** Notícias dos últimos `dias` dias que batem em alguma das keywords. */
 export async function regulatorio(keywords = [], dias = 30) {
   const corte = Date.now() - dias * 86400e3;
-  const achados = [];
+  const achados = await anvisa(keywords, dias);
   for (const fonte of FONTES) {
     try {
       const res = await fetch(fonte.url, { headers: { 'User-Agent': 'boletim-med/1.0' } });
