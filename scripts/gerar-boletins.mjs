@@ -112,7 +112,51 @@ const PROVEDORES = {
       return data.choices?.[0]?.message?.content ?? '';
     },
   },
+
+  // ── Modos CLI (assinatura, sem API key) ──────────────────────────────────
+  // Rodam no servidor local (192.168.1.11) autenticados via OAuth das
+  // assinaturas Claude Pro/Max e ChatGPT Plus — estágio 2 de graça na fase
+  // de validação. Timeout generoso: modelos com thinking levam minutos.
+  'claude-cli': {
+    envKey: null,
+    modeloPadrao: '', // vazio = modelo padrão da assinatura; CLAUDE_CLI_MODEL sobrescreve
+    async chamar(prompt, modelo) {
+      const args = ['-p', prompt, '--output-format', 'text'];
+      if (modelo) args.push('--model', modelo);
+      return executarCli('claude', args);
+    },
+  },
+  'codex-cli': {
+    envKey: null,
+    modeloPadrao: '', // CODEX_CLI_MODEL sobrescreve
+    async chamar(prompt, modelo) {
+      const args = ['exec', '--skip-git-repo-check', prompt];
+      if (modelo) args.push('-m', modelo);
+      return executarCli('codex', args);
+    },
+  },
 };
+
+/** Chama um CLI de IA (claude/codex) e devolve o texto da resposta. */
+async function executarCli(binario, args) {
+  const { execFile } = await import('node:child_process');
+  return new Promise((resolvePromise, reject) => {
+    execFile(
+      binario,
+      args,
+      { maxBuffer: 32 * 1024 * 1024, timeout: 20 * 60 * 1000 },
+      (erro, stdout, stderr) => {
+        if (erro) {
+          reject(new Error(`${binario} CLI falhou: ${erro.message} ${String(stderr).slice(0, 300)}`));
+        } else if (!stdout.trim()) {
+          reject(new Error(`${binario} CLI devolveu resposta vazia`));
+        } else {
+          resolvePromise(stdout);
+        }
+      }
+    );
+  });
+}
 
 const provider = (process.env.PROVIDER ?? 'claude').toLowerCase();
 const cfg = PROVEDORES[provider];
@@ -120,8 +164,9 @@ if (!cfg) {
   console.error(`PROVIDER "${provider}" desconhecido. Use: ${Object.keys(PROVEDORES).join(', ')}.`);
   process.exit(1);
 }
-const apiKey = process.env[cfg.envKey];
-if (!apiKey) {
+// Provedores CLI (assinatura via OAuth) não usam API key.
+const apiKey = cfg.envKey ? process.env[cfg.envKey] : null;
+if (cfg.envKey && !apiKey) {
   console.error(`${cfg.envKey} não definida (provider ${provider}).`);
   process.exit(1);
 }
@@ -130,8 +175,9 @@ const root = resolve(new URL('..', import.meta.url).pathname);
 const saida = resolve(process.argv[2] ?? root);
 const config = JSON.parse(readFileSync(join(root, 'prompts/especialidades.json'), 'utf8'));
 const template = readFileSync(join(root, 'prompts/boletim.md'), 'utf8');
+// Hífens viram underscore no nome da env (claude-cli → CLAUDE_CLI_MODEL).
 const modelo =
-  process.env[`${provider.toUpperCase()}_MODEL`] ??
+  process.env[`${provider.toUpperCase().replaceAll('-', '_')}_MODEL`] ??
   (provider === 'claude' ? config.edicaoPadrao.modelo : cfg.modeloPadrao);
 
 /** Data da edição em America/Sao_Paulo (o cron roda em UTC). */

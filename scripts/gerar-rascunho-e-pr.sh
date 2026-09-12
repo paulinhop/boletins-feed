@@ -13,9 +13,14 @@ git config user.email "bot@users.noreply.github.com"
 if [ "$ESCOLHA" = "todos" ]; then LISTA="claude openai kimi"; else LISTA="$ESCOLHA"; fi
 
 for PROV in $LISTA; do
-  # Mapeia o nome do provedor para o nome do secret (claude→ANTHROPIC, kimi→MOONSHOT)
-  KEY_VAR=$(echo "$PROV" | tr 'a-z' 'A-Z' | sed -e 's/KIMI/MOONSHOT/' -e 's/CLAUDE/ANTHROPIC/')_API_KEY
-  if [ -z "${!KEY_VAR:-}" ]; then
+  # Provedores CLI (claude-cli, codex-cli) rodam com a assinatura via OAuth —
+  # não têm secret; os demais exigem a env KEY correspondente.
+  if [ "$PROV" = "claude-cli" ] || [ "$PROV" = "codex-cli" ]; then
+    KEY_VAR=""
+  else
+    KEY_VAR=$(echo "$PROV" | tr 'a-z' 'A-Z' | sed -e 's/KIMI/MOONSHOT/' -e 's/CLAUDE/ANTHROPIC/')_API_KEY
+  fi
+  if [ -n "$KEY_VAR" ] && [ -z "${!KEY_VAR:-}" ]; then
     echo "::warning::Secret $KEY_VAR ausente — pulando $PROV."
     continue
   fi
