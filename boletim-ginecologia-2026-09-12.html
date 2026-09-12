@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ginecologia — Boletim de 12 de setembro de 2026</title>
+<style>
+  :root{
+    --azul:#B84574; --azul2:#B84574; --acc:#0f766e;
+    --bg:#f4f6f8; --card:#ffffff; --txt:#1c2733; --mut:#5b6b7a; --bord:#dde4ea;
+    --tag-bg:#e8f1f8;
+    --c-onco:#7c2d12; --c-onco-bg:#fef0e7;
+    --c-sex:#7e22ce;  --c-sex-bg:#f5ecfd;
+    --c-andro:#0f766e;--c-andro-bg:#e6f4f2;
+    --c-ped:#0369a1;  --c-ped-bg:#e8f3fb;
+    --c-geral:#155a8a;--c-geral-bg:#e8f1f8;
+    --c-reg:#9a3412;  --c-reg-bg:#fdf0e0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(--txt);line-height:1.55;padding-bottom:48px}
+  .wrap{max-width:820px;margin:0 auto;padding:0 14px}
+  header{background:linear-gradient(135deg,var(--azul) 0%,var(--azul2) 100%);color:#fff;padding:30px 14px 24px;margin-bottom:22px}
+  header h1{font-size:1.55rem;letter-spacing:.3px;font-weight:700}
+  header .sub{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.85rem;opacity:.85;margin-top:6px}
+  header .data{display:inline-block;font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.8rem;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:3px 12px;margin-top:12px}
+  h2.sec{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.14em;color:var(--mut);border-bottom:2px solid var(--azul);padding-bottom:6px;margin:28px 0 14px}
+  h2.sec .n{color:var(--azul);font-weight:700}
+  .item{background:var(--card);border:1px solid var(--bord);border-radius:10px;margin-bottom:12px;overflow:hidden;box-shadow:0 1px 2px rgba(16,42,67,.05)}
+  .item>button.head{display:block;width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:14px 16px;font-family:inherit;color:inherit}
+  .tag{display:inline-block;font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;border-radius:4px;padding:2px 7px;margin-bottom:7px;margin-right:6px;color:var(--azul);background:var(--tag-bg)}
+  /* Badges coloridas por assunto — use a que combinar com o item: */
+  .t-onco{color:var(--c-onco);background:var(--c-onco-bg)}   /* Uro-oncologia / câncer */
+  .t-sex{color:var(--c-sex);background:var(--c-sex-bg)}       /* Medicina sexual */
+  .t-andro{color:var(--c-andro);background:var(--c-andro-bg)} /* Andrologia / saúde do homem */
+  .t-ped{color:var(--c-ped);background:var(--c-ped-bg)}       /* Pediátrica / congênito */
+  .t-geral{color:var(--c-geral);background:var(--c-geral-bg)} /* Urologia geral / litíase / HPB */
+  .t-reg{color:var(--c-reg);background:var(--c-reg-bg)}       /* Regulatório / diretriz / prática muda */
+  .item h3{font-size:1.02rem;color:var(--azul);line-height:1.35;margin-bottom:6px}
+  .item .resumo{font-size:.92rem;color:var(--txt)}
+  .item .fonte-curta{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.74rem;color:var(--mut);margin-top:8px}
+  .chev{float:right;margin-left:10px;color:var(--azul);font-family:'Segoe UI',Arial,sans-serif;font-size:.95rem;font-weight:600;transition:transform .25s ease;display:inline-block}
+  .item.open .chev{transform:rotate(90deg)}
+  .det{display:none;border-top:1px solid var(--bord);background:var(--card);padding:16px 16px 18px}
+  .item.open .det{display:block}
+  .det h4{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--acc);margin:14px 0 4px}
+  .det h4:first-child{margin-top:0}
+  .det p{font-size:.9rem;margin-bottom:8px}
+  .det ul{margin:0 0 8px 20px}
+  .det li{font-size:.9rem;margin-bottom:4px}
+  .refs{margin-top:14px;padding-top:10px;border-top:1px dashed var(--bord)}
+  .refs h4{color:var(--azul)}
+  .refs p{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.8rem;color:var(--mut);margin-bottom:6px}
+  a{color:var(--azul);word-break:break-word}
+  .fontes-finais{background:var(--card);border:1px solid var(--bord);border-radius:10px;padding:18px 18px 12px;margin-top:8px}
+  .fontes-finais ol{margin-left:20px}
+  .fontes-finais li{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.8rem;color:var(--mut);margin-bottom:8px}
+  .nota{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.75rem;color:var(--mut);margin-top:20px;text-align:center}
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#000000; --card:#1C1C1E; --txt:#E5E5EA; --mut:#98989F; --bord:#38383A;
+      --tag-bg:rgba(255,255,255,.10); --acc:#5EEAD4;
+      --c-onco:#FF9F6E; --c-onco-bg:rgba(255,159,110,.14);
+      --c-sex:#D8B4FE;  --c-sex-bg:rgba(216,180,254,.14);
+      --c-andro:#5EEAD4;--c-andro-bg:rgba(94,234,212,.13);
+      --c-ped:#7DD3FC;  --c-ped-bg:rgba(125,211,252,.14);
+      --c-geral:#64A8FF;--c-geral-bg:rgba(100,168,255,.15);
+      --c-reg:#FDBA74;  --c-reg-bg:rgba(253,186,116,.14);
+    }
+    body{background:var(--bg);color:var(--txt)}
+    .item,.fontes-finais{box-shadow:none}
+    .item h3{color:#FFFFFF}
+    h2.sec .n,.chev,a{color:#0A84FF}
+    h2.sec{border-bottom-color:#0A84FF}
+    .tag:not([class*="t-"]){color:#E5E5EA}
+    header .data{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25)}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Boletim de Ginecologia</h1>
+    <div class="sub">Atualização científica semanal para a prática clínica</div>
+    <span class="data">Edição de 12 de setembro de 2026</span>
+  </div>
+</header>
+<div class="wrap">
+  <h2 class="sec"><span class="n">1 ·</span> Essencial — os destaques do período</h2>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-onco">Oncoginecologia</span><span class="tag t-reg">Diretriz</span>
+      <h3>ACOG atualiza: salpingectomia oportunística bilateral para prevenir câncer de ovário — expandir oferta inclusive em cirurgias não ginecológicas</h3>
+      <p class="resumo">Atualização reforça o benefício da salpingectomia completa bilateral no contexto de cirurgias obstétricas e ginecológicas e recomenda expandir sua disponibilidade também em procedimentos abdominopélvicos não ginecológicos quando factível. Documento atualiza a opinião de 2019 (CO 774).</p>
+      <div class="fonte-curta">Obstetrics &amp; Gynecology, 24/08/2026 · Committee Update</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>Evidências acumuladas sugerem origem tubária para muitos carcinomas serosos de alto grau. Desde 2019, a salpingectomia oportunística ganhou espaço como estratégia primária de prevenção de câncer de ovário/trompa em pacientes de risco populacional submetidas a cirurgias pélvicas.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Documento de atualização clínica que “fornece informações atualizadas” apoiando o benefício da salpingectomia bilateral completa realizada oportunisticamente.</li>
+        <li>Expande a disponibilidade da salpingectomia durante cirurgias abdominopélvicas não ginecológicas, quando adequada e segura.</li>
+        <li>Atualiza e substitui o CO 774 (2019) sobre salpingectomia oportunística para prevenção primária.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Incorpore a discussão de salpingectomia bilateral completa no consentimento de histerectomias, laqueaduras e outras cirurgias pélvicas, e avalie a oferta também em procedimentos não ginecológicos quando houver equipe e técnica disponíveis. No Brasil, considerar logística (tempo cirúrgico, habilitação da equipe) e registro formal da decisão compartilhada.</p>
+      <h4>Limitações</h4>
+      <p>Atualização baseada em síntese de evidências observacionais e plausibilidade biológica; não apresenta novos ensaios randomizados. Implementação depende de recursos e treinamento, e pode variar entre SUS e setor privado.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Salpingectomy for the Prevention of Epithelial Ovarian Cancer. Obstetrics and gynecology. 2026. DOI: <a href="https://doi.org/10.1097/AOG.0000000000006400">https://doi.org/10.1097/AOG.0000000000006400</a>. PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42623672/">https://pubmed.ncbi.nlm.nih.gov/42623672/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-onco">Oncoginecologia</span><span class="tag t-reg">Diretriz</span>
+      <h3>FIGO 2026 atualiza estadiamento e escore prognóstico da neoplasia trofoblástica gestacional (NTG)</h3>
+      <p class="resumo">Novo sistema de estadiamento e escore foi adotado pela FIGO para padronizar diagnóstico, guiar manejo e permitir comparação de resultados em NTG. O artigo destaca as mudanças introduzidas e traz notas explicativas para interpretação.</p>
+      <div class="fonte-curta">International Journal of Gynaecology and Obstetrics, 25/08/2026 · Ngan et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>NTG é rara, potencialmente letal e altamente tratável. A uniformização de estadiamento/escoring é crucial para orientar conduta e comparar desfechos entre centros.</p>
+      <h4>O que mudou</h4>
+      <ul>
+        <li>Adoção de um sistema 2026 atualizado de estadiamento e pontuação prognóstica pela FIGO.</li>
+        <li>Padronização de critérios diagnósticos e de investigação, com notas explicativas para facilitar a aplicação clínica.</li>
+        <li>Objetivo explícito de harmonizar manejo globalmente e permitir comparação de resultados entre serviços.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Adote o estadiamento/escoring FIGO 2026 nos laudos e decisões terapêuticas. Em serviços brasileiros, alinhar protocolos locais (referência/contrarreferência) ao novo sistema favorece prognóstico e comparabilidade de dados.</p>
+      <h4>Limitações</h4>
+      <p>O resumo não detalha todas as alterações técnicas; equipes precisarão consultar o documento integral. A implementação requer atualização de fluxos e capacitação.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Ngan HYS, Seckl MJ, Horowitz N, Cheung ANY, Braga A, Sekharan PK et al. FIGO staging for gestational trophoblastic neoplasia: 2026. International journal of gynaecology and obstetrics. 2026. DOI: <a href="https://doi.org/10.1002/ijgo.71229">https://doi.org/10.1002/ijgo.71229</a>. PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42473063/">https://pubmed.ncbi.nlm.nih.gov/42473063/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-ped">Fetal/Anomalias</span>
+      <h3>Protocolo StaFFAUS aumenta a detecção de anomalias no 1º trimestre (83,6% vs 67,3% vs 47,7%)</h3>
+      <p class="resumo">Em 19.417 fetos, o protocolo expandido StaFFAUS (30 planos) teve taxa de detecção por anomalia de 83,6%, superior ao ISUOG Detailed (67,3%) e Minimum (47,7%; P&lt;.001). Em coorte diagnóstica (N=1.304), sensibilidade 75,5% e AUROC 0,857 (IC 95% 0,830–0,884).</p>
+      <div class="fonte-curta">Obstetrics &amp; Gynecology, 27/08/2026 · Chen et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>O rastreamento anatômico no 1º trimestre vem se expandindo com melhorias técnicas. Protocolos padronizados podem aumentar a identificação precoce de malformações.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Estudo retrospectivo, centro único (2013–2024); 18.250 gestações (19.417 fetos); 694 anomalias confirmadas como referência.</li>
+        <li>Detecção por anomalia: StaFFAUS 83,6% vs ISUOG Detailed 67,3% vs ISUOG Minimum 47,7% (P&lt;.001 para ambas as comparações).</li>
+        <li>Coorte diagnóstica (326 anômalos + 978 controles): sensibilidade 75,5%, acurácia 90,8%, AUROC 0,857 (IC 95% 0,830–0,884).</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Quando houver expertise e tempo de exame disponíveis, a adoção de um protocolo expandido pode antecipar o diagnóstico e otimizar encaminhamentos. No Brasil, considerar curva de aprendizado e impacto no tempo de agenda/fluxo do pré-natal.</p>
+      <h4>Limitações</h4>
+      <p>Desenho retrospectivo e centro único; forte dependência do operador; o tempo de exame em rotina real pode limitar a aplicabilidade ampla.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Chen P, Jie Y, Wang Z, Du G, Huang L, Xie R et al. Anomaly Detection With an Expanded Standardized First-Trimester Fetal Anatomic Ultrasound Screening Protocol. Obstetrics and gynecology. 2026. DOI: <a href="https://doi.org/10.1097/AOG.0000000000006413">https://doi.org/10.1097/AOG.0000000000006413</a>. PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42659612/">https://pubmed.ncbi.nlm.nih.gov/42659612/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Obstetrícia</span>
+      <h3>Terapia anti-hipertensiva guiada por hemodinâmica reduz PE/eclâmpsia e hipertensão grave em DHEG</h3>
+      <p class="resumo">Meta-análise (6 estudos; 1 ECR, 4 comparativos não randomizados, 1 coorte) mostrou que a estratégia guiada por parâmetros hemodinâmicos reduz pré-eclâmpsia/eclâmpsia (OR 0,47; IC 95% 0,33–0,65; I2=0%) e hipertensão grave (OR 0,39; IC 95% 0,27–0,57; I2=0%) versus cuidado padrão.</p>
+      <div class="fonte-curta">Ultrasound in Obstetrics &amp; Gynecology, 01/09/2026 · Novelli et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A doença hipertensiva específica da gestação (DHEG) é causa relevante de morbimortalidade. Estratégias individualizadas com monitorização hemodinâmica podem otimizar a escolha de anti-hipertensivos.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Síntese de estudos comparando terapia guiada por hemodinâmica materna vs cuidado padrão (baseado apenas em PA).</li>
+        <li>Intervenção: 418–614 gestantes; controles: 617–731 (a depender do desfecho).</li>
+        <li>Redução de PE/eclâmpsia (OR 0,47; IC 95% 0,33–0,65; I2=0%) e de hipertensão grave (OR 0,39; IC 95% 0,27–0,57; I2=0%).</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Onde disponível, a monitorização hemodinâmica pode auxiliar a personalizar a terapia anti-hipertensiva na gestação. No Brasil, a adoção dependerá de acesso a dispositivos/treinamento; integra-se a protocolos de alto risco em centros terciários.</p>
+      <h4>Limitações</h4>
+      <p>Predomínio de estudos não randomizados; amostras modestas; diversidade de dispositivos e esquemas terapêuticos; necessidade de confirmação por ECRs maiores.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Novelli GP, Vasapollo B, Attini R, Valensise H, Natale A, Ghi T et al. Hemodynamics-guided treatment of hypertensive disorders of pregnancy: systematic review and meta-analysis. Ultrasound in obstetrics &amp; gynecology. 2026. DOI: <a href="https://doi.org/10.1002/uog.70250">https://doi.org/10.1002/uog.70250</a>. PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42277996/">https://pubmed.ncbi.nlm.nih.gov/42277996/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Climatério/MTH</span>
+      <h3>Estrogênio isolado pós-histerectomia associa-se a menor risco de câncer de mama</h3>
+      <p class="resumo">Síntese aponta menor risco com terapia estrogênica isolada: meta-análise de 10 ECRs (n=14.282) — 3,6% vs 4,7% (RR 0,77; IC 95% 0,65–0,91; P=0,002). Em coorte pareada de portadoras de BRCA, incidência em 15 anos foi 24,3% com estrogênio vs 47,3% sem MHT.</p>
+      <div class="fonte-curta">Obstetrics &amp; Gynecology, 13/08/2026 · Kaunitz &amp; Wright</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>O receio de câncer de mama limita o uso de terapia hormonal na menopausa (THM). Em mulheres sem útero, o estrogênio isolado dispensa progestagênio e pode ter perfil de risco distinto.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Resumo crítico de evidências: meta-análise de 10 ECRs (14.282 participantes) mostrou redução de risco com estrogênio isolado (RR 0,77; IC 95% 0,65–0,91).</li>
+        <li>Coorte pareada de 676 portadoras de variante BRCA com mamas íntegras: incidência cumulativa de 15 anos menor com estrogênio isolado versus não usuárias (24,3% vs 47,3%).</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Para mulheres histerectomizadas sintomáticas, a THM estrogênica isolada pode ser considerada com menor preocupação oncológica, individualizando-se riscos/benefícios. Reforça a necessidade de diferenciar esquemas em aconselhamento no consultório.</p>
+      <h4>Limitações</h4>
+      <p>Artigo de síntese; heterogeneidade de formulações/doses; necessidade de mais dados específicos com estradiol. Transferência para populações brasileiras deve considerar perfis de risco e acesso.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Kaunitz AM, Wright JD. Menopausal Estrogen Therapy and Risk of Breast Cancer. Obstetrics and gynecology. 2026. DOI: <a href="https://doi.org/10.1097/AOG.0000000000006397">https://doi.org/10.1097/AOG.0000000000006397</a>. PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42594383/">https://pubmed.ncbi.nlm.nih.gov/42594383/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="sec"><span class="n">2 ·</span> Outras novidades — vale o registro</h2>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Climatério</span>
+      <h3>Aromaterapia melhora sintomas da menopausa, mas com evidência de baixa/very low qualidade</h3>
+      <p class="resumo">Meta-análise de 17 estudos (n=1.347) mostrou melhora de função sexual (MD 7,05), sono (MD -3,95), sintomas vasomotores (SMD -0,79) e psicológicos (SMD -0,59). GRADE: “Muito baixa” para sexual/sono e “Baixa” para demais; sem efeito urogenital.</p>
+      <div class="fonte-curta">Journal of Obstetrics and Gynaecology, 08/09/2026 · Bagheri et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>Há interesse por terapias complementares na menopausa, mas a qualidade das evidências varia.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Revisão sistemática e meta-análise (ECRs/quase-experimentais; n=1.347).</li>
+        <li>Melhoras em múltiplos domínios (ex.: vasomotores SMD -0,79; ansiedade SMD -0,63; depressão SMD -0,57); sem efeito em sintomas urogenitais.</li>
+        <li>Certainty GRADE baixa ou muito baixa; heterogeneidade substancial.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Pode ser considerada como adjuvante em pacientes interessadas, com expectativa realista e sem substituir terapias baseadas em evidências robustas.</p>
+      <h4>Limitações</h4>
+      <p>Heterogeneidade, viés metodológico e poucos estudos por subgrupo impedem recomendações firmes.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Bagheri L, Ghiasi A, Biabani F. Effects of aromatherapy on menopausal symptoms: a systematic review and meta-analysis. Journal of obstetrics and gynaecology. 2026. DOI: <a href="https://doi.org/10.1080/01443615.2026.2723303">https://doi.org/10.1080/01443615.2026.2723303</a>. PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42709539/">https://pubmed.ncbi.nlm.nih.gov/42709539/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Climatério</span>
+      <h3>Exercício (convencional e mind-body) melhora sintomas, qualidade de vida e saúde mental no climatério</h3>
+      <p class="resumo">Meta-análise de 12 ECRs (n=1.050) mostrou melhora de sintomas (g=-2,10), qualidade de vida (g=1,41), ansiedade (MD -1,20) e depressão (MD -1,17) vs controle. Subanálises sugerem efeito dependente do tipo de exercício.</p>
+      <div class="fonte-curta">European Journal of Obstetrics &amp; Gynecology &amp; Reproductive Biology, 13/08/2026 · Ruiz-Cerezo et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>Intervenções não farmacológicas são estratégicas no manejo de sintomas do climatério.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Revisão sistemática e meta-análise de ECRs (2020–2025; n=1.050).</li>
+        <li>Benefícios consistentes em sintomas e desfechos psicossociais; robustez sustentada por sensibilidade leave-one-out.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Prescreva exercício regular (aeróbio/resistido e/ou mind-body) como adjuvante de primeira linha para sintomas e bem-estar no climatério.</p>
+      <h4>Limitações</h4>
+      <p>Heterogeneidade entre modalidades/doses; viés de publicação não pode ser excluído.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Ruiz-Cerezo A, Mendoza Laiz N, Romero Ferreiro C. Physical exercise and mind-body exercise in the menopausal transition: A systematic review and meta-analysis. European journal of obstetrics, gynecology, and reproductive biology. 2026. DOI: <a href="https://doi.org/10.1016/j.ejogrb.2026.115338">https://doi.org/10.1016/j.ejogrb.2026.115338</a>. PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42520515/">https://pubmed.ncbi.nlm.nih.gov/42520515/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Climatério/Cardio</span>
+      <h3>Treinamento de força reduz pressão arterial em mulheres pós-menopausa</h3>
+      <p class="resumo">Revisão sistemática (60 estudos) mostrou redução de FC, PAS (g=0,68), PAD (g=0,37) e PAM (g=0,68) após treino resistido, com I2=0% para desfechos hemodinâmicos primários.</p>
+      <div class="fonte-curta">Journal of Applied Physiology, 17/08/2026 · Rivera-Mejía et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>Mulheres pós-menopausa apresentam alterações hemodinâmicas/autonômicas que elevam risco cardiovascular; o papel específico do treino resistido é menos estabelecido que o aeróbio.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Revisão sistemática e meta-análise de ensaios controlados (≥4 semanas).</li>
+        <li>Reduções significativas em PAS, PAD, PAM e FC; melhorias modestas em adaptações vasculares e variabilidade da FC.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Inclua exercícios resistidos supervisionados nos planos de cuidado do climatério, especialmente em pacientes com PA limítrofe/leve.</p>
+      <h4>Limitações</h4>
+      <p>Heterogeneidade de protocolos; muitos estudos pequenos; desfechos estruturais cardíacos sem alterações adversas, mas acompanhamento limitado.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Rivera-Mejía SL, Rúa-Alonso M, Rial-Vázquez J, Nine I, Camacho-Villa MA, Enríquez-González MG et al. Resistance training improves cardiovascular health in postmenopausal women: systematic review and meta-analysis. Journal of applied physiology. 2026. DOI: <a href="https://doi.org/10.1152/japplphysiol.01180.2025">https://doi.org/10.1152/japplphysiol.01180.2025</a>. PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42470140/">https://pubmed.ncbi.nlm.nih.gov/42470140/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Miomas/Cirurgia</span>
+      <h3>Oclusão da artéria uterina na miomectomia laparoscópica não reduziu perda sanguínea vs sem oclusão (ECR, n=60)</h3>
+      <p class="resumo">Ensaio randomizado de 4 braços (clipe temporário, sutura “shoelace”, coagulação bipolar permanente vs controle) não detectou redução de sangramento estimado nem queda de Hb em 24h com oclusão uterina vs controle.</p>
+      <div class="fonte-curta">BMC Women's Health, 27/08/2026 · Shoukry et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A miomectomia laparoscópica pode cursar com sangramento significativo; o valor agregado da oclusão arterial uterina é controverso.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>ECR prospectivo, cego para paciente, 4 braços; n=60 na análise mITT.</li>
+        <li>Comparação pré-especificada (qualquer técnica de oclusão vs sem oclusão) não mostrou benefício em perda sanguínea ou queda de Hb em 24h.</li>
+        <li>Análises exploratórias de 4 grupos avaliaram tempo operatório, transfusão e reserva ovariana (AMH/AFC) em 3 meses.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Rotina de oclusão arterial uterina com objetivo de reduzir sangramento pode não se justificar em todos os casos. Seleção individual e técnicas hemostáticas padrão seguem centrais.</p>
+      <h4>Limitações</h4>
+      <p>Amostra pequena, centro único, desfechos de curto prazo; estudo pode estar subdimensionado para diferenças modestas.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Shoukry A, Aboali OA, Abdelquader MF, Gouda AMH. Comparing different techniques of uterine artery occlusion during laparoscopic myomectomy: a randomized controlled trial. BMC women's health. 2026. DOI: <a href="https://doi.org/10.1186/s12905-026-04799-z">https://doi.org/10.1186/s12905-026-04799-z</a>. PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42649498/">https://pubmed.ncbi.nlm.nih.gov/42649498/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Anestesia/Ginecologia</span>
+      <h3>Escore de recuperação igual com esketamina vs sufentanil em cirurgias ginecológicas ambulatoriais; trade-offs de dor e tempo de recuperação</h3>
+      <p class="resumo">ECR duplo-cego (n=125): QoR-15 no D1 similar (137,9 vs 137,8; dif 0,2; IC 95% -4,2 a 4,6; p=0,93). Esketamina prolongou permanência em SRPA (28 vs 23 min; p&lt;0,001), reduziu dor de injeção (22,6% vs 50,8%; p=0,002) e aumentou dor ≥4 em 30 min (30,6% vs 6,3%).</p>
+      <div class="fonte-curta">Annals of Medicine, 04/09/2026 · Wang et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>Dados sobre esketamina em cirurgia ambulatorial são limitados; avaliou-se recuperação e eventos adversos em procedimentos ginecológicos sob sedação.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>ECR, duplo-cego; esketamina 0,2 mg/kg vs sufentanil 0,1 μg/kg + propofol.</li>
+        <li>QoR-15 D1: sem diferença; SRPA mais longa com esketamina; menos dor à injeção; mais dor precoce (30 min) com esketamina.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>A escolha do analgésico deve ponderar experiência de injeção, dor precoce e giro da SRPA em centros de cirurgia ambulatorial.</p>
+      <h4>Limitações</h4>
+      <p>Estudo de único centro; não avalia desfechos além de D2; esquema anestésico específico pode limitar generalização.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Wang XL, Li YN, Ma QL, Qu MC, Zhang JW, Jing MZ et al. Esketamine vs. sufentanil for quality of recovery after outpatient gynecological surgery: a randomized clinical trial. Annals of medicine. 2026. DOI: <a href="https://doi.org/10.1080/07853890.2026.2723715">https://doi.org/10.1080/07853890.2026.2723715</a>. PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42693883/">https://pubmed.ncbi.nlm.nih.gov/42693883/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Endometriose</span><span class="tag t-reg">Diretriz</span>
+      <h3>ISGE atualiza laudo estruturado do ultrassom dinâmico para suspeita/diagnóstico de endometriose</h3>
+      <p class="resumo">Recomendações 2026 ampliam o template de 2021, integrando descritores padronizados de lesões peritoneais superficiais, subdivisão do compartimento lateral (paramétrio/parede pélvica/nervos) e métricas pélvicas quantitativas.</p>
+      <div class="fonte-curta">European Journal of Obstetrics &amp; Gynecology &amp; Reproductive Biology, 13/08/2026 · Djokovic et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>Relatórios estruturados podem aumentar a acurácia e a concordância com o mapeamento cirúrgico em endometriose quando o exame é realizado por operadores experientes.</p>
+      <h4>O que mudou</h4>
+      <ul>
+        <li>Expansão do modelo 2021 com descritores padronizados para peritônio superficial e avaliação lateral detalhada (paramétrio, parede pélvica, nervos).</li>
+        <li>Inclusão de métricas quantitativas e alinhamento com frameworks internacionais (IDEA, MUSA, IETA, IOTA) e classificação #Enzian.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Padronize laudos em serviços de imagem pélvica e centros de endometriose para melhorar comunicação com cirurgia e planejamento terapêutico.</p>
+      <h4>Limitações</h4>
+      <p>Revisão focada não sistemática; desempenho depende de expertise e protocolo dinâmico rigoroso; sensibilidade variável para lesões pequenas/paramétrio.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Djokovic D, Mattos LA, Keckstein J, Kotlarz A, Pinto P, Reis I et al. Updated structured report for dynamic ultrasonography in patients with suspected or known endometriosis: ISGE recommendations. European journal of obstetrics, gynecology, and reproductive biology. 2026. DOI: <a href="https://doi.org/10.1016/j.ejogrb.2026.115267">https://doi.org/10.1016/j.ejogrb.2026.115267</a>. PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42401110/">https://pubmed.ncbi.nlm.nih.gov/42401110/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Climatério/Cardio</span>
+      <h3>Menopausa precoce e risco cardiovascular: associação varia por tabagismo e diabetes</h3>
+      <p class="resumo">Meta-análise (7 coortes; &gt;1,77 milhão) definiu menopausa &lt;45a. Em não fumantes, risco maior de IC (HR 1,23; IC 95% 1,02–1,49) e DAC (RR 1,26; IC 95% 1,18–1,35). Em não diabéticas, risco de AVC (HR 1,11; IC 95% 1,09–1,13).</p>
+      <div class="fonte-curta">Frontiers in Public Health, 04/09/2026 · Chen Z. et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A menopausa precoce é marcador de risco cardiometabólico, mas modificadores como tabagismo e DM2 podem influenciar a associação.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Revisão sistemática e meta-análise de coortes; menopausa &lt;45 anos (inclui prematura e precoce).</li>
+        <li>Em não fumantes: ↑ risco de IC (HR 1,23) e DAC (RR 1,26); em não diabéticas: ↑ risco de AVC (HR 1,11).</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Use a idade da menopausa na estratificação de risco cardiovascular, especialmente em não fumantes/não diabéticas, reforçando prevenção e rastreio oportunos.</p>
+      <h4>Limitações</h4>
+      <p>Heterogeneidade elevada em alguns desfechos; definição de menopausa e medidas de exposição variaram; publicação recente com necessidade de replicação.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Chen Z, Zhang X, Chen Y, Shi W, Ma C, Chen X et al. Association between early menopause and adverse cardiovascular events: meta-analysis stratified by smoking and T2DM. Frontiers in public health. 2026. DOI: <a href="https://doi.org/10.3389/fpubh.2026.1906440">https://doi.org/10.3389/fpubh.2026.1906440</a>. PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42694168/">https://pubmed.ncbi.nlm.nih.gov/42694168/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="sec"><span class="n">3 ·</span> Fontes consultadas nesta edição</h2>
+  <div class="fontes-finais">
+    <ol>
+      <li><a href="https://doi.org/10.1097/AOG.0000000000006400">Salpingectomy for the Prevention of Epithelial Ovarian Cancer. Obstetrics and gynecology. 2026.</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42623672/">PMID: 42623672</a></li>
+      <li><a href="https://doi.org/10.1002/ijgo.71229">Ngan HYS, Seckl MJ, Horowitz N, Cheung ANY, Braga A, Sekharan PK et al. FIGO staging for gestational trophoblastic neoplasia: 2026. International journal of gynaecology and obstetrics. 2026.</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42473063/">PMID: 42473063</a></li>
+      <li><a href="https://doi.org/10.1097/AOG.0000000000006413">Chen P, Jie Y, Wang Z, Du G, Huang L, Xie R et al. Anomaly Detection With an Expanded Standardized First-Trimester Fetal Anatomic Ultrasound Screening Protocol. Obstetrics and gynecology. 2026.</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42659612/">PMID: 42659612</a></li>
+      <li><a href="https://doi.org/10.1002/uog.70250">Novelli GP, Vasapollo B, Attini R, Valensise H, Natale A, Ghi T et al. Hemodynamics-guided treatment of hypertensive disorders of pregnancy: systematic review and meta-analysis. Ultrasound in obstetrics &amp; gynecology. 2026.</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42277996/">PMID: 42277996</a></li>
+      <li><a href="https://doi.org/10.1097/AOG.0000000000006397">Kaunitz AM, Wright JD. Menopausal Estrogen Therapy and Risk of Breast Cancer. Obstetrics and gynecology. 2026.</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42594383/">PMID: 42594383</a></li>
+      <li><a href="https://doi.org/10.1080/01443615.2026.2723303">Bagheri L, Ghiasi A, Biabani F. Effects of aromatherapy on menopausal symptoms: a systematic review and meta-analysis. Journal of obstetrics and gynaecology. 2026.</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42709539/">PMID: 42709539</a></li>
+      <li><a href="https://doi.org/10.1016/j.ejogrb.2026.115338">Ruiz-Cerezo A, Mendoza Laiz N, Romero Ferreiro C. Physical exercise and mind-body exercise in the menopausal transition: a systematic review and meta-analysis. European journal of obstetrics, gynecology, and reproductive biology. 2026.</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42520515/">PMID: 42520515</a></li>
+      <li><a href="https://doi.org/10.1152/japplphysiol.01180.2025">Rivera-Mejía SL, Rúa-Alonso M, Rial-Vázquez J, Nine I, Camacho-Villa MA, Enríquez-González MG et al. Resistance training improves cardiovascular health in postmenopausal women: systematic review and meta-analysis. Journal of applied physiology. 2026.</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42470140/">PMID: 42470140</a></li>
+      <li><a href="https://doi.org/10.1186/s12905-026-04799-z">Shoukry A, Aboali OA, Abdelquader MF, Gouda AMH. Comparing different techniques of uterine artery occlusion during laparoscopic myomectomy: a randomized controlled trial. BMC women's health. 2026.</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42649498/">PMID: 42649498</a></li>
+      <li><a href="https://doi.org/10.1080/07853890.2026.2723715">Wang XL, Li YN, Ma QL, Qu MC, Zhang JW, Jing MZ et al. Esketamine vs. sufentanil for quality of recovery after outpatient gynecological surgery: a randomized clinical trial. Annals of medicine. 2026.</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42693883/">PMID: 42693883</a></li>
+      <li><a href="https://doi.org/10.1016/j.ejogrb.2026.115267">Djokovic D, Mattos LA, Keckstein J, Kotlarz A, Pinto P, Reis I et al. Updated structured report for dynamic ultrasonography in suspected/known endometriosis: ISGE recommendations. European journal of obstetrics, gynecology, and reproductive biology. 2026.</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42401110/">PMID: 42401110</a></li>
+      <li><a href="https://doi.org/10.3389/fpubh.2026.1906440">Chen Z, Zhang X, Chen Y, Shi W, Ma C, Chen X et al. Early menopause and adverse cardiovascular events stratified by smoking status and T2DM: a systematic review and meta-analysis. Frontiers in public health. 2026.</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42694168/">PMID: 42694168</a></li>
+    </ol>
+  </div>
+  <p class="nota">Boletim Med · conteúdo gerado com apoio de IA e revisão humana antes da publicação.</p>
+</div>
+<script>
+(function(){
+  var items=document.querySelectorAll('.item');
+  items.forEach(function(it){
+    var btn=it.querySelector('button.head');
+    btn.addEventListener('click',function(){
+      var open=it.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+    });
+  });
+})();
+</script>
+</body>
+</html>

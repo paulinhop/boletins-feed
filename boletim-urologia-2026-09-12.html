@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urologia — Boletim de 12 de setembro de 2026</title>
+<style>
+  :root{
+    --azul:#005EB8; --azul2:#005EB8; --acc:#0f766e;
+    --bg:#f4f6f8; --card:#ffffff; --txt:#1c2733; --mut:#5b6b7a; --bord:#dde4ea;
+    --tag-bg:#e8f1f8;
+    --c-onco:#7c2d12; --c-onco-bg:#fef0e7;
+    --c-sex:#7e22ce;  --c-sex-bg:#f5ecfd;
+    --c-andro:#0f766e;--c-andro-bg:#e6f4f2;
+    --c-ped:#0369a1;  --c-ped-bg:#e8f3fb;
+    --c-geral:#155a8a;--c-geral-bg:#e8f1f8;
+    --c-reg:#9a3412;  --c-reg-bg:#fdf0e0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(--txt);line-height:1.55;padding-bottom:48px}
+  .wrap{max-width:820px;margin:0 auto;padding:0 14px}
+  header{background:linear-gradient(135deg,var(--azul) 0%,var(--azul2) 100%);color:#fff;padding:30px 14px 24px;margin-bottom:22px}
+  header h1{font-size:1.55rem;letter-spacing:.3px;font-weight:700}
+  header .sub{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.85rem;opacity:.85;margin-top:6px}
+  header .data{display:inline-block;font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.8rem;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:3px 12px;margin-top:12px}
+  h2.sec{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.14em;color:var(--mut);border-bottom:2px solid var(--azul);padding-bottom:6px;margin:28px 0 14px}
+  h2.sec .n{color:var(--azul);font-weight:700}
+  .item{background:var(--card);border:1px solid var(--bord);border-radius:10px;margin-bottom:12px;overflow:hidden;box-shadow:0 1px 2px rgba(16,42,67,.05)}
+  .item>button.head{display:block;width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:14px 16px;font-family:inherit;color:inherit}
+  .tag{display:inline-block;font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;border-radius:4px;padding:2px 7px;margin-bottom:7px;margin-right:6px;color:var(--azul);background:var(--tag-bg)}
+  /* Badges coloridas por assunto — use a que combinar com o item: */
+  .t-onco{color:var(--c-onco);background:var(--c-onco-bg)}   /* Uro-oncologia / câncer */
+  .t-sex{color:var(--c-sex);background:var(--c-sex-bg)}       /* Medicina sexual */
+  .t-andro{color:var(--c-andro);background:var(--c-andro-bg)} /* Andrologia / saúde do homem */
+  .t-ped{color:var(--c-ped);background:var(--c-ped-bg)}       /* Pediátrica / congênito */
+  .t-geral{color:var(--c-geral);background:var(--c-geral-bg)} /* Urologia geral / litíase / HPB */
+  .t-reg{color:var(--c-reg);background:var(--c-reg-bg)}       /* Regulatório / diretriz / prática muda */
+  .item h3{font-size:1.02rem;color:var(--azul);line-height:1.35;margin-bottom:6px}
+  .item .resumo{font-size:.92rem;color:var(--txt)}
+  .item .fonte-curta{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.74rem;color:var(--mut);margin-top:8px}
+  .chev{float:right;margin-left:10px;color:var(--azul);font-family:'Segoe UI',Arial,sans-serif;font-size:.95rem;font-weight:600;transition:transform .25s ease;display:inline-block}
+  .item.open .chev{transform:rotate(90deg)}
+  .det{display:none;border-top:1px solid var(--bord);background:var(--card);padding:16px 16px 18px}
+  .item.open .det{display:block}
+  .det h4{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--acc);margin:14px 0 4px}
+  .det h4:first-child{margin-top:0}
+  .det p{font-size:.9rem;margin-bottom:8px}
+  .det ul{margin:0 0 8px 20px}
+  .det li{font-size:.9rem;margin-bottom:4px}
+  .refs{margin-top:14px;padding-top:10px;border-top:1px dashed var(--bord)}
+  .refs h4{color:var(--azul)}
+  .refs p{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.8rem;color:var(--mut);margin-bottom:6px}
+  a{color:var(--azul);word-break:break-word}
+  .fontes-finais{background:var(--card);border:1px solid var(--bord);border-radius:10px;padding:18px 18px 12px;margin-top:8px}
+  .fontes-finais ol{margin-left:20px}
+  .fontes-finais li{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.8rem;color:var(--mut);margin-bottom:8px}
+  .nota{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.75rem;color:var(--mut);margin-top:20px;text-align:center}
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#000000; --card:#1C1C1E; --txt:#E5E5EA; --mut:#98989F; --bord:#38383A;
+      --tag-bg:rgba(255,255,255,.10); --acc:#5EEAD4;
+      --c-onco:#FF9F6E; --c-onco-bg:rgba(255,159,110,.14);
+      --c-sex:#D8B4FE;  --c-sex-bg:rgba(216,180,254,.14);
+      --c-andro:#5EEAD4;--c-andro-bg:rgba(94,234,212,.13);
+      --c-ped:#7DD3FC;  --c-ped-bg:rgba(125,211,252,.14);
+      --c-geral:#64A8FF;--c-geral-bg:rgba(100,168,255,.15);
+      --c-reg:#FDBA74;  --c-reg-bg:rgba(253,186,116,.14);
+    }
+    body{background:var(--bg);color:var(--txt)}
+    .item,.fontes-finais{box-shadow:none}
+    .item h3{color:#FFFFFF}
+    h2.sec .n,.chev,a{color:#0A84FF}
+    h2.sec{border-bottom-color:#0A84FF}
+    .tag:not([class*="t-"]){color:#E5E5EA}
+    header .data{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25)}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Boletim de Urologia</h1>
+    <div class="sub">Atualização científica semanal para a prática clínica</div>
+    <span class="data">Edição de 12 de setembro de 2026</span>
+  </div>
+</header>
+<div class="wrap">
+  <h2 class="sec"><span class="n">1 ·</span> Essencial — os destaques do período</h2>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-onco">Uro-oncologia</span>
+      <h3>STAMPEDE: intensificação com abiraterona não aumenta fraturas e reduz internação por fratura no mCSPC</h3>
+      <p class="resumo">Análise secundária de dois ensaios fase 3 da plataforma STAMPEDE mostrou, em doença metastática (M1), menor incidência acumulada de 5 anos de hospitalização relacionada a fratura com SOC+abiraterona (22% vs 30%; SDHR 0,77; IC 95% 0,59–0,99; p=0,04) e com SOC+abiraterona+enzalutamida (28% vs 38%; SDHR 0,69; IC 95% 0,54–0,88; p=0,002), comparado ao SOC. Em M0, não houve diferença significativa.</p>
+      <div class="fonte-curta">European Urology, 08/09/2026 · Gray et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>Pacientes com câncer de próstata têm risco de fraturas pelo uso de TDA e metástases ósseas. Preocupações de que inibidores do eixo do receptor androgênico aumentem fraturas podem influenciar a decisão de intensificar o tratamento inicial.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>População: 3893 homens randomizados nas comparações AAP±enzalutamida da plataforma STAMPEDE; dados de 3102 pacientes na Inglaterra vinculados ao HES.</li>
+        <li>Exposição: SOC versus SOC + abiraterona + prednisolona (AAP) e SOC + AAP + enzalutamida.</li>
+        <li>Desfecho: hospitalização relacionada a fratura (FRH) em 5 anos; morte como risco competitivo; modelos paramétricos flexíveis.</li>
+        <li>Resultados principais (M1): SOC+AAP vs SOC 22% vs 30% (5 anos); SDHR 0,77 (IC 95% 0,59–0,99; p=0,04). SOC+AAP+Enza vs SOC 28% vs 38%; SDHR 0,69 (IC 95% 0,54–0,88; p=0,002).</li>
+        <li>Resultados em M0: sem diferença significativa em FRH entre braços.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>A intensificação inicial com abiraterona (com ou sem enzalutamida) não aumenta internações por fratura e, em M1, pode reduzi-las. No consultório, a preocupação isolada com fraturas não deve impedir a intensificação; manter avaliação de risco ósseo e considerar agentes protetores conforme diretrizes.</p>
+      <h4>Limitações</h4>
+      <p>Análise secundária; captura apenas fraturas hospitalizadas (subestimação de fraturas ambulatoriais); ausência de avaliação basal de densidade mineral óssea e variabilidade no uso de terapia protetora óssea ao longo do seguimento.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Gray S, Dutey-Magni P, Jones C, Murphy LR, Murray ML, Brown JE et al. Impact of Treatment Intensification with Abiraterone on Fracture-related Hospitalisation in Newly Diagnosed Prostate Cancer: A Secondary Analysis of Two Randomised Phase 3 Trials Within the STAMPEDE Trial Platform. European Urology. 2026. DOI: <a href="https://doi.org/10.1016/j.eururo.2026.08.012">10.1016/j.eururo.2026.08.012</a></p>
+        <p>PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42711192/">https://pubmed.ncbi.nlm.nih.gov/42711192/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Litíase</span>
+      <h3>Desmodium (Guang Jing) aumenta a passagem de cálculos ureterais em 28 dias: benefício absoluto de 10,9 pontos percentuais</h3>
+      <p class="resumo">Ensaio fase 3, duplo-cego, multicêntrico (n=606) comparou cápsulas de flavonoides de Desmodium (0,6 g, 3x/dia) versus placebo por 28 dias. A taxa de passagem por TC em 28 dias foi 44,6% vs 33,8% (RR 1,32; IC 95% 1,03–1,69; p=0,03; Δ absoluto 10,9 pp). Em 14 dias não houve diferença significativa.</p>
+      <div class="fonte-curta">JAMA Network Open, 09/09/2026 · Wang et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>Não há medicação oral aprovada universalmente para facilitar a expulsão de cálculos. Extratos herbais chineses têm sido utilizados, mas faltavam ECRs robustos.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>População: adultos 18–70 anos com cálculo ureteral; 34 centros na China.</li>
+        <li>Intervenção: Guang Jing 0,6 g versus placebo, 3x/dia, por 28 dias; randomização 3:1; cointervenções permitidas a critério do investigador.</li>
+        <li>Desfecho primário: taxa de passagem de cálculo (SPR) por TC até 28 dias.</li>
+        <li>Resultados: SPR 28 dias 44,6% (204/457) vs 33,8% (50/148); RR 1,32 (IC 95% 1,03–1,69); p=0,03; diferença absoluta 10,9 pp (IC 95% 2,0–19,7).</li>
+        <li>Secundários: SPR 14 dias sem diferença significativa entre grupos.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>O estudo sugere benefício moderado na expulsão em 28 dias. O produto não está aprovado no Brasil; não altera a prática imediata, mas aponta caminho para terapias expulsivas orais. Em nosso meio, estratégias como alfa-bloqueadores continuam padrão quando indicados, com seleção individualizada.</p>
+      <h4>Limitações</h4>
+      <p>Realizado exclusivamente na China; randomização 3:1; uso concomitante de outras medicações; generalização e disponibilidade do produto são restrições importantes.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Wang D, Zhang S, Zhao W, Chen S, Zhou W, Xue Y et al. Desmodium styracifolium Total Flavone Capsules for Urolithiasis: A Phase 3 Randomized Clinical Trial. JAMA Network Open. 2026. DOI: <a href="https://doi.org/10.1001/jamanetworkopen.2026.32874">10.1001/jamanetworkopen.2026.32874</a></p>
+        <p>PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42714908/">https://pubmed.ncbi.nlm.nih.gov/42714908/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Litíase</span>
+      <h3>Stent 4,7Fr melhora tolerabilidade vs 6Fr após ureterolitotripsia, com leve aumento de deslocamento</h3>
+      <p class="resumo">ECR cego a paciente e avaliador (n=119) comparou stents 4,7Fr vs 6Fr por 3 semanas. IPSS semelhante; USSQ total melhor com 4,7Fr (73±16 vs 80±17; Δ -7; IC 95% -13 a -1,5; p=0,014). Complicações grau 3 foram mais frequentes com 4,7Fr (8,8% vs 3,2%; RR 2,6; IC 95% 0,5–13; p=0,232).</p>
+      <div class="fonte-curta">World Journal of Urology, 01/09/2026 · Kalloopparamban et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>Stents ureterais são fonte comum de sintomas urinários após URS. Stents de menor calibre podem reduzir sintomas, mas há preocupação com migração/deslocamento.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>População: 124 randomizados (analisados 119) submetidos a ureterorrenoscopia por litíase; stent por 3 semanas.</li>
+        <li>Intervenção: 4,7Fr PTFE vs 6Fr PTFE; desenho unicêntrico, cego a paciente e avaliador.</li>
+        <li>Desfechos: tolerabilidade (IPSS, USSQ), complicações (Clavien-Dindo).</li>
+        <li>Resultados: IPSS semelhante (MD -0,7; p=0,356); USSQ melhor com 4,7Fr (MD -7; p=0,014). 84% sem complicações; grau 3 mais comum em 4,7Fr (8,8% vs 3,2%), com ampla incerteza (IC 95% 0,5–13).</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Considere 4,7Fr para melhorar sintomas pós-URS, com aconselhamento sobre pequeno risco adicional de deslocamento. Seleção do calibre deve considerar atividade, anatomia e necessidade de drenagem.</p>
+      <h4>Limitações</h4>
+      <p>Unicêntrico; amostra moderada; seguimento curto; estudo não dimensionado para eventos raros de complicação grave.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Kalloopparamban PT, Nair TB, Nath S, Tharun BK, John S. Tolerability of 4.7Fr versus 6Fr ureteral stents following intracorporeal lithotripsy: a single center, patient- and assessor-blinded randomized controlled trial. World Journal of Urology. 2026. DOI: <a href="https://doi.org/10.1007/s00345-026-06737-y">10.1007/s00345-026-06737-y</a></p>
+        <p>PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42678562/">https://pubmed.ncbi.nlm.nih.gov/42678562/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-andro">Andrologia</span><span class="tag t-onco">Uro-oncologia</span>
+      <h3>Testosterona na vigilância ativa não aumenta progressão do câncer de próstata</h3>
+      <p class="resumo">Coorte institucional de 3324 homens em vigilância ativa (79 em terapia de testosterona) não mostrou aumento de progressão histológica: HR 0,99 (IC 95% 0,67–1,48; p&gt;0,9). Progressão para tratamento definitivo também não diferiu: HR 0,94 (IC 95% 0,64–1,38; p=0,8).</p>
+      <div class="fonte-curta">The Journal of Urology, 09/09/2026 · Flores et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>O uso de testosterona em homens com câncer de próstata em vigilância ativa é controverso. Evidência contemporânea sobre segurança oncológica é necessária para orientar manejo de hipogonadismo.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>População: 3324 homens com GG 1–2 em vigilância ativa; 79 receberam terapia de testosterona (TTh).</li>
+        <li>Protocolo de VA: exames e PSA a cada 6 meses; RM a cada 18 meses; biópsia a cada 36 meses.</li>
+        <li>Desfecho primário: tempo até progressão (elevação de grau em biópsia). Secundário: progressão para tratamento definitivo.</li>
+        <li>Resultados: TTh não associada à progressão (HR 0,99; IC 95% 0,67–1,48) nem à necessidade de tratamento (HR 0,94; IC 95% 0,64–1,38).</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Em homens selecionados em vigilância ativa com hipogonadismo sintomático, TTh pode ser considerada com monitorização rigorosa de PSA, RM e biópsias conforme protocolo. Discutir incertezas e individualizar.</p>
+      <h4>Limitações</h4>
+      <p>Observacional; apenas 79 em TTh; possível viés de seleção e confundimento; necessidade de confirmação em coortes maiores e ensaios.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Flores JM, Kim D, Yu R, Vertosick EA, Benfante N, Ehdaie B et al. Testosterone Therapy in Men on Active Surveillance for Prostate Cancer Is Not Associated With Increased Risk of Disease Progression. The Journal of Urology. 2026. DOI: <a href="https://doi.org/10.1097/JU.0000000000005276">10.1097/JU.0000000000005276</a></p>
+        <p>PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42636428/">https://pubmed.ncbi.nlm.nih.gov/42636428/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Litíase</span>
+      <h3>Percussão-diurese-inversão (PDI) pós-ESWL/RIRS triplica chance de stone-free em cálculos de polo inferior</h3>
+      <p class="resumo">Meta-análise de 5 ECRs (394 pacientes) mostrou maior taxa stone-free com PDI versus observação: OR 3,81 (IC 95% 2,40–6,06; p&lt;0,00001; I²=0%). Seguimento de 2 semanas a 3 meses.</p>
+      <div class="fonte-curta">World Journal of Urology, 17/08/2026 · Gimenez et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>Cálculos de polo inferior têm menor taxa de eliminação após ESWL/RIRS. PDI pode facilitar a migração de fragmentos, mas seu papel era debatido.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Revisão sistemática e meta-análise de ECRs comparando PDI vs observação em cálculos de polo inferior.</li>
+        <li>Amostra: 5 estudos, 394 pacientes; 208 receberam PDI; 71% pós-ESWL e 29% pós-RIRS.</li>
+        <li>Desfecho: taxa livre de cálculo (definições por estudo até 2–4 mm).</li>
+        <li>Resultados: SFR superior com PDI (OR 3,81; IC 95% 2,40–6,06; p&lt;0,00001); heterogeneidade nula (I²=0%).</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>PDI é medida simples, de baixo custo e pode ser prescrita como adjuvante para melhorar SFR em cálculos de polo inferior após ESWL/RIRS, com orientação adequada do paciente.</p>
+      <h4>Limitações</h4>
+      <p>Protocolos de PDI variaram; seguimento curto; medidas anatômicas do cálice/infundíbulo nem sempre reportadas.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Gimenez LGS, Marchini GS, Torricelli FCM, Danilovic A, Batagello CA, Vicentini FC et al. Percussion, diuresis, and inversion therapy can facilitate lower renal pole stone passage after ESWL and RIRS? A systematic review and meta-analysis of randomized controlled trials. World Journal of Urology. 2026. DOI: <a href="https://doi.org/10.1007/s00345-026-06656-y">10.1007/s00345-026-06656-y</a></p>
+        <p>PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42606615/">https://pubmed.ncbi.nlm.nih.gov/42606615/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="sec"><span class="n">2 ·</span> Outras novidades — vale o registro</h2>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Reconstrutiva</span>
+      <h3>Estenose bulbomembranosa pós-radioterapia: anastomótica tem menor recorrência que enxerto de mucosa bucal</h3>
+      <p class="resumo">Série de 212 pacientes com estenose pós-radioterapia: enxerto de mucosa bucal associou-se a maior risco de recorrência vs uretroplastia anastomótica (HR 3,43; IC 95% 1,03–11,47; p=0,046). Recorrência estimada em 10 anos: 6,8% (anastomótica) vs 20% (enxerto).</p>
+      <div class="fonte-curta">The Journal of Urology, 10/09/2026 · Rourke, Gelman</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A melhor técnica reconstrutiva para estenose bulbomembranosa induzida por radioterapia ainda é debatida.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Coorte retrospectiva de 2 centros (2001–2024); 163 anastomóticas vs 49 enxertos de mucosa bucal; mediana de seguimento sem recorrência: 97 meses.</li>
+        <li>Desfecho: recorrência (&lt;16Fr em cistoscopia) e eventos adversos/funcionais.</li>
+        <li>Achados: HR de recorrência maior com enxerto (3,43; IC 95% 1,03–11,47); complicações, satisfação, disfunção erétil e incontinência semelhantes entre técnicas.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Para estenoses curtas de bulbo membranoso pós-radioterapia, a uretroplastia anastomótica deve ser preferida quando factível, pela menor recorrência a longo prazo.</p>
+      <h4>Limitações</h4>
+      <p>Retrospectivo; seleção de técnica pode refletir anatomia/complexidade; possível confusão residual.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Rourke K, Gelman J. Anastomotic Urethroplasty is Associated with a Lower Risk of Stricture Recurrence Compared with Buccal Mucosa Graft Onlay After Reconstruction for Radiation-Induced Bulbomembranous Urethral Stenosis. The Journal of Urology. 2026. DOI: <a href="https://doi.org/10.1097/JU.0000000000005279">10.1097/JU.0000000000005279</a></p>
+        <p>PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42647825/">https://pubmed.ncbi.nlm.nih.gov/42647825/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-onco">Oncologia cirúrgica</span>
+      <h3>Estrategia de preservação uretral guiada por RM acelera continência após prostatectomia robótica</h3>
+      <p class="resumo">ECR multicêntrico (n=100) comparou algoritmo guiado por RM vs técnica convencional. Continência social em 1 mês: 64% vs 42% (OR 2,46; IC 95% 1,10–5,49; p=0,028). Tempo até continência menor (HR 1,56; IC 95% 1,04–2,35; p=0,032) sem aumento aparente de margens positivas.</p>
+      <div class="fonte-curta">Journal of Robotic Surgery, 26/08/2026 · Lu et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A preservação do comprimento uretral pode melhorar a continência precoce após RARP, mas deve equilibrar segurança oncológica.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>ECR prospectivo, avaliador-cego; 50 vs 50 pacientes; algoritmo baseado em comprimento uretral membranoso e morfologia apical em RM.</li>
+        <li>Primário: continência social em 1 mês; secundário: tempo até continência, margens positivas.</li>
+        <li>Resultados: maior continência precoce e tempo até continência mais curto no grupo RM; taxas de margem positiva totais/apicais numericamente semelhantes.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Instituições com RM pré-operatória e RARP podem considerar incorporar algoritmos de preservação uretral para melhorar recuperação funcional precoce, mantendo vigilância oncológica.</p>
+      <h4>Limitações</h4>
+      <p>Amostra pequena, estudo exploratório; generalização depende de experiência cirúrgica e qualidade de RM.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Lu L, Wang F, Tian Z, Guo S, Wu K, Huang Y et al. MRI-informed urethral preservation strategy for early continence recovery after robot-assisted radical prostatectomy: a multicenter randomized controlled trial. Journal of Robotic Surgery. 2026. DOI: <a href="https://doi.org/10.1007/s11701-026-03846-z">10.1007/s11701-026-03846-z</a></p>
+        <p>PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42645643/">https://pubmed.ncbi.nlm.nih.gov/42645643/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Litíase</span>
+      <h3>Tamsulosina + tolterodina supera tamsulosina isolada em cálculos ureterais distais</h3>
+      <p class="resumo">ECR (n=120) mostrou maior taxa de expulsão com combinação (83,3% vs 66,7%; p=0,03) e menor tempo para expulsão (10,5±3,2 vs 14,8±4,1 dias; p&lt;0,001). Dor menor e menor necessidade de analgésico; eventos adversos semelhantes (xerostomia discretamente mais comum na combinação).</p>
+      <div class="fonte-curta">World Journal of Urology, 29/08/2026 · Mohseni-Rad et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A tamsulosina é usada como terapia expulsiva médica (TEM). Antimuscarínicos podem reduzir espasmo/urgência e potencialmente auxiliar a expulsão.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>ECR unicêntrico; cálculos distais 4–10 mm; tamsulosina 0,4 mg vs tamsulosina 0,4 mg + tolterodina 2 mg 2x/dia por até 4 semanas.</li>
+        <li>Resultados: maior taxa e menor tempo de expulsão com a combinação; perfil de segurança semelhante entre grupos.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Para cálculos distais sintomáticos selecionados, a adição de tolterodina à tamsulosina pode ser considerada para aumentar a taxa e acelerar a expulsão, monitorando anticolinérgicos em idosos.</p>
+      <h4>Limitações</h4>
+      <p>Unicêntrico; tamanho amostral modesto; avaliação cega não descrita; necessidade de replicação em cenários multicêntricos.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Mohseni-Rad H, Imani Geshlaghchayi H, Iranpour S. Tamsulosin versus tamsulosin plus tolterodine for the treatment of distal ureteral stones. World Journal of Urology. 2026. DOI: <a href="https://doi.org/10.1007/s00345-026-06657-x">10.1007/s00345-026-06657-x</a></p>
+        <p>PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42667316/">https://pubmed.ncbi.nlm.nih.gov/42667316/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">HPB</span>
+      <h3>Revisão Cochrane atualiza evidência do HoLEP versus outras cirurgias para HPB</h3>
+      <p class="resumo">Síntese de 52 ECRs avaliou sintomas, qualidade de vida e eventos adversos do HoLEP comparado a outras técnicas. Revisão padroniza análises e qualidade (GRADE), endereçando heterogeneidade prévia.</p>
+      <div class="fonte-curta">Cochrane Database of Systematic Reviews, 09/09/2026 · Sathianathen et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>Várias opções cirúrgicas para HPB competem em eficácia/segurança. Comparações diretas eram heterogêneas e pouco padronizadas.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Revisão sistemática e meta-análise de ECRs (homens &gt;40 anos, próstata ≥20 mL, IPSS ≥8); múltiplos bancos de dados até 08/04/2026.</li>
+        <li>Avaliação por RoB1 e GRADE; desfechos críticos incluíram IPSS, QoL e eventos adversos maiores.</li>
+        <li>Atualiza comparações do HoLEP com outras técnicas; detalhes quantitativos não disponíveis no resumo PubMed.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Revisão referência para decisões compartilhadas e políticas institucionais sobre HoLEP versus alternativas, com síntese metodologicamente robusta.</p>
+      <h4>Limitações</h4>
+      <p>Resumo não traz estimativas numéricas; heterogeneidade entre estudos e evoluções tecnológicas podem afetar comparabilidade.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Sathianathen N, Hwang EC, Brown SJ, Bakker C, Borofsky MS, Ergun O et al. Holmium laser enucleation of the prostate for the treatment of lower urinary tract symptoms in men with benign prostatic hyperplasia. Cochrane Database of Systematic Reviews. 2026. DOI: <a href="https://doi.org/10.1002/14651858.CD013291.pub2">10.1002/14651858.CD013291.pub2</a></p>
+        <p>PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42713842/">https://pubmed.ncbi.nlm.nih.gov/42713842/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">LUTS</span><span class="tag t-reg">Diretriz</span>
+      <h3>Terminologia de LUTS masculino: ICS, EAU 2026 e AUA 2026 alinhadas</h3>
+      <p class="resumo">Documento compara a terminologia ICS com as diretrizes EAU/AUA de 2026 para LUTS masculino, visando padronizar linguagem clínica e pesquisa em sintomas, sinais e achados urodinâmicos.</p>
+      <div class="fonte-curta">European Urology Focus, 24/08/2026 · Carolina Ochoa et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>Heterogeneidade de termos em LUTS masculino dificulta comunicação clínica e comparações entre estudos.</p>
+      <h4>O que mudou</h4>
+      <ul>
+        <li>Harmonização dos termos-chave da ICS com recomendações EAU/AUA 2026 para avaliação e manejo de LUTS.</li>
+        <li>Ênfase em categorização por sintomas, sinais e testes, facilitando documentação consistente.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Padronizar prontuários e discussões usando a terminologia ICS harmonizada com EAU/AUA melhora comunicação e comparabilidade de desfechos em serviços e pesquisas.</p>
+      <h4>Limitações</h4>
+      <p>Documento de alinhamento terminológico; não substitui recomendações terapêuticas completas das diretrizes.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Carolina Ochoa D, Diéguez L, Bueno P, Gammie A, Cotterill N, Tarcan T et al. Aligning Terminology and Assessment in Male Lower Urinary Tract Symptoms: A Comparison of Guideline Perspectives. European Urology Focus. 2026. DOI: <a href="https://doi.org/10.1016/j.euf.2026.08.004">10.1016/j.euf.2026.08.004</a></p>
+        <p>PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42637601/">https://pubmed.ncbi.nlm.nih.gov/42637601/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-onco">Oncologia cirúrgica</span>
+      <h3>Pós-ePLND na RARP: diosmina+bromelina+meliloto+hesperidina reduz sintomas genitais, sem efeito no volume de membros</h3>
+      <p class="resumo">ECR (n=100) avaliou fórmula oral por 1 mês vs cuidado padrão após RARP+ePLND. Dor genital em 1 mês: 2% vs 18% (p=0,008); edema genital persistente em 3 meses: 0% vs 8% (p=0,041). Sem diferença em volumes de membros inferiores ou linfoceles.</p>
+      <div class="fonte-curta">Journal of Robotic Surgery, 19/08/2026 · Montanaro et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>ePLND pode causar linfedema de membros e genitais. Intervenções farmacológicas para prevenir/melhorar sintomas são de interesse.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Randomizado 1:1; cuidado padrão vs cuidado padrão + combinação oral por 1 mês; 98 completaram seguimento.</li>
+        <li>Sem redução de volume de membros em 1 e 3 meses.</li>
+        <li>Menos dor genital em 1 mês e menos edema genital persistente em 3 meses no grupo tratado; taxas de linfoceles semelhantes.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Pode ser opção adjuvante para sintomas genitais no curto prazo após ePLND; não parece prevenir linfedema de membros. Negociar custo/disponibilidade.</p>
+      <h4>Limitações</h4>
+      <p>Tamanho pequeno; seguimento curto; ensaio não registrado publicamente; desfechos centrados em sintomas e medidas de circunferência.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Montanaro F, Pettenuzzo G, Malandra S, Veccia A, Porcaro AB, Gozzo A et al. Prevention of lymphedema after extended pelvic lymphadenectomy using diosmin, bromelain, melilotus, and hesperidin: results from a prospective randomized study (PRELYNE trial). Journal of Robotic Surgery. 2026. DOI: <a href="https://doi.org/10.1007/s11701-026-03816-5">10.1007/s11701-026-03816-5</a></p>
+        <p>PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42616207/">https://pubmed.ncbi.nlm.nih.gov/42616207/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-onco">Uro-oncologia</span>
+      <h3>Terapia focal em câncer de próstata: padrões de uso e possíveis indicações inapropriadas (EUA)</h3>
+      <p class="resumo">Estudo retrospectivo do National Cancer Database descreveu tendências de adoção de terapia focal e caracterizou uso potencialmente inapropriado em doença de baixo e alto/altíssimo risco.</p>
+      <div class="fonte-curta">JAMA, 09/09/2026 · Cosenza et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>O uso de terapias focais tem crescido, mas critérios de seleção e resultados oncológicos de longo prazo seguem incertos.</p>
+      <h4>Achado principal</h4>
+      <ul>
+        <li>Análise nacional dos EUA mapeia a expansão da terapia focal e descreve perfis de uso fora de indicações ideais (baixo risco e alto/altíssimo risco).</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Reforça a necessidade de seleção criteriosa e preferência por protocolos/estudos quando considerar terapia focal, especialmente fora de risco intermediário favorável.</p>
+      <h4>Limitações</h4>
+      <p>Banco de dados retrospectivo; ausência de granularidade clínica completa e de desfechos oncológicos de longo prazo no resumo.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Cosenza A, Nguyen DD, Qian Z, Bernardino R, Olson A, Cole AP et al. Focal Therapy for Prostate Cancer. JAMA. 2026. DOI: <a href="https://doi.org/10.1001/jama.2026.12411">10.1001/jama.2026.12411</a></p>
+        <p>PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42593770/">https://pubmed.ncbi.nlm.nih.gov/42593770/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="sec"><span class="n">3 ·</span> Fontes consultadas nesta edição</h2>
+  <div class="fontes-finais">
+    <ol>
+      <li><a href="https://doi.org/10.1016/j.eururo.2026.08.012">Gray S, Dutey-Magni P, Jones C, Murphy LR, Murray ML, Brown JE et al. Impact of Treatment Intensification with Abiraterone on Fracture-related Hospitalisation in Newly Diagnosed Prostate Cancer. European Urology. 2026.</a></li>
+      <li><a href="https://doi.org/10.1001/jamanetworkopen.2026.32874">Wang D, Zhang S, Zhao W, Chen S, Zhou W, Xue Y et al. Desmodium styracifolium Total Flavone Capsules for Urolithiasis: A Phase 3 Randomized Clinical Trial. JAMA Network Open. 2026.</a></li>
+      <li><a href="https://doi.org/10.1007/s00345-026-06737-y">Kalloopparamban PT, Nair TB, Nath S, Tharun BK, John S. Tolerability of 4.7Fr versus 6Fr ureteral stents. World Journal of Urology. 2026.</a></li>
+      <li><a href="https://doi.org/10.1097/JU.0000000000005276">Flores JM, Kim D, Yu R, Vertosick EA, Benfante N, Ehdaie B et al. Testosterone Therapy in Men on Active Surveillance. The Journal of Urology. 2026.</a></li>
+      <li><a href="https://doi.org/10.1007/s00345-026-06656-y">Gimenez LGS, Marchini GS, Torricelli FCM, Danilovic A, Batagello CA, Vicentini FC et al. PDI therapy after ESWL/RIRS. World Journal of Urology. 2026.</a></li>
+      <li><a href="https://doi.org/10.1097/JU.0000000000005279">Rourke K, Gelman J. Anastomotic Urethroplasty vs Buccal Mucosa Graft Onlay. The Journal of Urology. 2026.</a></li>
+      <li><a href="https://doi.org/10.1007/s11701-026-03846-z">Lu L, Wang F, Tian Z, Guo S, Wu K, Huang Y et al. MRI-informed urethral preservation strategy. Journal of Robotic Surgery. 2026.</a></li>
+      <li><a href="https://doi.org/10.1007/s00345-026-06657-x">Mohseni-Rad H, Imani Geshlaghchayi H, Iranpour S. Tamsulosin vs tamsulosin+tolterodine. World Journal of Urology. 2026.</a></li>
+      <li><a href="https://doi.org/10.1002/14651858.CD013291.pub2">Sathianathen N, Hwang EC, Brown SJ, Bakker C, Borofsky MS, Ergun O et al. HoLEP for BPH. Cochrane Database Syst Rev. 2026.</a></li>
+      <li><a href="https://doi.org/10.1016/j.euf.2026.08.004">Carolina Ochoa D, Diéguez L, Bueno P, Gammie A, Cotterill N, Tarcan T et al. Aligning Terminology and Assessment in Male LUTS. European Urology Focus. 2026.</a></li>
+      <li><a href="https://doi.org/10.1007/s11701-026-03816-5">Montanaro F, Pettenuzzo G, Malandra S, Veccia A, Porcaro AB, Gozzo A et al. PRELYNE trial. Journal of Robotic Surgery. 2026.</a></li>
+      <li><a href="https://doi.org/10.1001/jama.2026.12411">Cosenza A, Nguyen DD, Qian Z, Bernardino R, Olson A, Cole AP et al. Focal Therapy for Prostate Cancer. JAMA. 2026.</a></li>
+    </ol>
+  </div>
+  <p class="nota">Boletim Med · conteúdo gerado com apoio de IA e revisão humana antes da publicação.</p>
+</div>
+<script>
+(function(){
+  var items=document.querySelectorAll('.item');
+  items.forEach(function(it){
+    var btn=it.querySelector('button.head');
+    btn.addEventListener('click',function(){
+      var open=it.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+    });
+  });
+})();
+</script>
+</body>
+</html>
