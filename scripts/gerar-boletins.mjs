@@ -69,7 +69,7 @@ const PROVEDORES = {
   },
   openai: {
     envKey: 'OPENAI_API_KEY',
-    modeloPadrao: 'gpt-5',
+    modeloPadrao: 'gpt-5-mini',  // ~20x mais barato que gpt-5; GPT-5/Fable ficam p/ o comparativo mensal
     async chamar(prompt, modelo, apiKey) {
       const res = await fetch('https://api.openai.com/v1/responses', {
         method: 'POST',
@@ -145,7 +145,7 @@ async function montarPrompt(esp) {
   let material = '(Especialidade sem query PubMed configurada — gere menos itens.)';
   if (esp.pubmed) {
     try {
-      const itens = await enriquecerCitacoes(await pesquisar(esp.pubmed, 30, 40));
+      const itens = await enriquecerCitacoes(await pesquisar(esp.pubmed, 30, 25));
       material = formatarParaPrompt(itens);
       console.log(`  PubMed: ${itens.length} artigo(s) encontrados para ${esp.slug}`);
     } catch (erro) {

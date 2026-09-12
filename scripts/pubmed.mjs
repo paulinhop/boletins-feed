@@ -56,7 +56,7 @@ export async function pesquisar(query, dias = 30, max = 40) {
       data: [texto(art, 'Year'), texto(art, 'Month'), texto(art, 'Day')].filter(Boolean).join(' '),
       autores,
       doi,
-      resumo: todos(art, 'AbstractText').map((t) => t.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()).join(' ').slice(0, 1800),
+      resumo: todos(art, 'AbstractText').map((t) => t.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()).join(' ').slice(0, 900),
       tipos: todos(art, 'PublicationType').map((t) => t.replace(/<[^>]+>/g, '').trim()),
     };
   });
