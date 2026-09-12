@@ -17,6 +17,10 @@ for PROV in $LISTA; do
   # não têm secret; os demais exigem a env KEY correspondente.
   if [ "$PROV" = "claude-cli" ] || [ "$PROV" = "codex-cli" ]; then
     KEY_VAR=""
+  elif [ "$PROV" = "gateway" ]; then
+    # Gateway HTTP das assinaturas (servidor 192.168.1.111): precisa do token
+    # do gateway, não de API key de IA.
+    KEY_VAR="IA_GATEWAY_TOKEN"
   else
     KEY_VAR=$(echo "$PROV" | tr 'a-z' 'A-Z' | sed -e 's/KIMI/MOONSHOT/' -e 's/CLAUDE/ANTHROPIC/')_API_KEY
   fi

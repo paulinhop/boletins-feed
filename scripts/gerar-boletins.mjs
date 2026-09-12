@@ -110,6 +110,44 @@ const PROVEDORES = {
     },
   },
 
+  // ── IA Gateway (assinaturas via OAuth no servidor 192.168.1.111) ──────────
+  // Mesma ideia dos modos CLI, mas por HTTP: POST /ask + polling em /job/<id>.
+  // Sem API key de IA em lugar nenhum — só o token do gateway (secret
+  // IA_GATEWAY_TOKEN; URL em IA_GATEWAY_URL, padrão: endpoint público HTTPS).
+  // ATENÇÃO: o gateway limita o prompt a 16000 chars (vai como argv do CLI
+  // no Windows) — prompts maiores recebem 413. Ver IA_GATEWAY.md / docs.
+  gateway: {
+    envKey: 'IA_GATEWAY_TOKEN',
+    modeloPadrao: '', // vazio = default_model do provider no gateway
+    async chamar(prompt, modelo, apiKey) {
+      const base = (process.env.IA_GATEWAY_URL ?? 'https://ia-api.polottosoftware.com').replace(/\/$/, '');
+      const gwProvider = process.env.IA_GATEWAY_PROVIDER ?? 'claude';
+      const headers = { 'X-Token': apiKey, 'content-type': 'application/json' };
+      const askRes = await fetch(`${base}/ask`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ provider: gwProvider, prompt, mode: 'ask', ...(modelo ? { model: modelo } : {}) }),
+      });
+      if (!askRes.ok) throw new Error(`gateway /ask ${askRes.status}: ${(await askRes.text()).slice(0, 300)}`);
+      const { id } = await askRes.json();
+      // Polling: o gateway enfileira (1 worker). Boletim leva minutos — 2s de
+      // intervalo, teto de 20 min igual ao timeout dos CLIs.
+      const teto = Date.now() + 20 * 60 * 1000;
+      for (;;) {
+        if (Date.now() > teto) throw new Error('gateway: job não concluiu em 20 min');
+        await new Promise((r) => setTimeout(r, 2000));
+        const jobRes = await fetch(`${base}/job/${id}`, { headers });
+        if (!jobRes.ok) throw new Error(`gateway /job ${jobRes.status}: ${(await jobRes.text()).slice(0, 300)}`);
+        const job = await jobRes.json();
+        if (job.status === 'done') {
+          if (!job.answer?.trim()) throw new Error('gateway devolveu resposta vazia');
+          return job.answer;
+        }
+        if (job.status === 'error') throw new Error(`gateway: ${String(job.error).slice(0, 300)}`);
+      }
+    },
+  },
+
   // ── Modos CLI (assinatura, sem API key) ──────────────────────────────────
   // Rodam no servidor local (192.168.1.11) autenticados via OAuth das
   // assinaturas Claude Pro/Max e ChatGPT Plus — estágio 2 de graça na fase
