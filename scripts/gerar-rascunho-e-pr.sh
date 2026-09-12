@@ -13,7 +13,8 @@ git config user.email "bot@users.noreply.github.com"
 if [ "$ESCOLHA" = "todos" ]; then LISTA="claude openai kimi"; else LISTA="$ESCOLHA"; fi
 
 for PROV in $LISTA; do
-  KEY_VAR=$(echo "$PROV" | tr 'a-z' 'A-Z' | sed 's/KIMI/MOONSHOT/')_API_KEY
+  # Mapeia o nome do provedor para o nome do secret (claude→ANTHROPIC, kimi→MOONSHOT)
+  KEY_VAR=$(echo "$PROV" | tr 'a-z' 'A-Z' | sed -e 's/KIMI/MOONSHOT/' -e 's/CLAUDE/ANTHROPIC/')_API_KEY
   if [ -z "${!KEY_VAR:-}" ]; then
     echo "::warning::Secret $KEY_VAR ausente — pulando $PROV."
     continue
