@@ -29,6 +29,9 @@ Responda **somente** com um arquivo HTML completo e autocontido (CSS inline em
   header na cor da especialidade (informada abaixo) com texto branco; artigos
   em cards brancos com `border-radius: 10px`; texto `#1f2937`; corpo máx. 720px
   centralizado
+- **Tema escuro obrigatório**: inclua um bloco `@media (prefers-color-scheme: dark)`
+  no `<style>` com fundo `#000000`, cards `#1C1C1E`, texto `#E5E5EA` e links
+  `#0A84FF` — o app segue o tema do sistema e o boletim precisa acompanhar
 - Não inclua avisos de "conteúdo fictício" (isso é só para boletins de teste)
 
 ## Dados desta edição
