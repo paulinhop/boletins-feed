@@ -57,7 +57,7 @@
     {
       "slug": "obstetricia",
       "nome": "Obstetrícia",
-      "ativa": false,
+      "ativa": true,
       "foco": "Ensaios clínicos e diretrizes em obstetrícia: pré-eclâmpsia, diabetes gestacional, parto prematuro, hemorragia pós-parto, pré-natal e medicina fetal. Priorizar NEJM, Lancet, JAMA, Obstetrics & Gynecology, American Journal of Obstetrics & Gynecology (AJOG), Ultrasound in Obstetrics & Gynecology e diretrizes ACOG/FIGO/SMFM.",
       "cor": "#B8683C",
       "pubmed": "(\"obstetrics\"[MeSH Terms] OR preeclampsia[tiab] OR \"gestational diabetes\"[tiab] OR \"postpartum hemorrhage\"[tiab] OR \"preterm birth\"[tiab]) AND (randomized controlled trial[pt] OR guideline[pt] OR meta-analysis[pt] OR \"N Engl J Med\"[ta] OR \"Lancet\"[ta] OR \"JAMA\"[ta] OR \"Am J Obstet Gynecol\"[ta] OR \"Obstet Gynecol\"[ta])",
