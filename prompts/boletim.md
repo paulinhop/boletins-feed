@@ -27,7 +27,8 @@ para médicos brasileiros. Gere o boletim da especialidade informada abaixo.
 
 ### Anatomia de cada item (acordeão)
 
-- `button.head` contém: `span.chev` ("▼ detalhes"), **tags coloridas** —
+- `button.head` contém: `span.chev` ("›" — chevron estilo iOS que gira 90° ao
+  abrir, nunca "▼" nem texto "detalhes"), **tags coloridas** —
   **sempre** com a classe do assunto (`t-onco`, `t-sex`, `t-andro`, `t-ped`,
   `t-geral`) e, quando couber, uma segunda tag de natureza com `t-reg`
   ("Prática muda", "Diretriz", "Regulatório") — `h3` com o
@@ -54,7 +55,7 @@ abaixo, trocando apenas os textos/links/itens — não mude classes nem estrutur
 <title>{{NOME}} — Boletim de {{DATA_EXTENSO}}</title>
 <style>
   :root{
-    --azul:{{COR}}; --azul2:{{COR}}; --acc:{{COR}};
+    --azul:{{COR}}; --azul2:{{COR}}; --acc:#0f766e;
     --bg:#f4f6f8; --card:#ffffff; --txt:#1c2733; --mut:#5b6b7a; --bord:#dde4ea;
     --tag-bg:#e8f1f8;
     --c-onco:#7c2d12; --c-onco-bg:#fef0e7;
@@ -87,8 +88,8 @@ abaixo, trocando apenas os textos/links/itens — não mude classes nem estrutur
   .item h3{font-size:1.02rem;color:var(--azul);line-height:1.35;margin-bottom:6px}
   .item .resumo{font-size:.92rem;color:var(--txt)}
   .item .fonte-curta{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.74rem;color:var(--mut);margin-top:8px}
-  .chev{float:right;margin-left:10px;color:var(--azul);font-family:'Segoe UI',Arial,sans-serif;font-size:.78rem;transition:transform .2s}
-  .item.open .chev{transform:rotate(180deg)}
+  .chev{float:right;margin-left:10px;color:var(--azul);font-family:'Segoe UI',Arial,sans-serif;font-size:.95rem;font-weight:600;transition:transform .25s ease;display:inline-block}
+  .item.open .chev{transform:rotate(90deg)}
   .det{display:none;border-top:1px solid var(--bord);background:var(--card);padding:16px 16px 18px}
   .item.open .det{display:block}
   .det h4{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--acc);margin:14px 0 4px}
@@ -107,7 +108,7 @@ abaixo, trocando apenas os textos/links/itens — não mude classes nem estrutur
   @media (prefers-color-scheme: dark){
     :root{
       --bg:#000000; --card:#1C1C1E; --txt:#E5E5EA; --mut:#98989F; --bord:#38383A;
-      --tag-bg:rgba(255,255,255,.10);
+      --tag-bg:rgba(255,255,255,.10); --acc:#5EEAD4;
       --c-onco:#FF9F6E; --c-onco-bg:rgba(255,159,110,.14);
       --c-sex:#D8B4FE;  --c-sex-bg:rgba(216,180,254,.14);
       --c-andro:#5EEAD4;--c-andro-bg:rgba(94,234,212,.13);
@@ -137,7 +138,7 @@ abaixo, trocando apenas os textos/links/itens — não mude classes nem estrutur
   <h2 class="sec"><span class="n">1 ·</span> Essencial — os destaques do período</h2>
   <div class="item">
     <button class="head" aria-expanded="false">
-      <span class="chev">▼ detalhes</span>
+      <span class="chev">›</span>
       <span class="tag t-geral">Subespecialidade</span><span class="tag t-reg">Prática muda</span>
       <h3>Título do estudo com o achado principal</h3>
       <p class="resumo">Resumo de 2–4 frases com os números-chave (HR, IC 95%, p, n).</p>

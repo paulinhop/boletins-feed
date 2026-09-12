@@ -27,6 +27,20 @@
       "cor": "#00857A"
     },
     {
+      "slug": "ginecologia",
+      "nome": "Ginecologia",
+      "ativa": true,
+      "foco": "Ensaios clínicos e diretrizes em ginecologia: endometriose, miomas, sangramento uterino anormal, contracepção, climatério/menopausa, oncologia ginecológica (colo, endométrio, ovário), rastreamento e HPV. Priorizar NEJM, Lancet, JAMA, Obstetrics & Gynecology (Green Journal), BJOG, Fertility and Sterility e diretrizes ACOG/FIGO/ESGO.",
+      "cor": "#B84574"
+    },
+    {
+      "slug": "obstetricia",
+      "nome": "Obstetrícia",
+      "ativa": false,
+      "foco": "Ensaios clínicos e diretrizes em obstetrícia: pré-eclâmpsia, diabetes gestacional, parto prematuro, hemorragia pós-parto, pré-natal e medicina fetal. Priorizar NEJM, Lancet, JAMA, Obstetrics & Gynecology, American Journal of Obstetrics & Gynecology (AJOG), Ultrasound in Obstetrics & Gynecology e diretrizes ACOG/FIGO/SMFM.",
+      "cor": "#B8683C"
+    },
+    {
       "slug": "cardiologia",
       "nome": "Cardiologia",
       "ativa": false,
