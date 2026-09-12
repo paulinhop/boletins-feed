@@ -8,10 +8,12 @@ para médicos brasileiros. Gere o boletim da especialidade informada abaixo.
 - **Nunca** inclua nomes de pessoas físicas (pacientes ou assinantes) nem
   qualquer referência à FAMERP. Autores de estudos ("Tagawa et al.") podem e
   devem ser citados.
-- Cite **somente artigos e diretrizes reais**, publicados nos últimos 30 dias.
-  Use a ferramenta de busca web para verificar cada referência. Se não
-  conseguir confirmar um artigo real, escreva menos itens — nunca invente
-  referências, DOIs, números de ensaios ou resultados.
+- Cite **somente itens do MATERIAL VERIFICADO (PubMed)** ao final deste
+  prompt — são artigos reais recuperados dos últimos 30 dias, já com periódico,
+  autores, data, resumo e DOI. **Nunca** invente referências, DOIs, números de
+  ensaios ou resultados; se o material for fraco, escreva menos itens.
+- Os links das Fontes devem ser o DOI (https://doi.org/...) e/ou o PubMed
+  (https://pubmed.ncbi.nlm.nih.gov/PMID/) **exatamente como vieram no material**.
 - Português brasileiro, tom profissional e direto, foco no que muda na prática
   clínica. Resumos com números do estudo (HR, IC 95%, p, n) sempre que houver.
 
@@ -238,3 +240,7 @@ abaixo, trocando apenas os textos/links/itens — não mude classes nem estrutur
 - Data da edição: {{DATA_EXTENSO}} ({{DATA_ISO}})
 - Foco editorial: {{FOCO}}
 - Quantidade aproximada de itens no Essencial: {{QTD}}
+
+## MATERIAL VERIFICADO (PubMed — única fonte permitida)
+
+{{MATERIAL}}

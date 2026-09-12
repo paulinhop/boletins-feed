@@ -4,10 +4,18 @@
  *
  * Uso:  PROVIDER=claude ANTHROPIC_API_KEY=... node scripts/gerar-boletins.mjs [pasta-saida]
  *
+ * Pipeline em 2 estágios (custo inteligente):
+ *   1. PESQUISA grátis e determinística via PubMed E-utilities (scripts/pubmed.mjs)
+ *      — artigos reais dos últimos 30 dias, com DOI/resumo, sem gastar token.
+ *   2. COMPOSIÇÃO pela IA: o modelo recebe o material verificado e só seleciona
+ *      (regras de tier/citações do template) e redige o HTML. Sem web_search —
+ *      era o loop de busca que consumia o orçamento (cada rodada reenvia o
+ *      contexto todo como input).
+ *
  * Provedores suportados (env PROVIDER, padrão "claude"):
- *   claude  — Anthropic Messages API + web_search   (secret ANTHROPIC_API_KEY, env ANTHROPIC_MODEL)
- *   openai  — OpenAI Responses API + web_search     (secret OPENAI_API_KEY,    env OPENAI_MODEL)
- *   kimi    — Moonshot chat completions + $web_search (secret MOONSHOT_API_KEY, env MOONSHOT_MODEL)
+ *   claude  — Anthropic Messages API  (secret ANTHROPIC_API_KEY, env ANTHROPIC_MODEL)
+ *   openai  — OpenAI Responses API    (secret OPENAI_API_KEY,    env OPENAI_MODEL)
+ *   kimi    — Moonshot chat completions (secret MOONSHOT_API_KEY, env MOONSHOT_MODEL)
  *
  * Para o comparativo A/B/C, o workflow roda uma vez por provedor e abre um PR
  * por branch (rascunho/DATA-provedor). Decisão de padrão: revisão médica cega
@@ -20,6 +28,8 @@
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+
+import { pesquisar, formatarParaPrompt } from './pubmed.mjs';
 
 const MESES = [
   'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
@@ -45,7 +55,6 @@ const PROVEDORES = {
           // com a busca web no loop, 8192 cortava a resposta no meio
           // ("resposta sem HTML completo"). 64k = teto de saída do Sonnet 4.5.
           max_tokens: 64000,
-          tools: [{ type: 'web_search_20250305', name: 'web_search' }],
           messages: [{ role: 'user', content: prompt }],
         }),
       });
@@ -69,7 +78,6 @@ const PROVEDORES = {
         },
         body: JSON.stringify({
           model: modelo,
-          tools: [{ type: 'web_search' }],
           input: prompt,
         }),
       });
@@ -95,7 +103,6 @@ const PROVEDORES = {
         },
         body: JSON.stringify({
           model: modelo,
-          tools: [{ type: 'builtin_function', function: { name: '$web_search' } }],
           messages: [{ role: 'user', content: prompt }],
         }),
       });
@@ -131,7 +138,18 @@ const agora = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/S
 const dataIso = agora.toISOString().slice(0, 10);
 const dataExtenso = `${agora.getDate()} de ${MESES[agora.getMonth()]} de ${agora.getFullYear()}`;
 
-function montarPrompt(esp) {
+async function montarPrompt(esp) {
+  // Estágio 1 (grátis): material verificado do PubMed — a IA só redige em cima.
+  let material = '(Especialidade sem query PubMed configurada — gere menos itens.)';
+  if (esp.pubmed) {
+    try {
+      const itens = await pesquisar(esp.pubmed, 30, 40);
+      material = formatarParaPrompt(itens);
+      console.log(`  PubMed: ${itens.length} artigo(s) encontrados para ${esp.slug}`);
+    } catch (erro) {
+      console.warn(`  PubMed falhou para ${esp.slug}: ${erro.message} — seguindo sem material`);
+    }
+  }
   return template
     .replaceAll('{{NOME}}', esp.nome)
     .replaceAll('{{SLUG}}', esp.slug)
@@ -139,7 +157,8 @@ function montarPrompt(esp) {
     .replaceAll('{{DATA_EXTENSO}}', dataExtenso)
     .replaceAll('{{DATA_ISO}}', dataIso)
     .replaceAll('{{FOCO}}', esp.foco)
-    .replaceAll('{{QTD}}', String(config.edicaoPadrao.artigosPorBoletim));
+    .replaceAll('{{QTD}}', String(config.edicaoPadrao.artigosPorBoletim))
+    .replaceAll('{{MATERIAL}}', material);
 }
 
 /** Extrai só o documento, mesmo se o modelo enrolar em cercas de código. */
@@ -160,7 +179,7 @@ for (const esp of ativas) {
   // (max_tokens) ou pausada — uma segunda chamada costuma completar.
   for (let tentativa = 1; tentativa <= 2 && !feito; tentativa++) {
     try {
-      const texto = await cfg.chamar(montarPrompt(esp), modelo, apiKey);
+      const texto = await cfg.chamar(await montarPrompt(esp), modelo, apiKey);
       writeFileSync(join(saida, arquivo), extrairHtml(texto) + '\n');
       console.log(`✔ ${arquivo}${tentativa > 1 ? ` (tentativa ${tentativa})` : ''}`);
       gerados++;
