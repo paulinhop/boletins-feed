@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Obstetrícia — Boletim de 13 de setembro de 2026</title>
+<style>
+  :root{
+    --azul:#B8683C; --azul2:#B8683C; --acc:#0f766e;
+    --bg:#f4f6f8; --card:#ffffff; --txt:#1c2733; --mut:#5b6b7a; --bord:#dde4ea;
+    --tag-bg:#e8f1f8;
+    --c-onco:#7c2d12; --c-onco-bg:#fef0e7;
+    --c-sex:#7e22ce;  --c-sex-bg:#f5ecfd;
+    --c-andro:#0f766e;--c-andro-bg:#e6f4f2;
+    --c-ped:#0369a1;  --c-ped-bg:#e8f3fb;
+    --c-geral:#155a8a;--c-geral-bg:#e8f1f8;
+    --c-reg:#9a3412;  --c-reg-bg:#fdf0e0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(--txt);line-height:1.55;padding-bottom:48px}
+  .wrap{max-width:820px;margin:0 auto;padding:0 14px}
+  header{background:linear-gradient(135deg,var(--azul) 0%,var(--azul2) 100%);color:#fff;padding:30px 14px 24px;margin-bottom:22px}
+  header h1{font-size:1.55rem;letter-spacing:.3px;font-weight:700}
+  header .sub{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.85rem;opacity:.85;margin-top:6px}
+  header .data{display:inline-block;font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.8rem;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:3px 12px;margin-top:12px}
+  h2.sec{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.14em;color:var(--mut);border-bottom:2px solid var(--azul);padding-bottom:6px;margin:28px 0 14px}
+  h2.sec .n{color:var(--azul);font-weight:700}
+  .item{background:var(--card);border:1px solid var(--bord);border-radius:10px;margin-bottom:12px;overflow:hidden;box-shadow:0 1px 2px rgba(16,42,67,.05)}
+  .item>button.head{display:block;width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:14px 16px;font-family:inherit;color:inherit}
+  .tag{display:inline-block;font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;border-radius:4px;padding:2px 7px;margin-bottom:7px;margin-right:6px;color:var(--azul);background:var(--tag-bg)}
+  .t-onco{color:var(--c-onco);background:var(--c-onco-bg)}
+  .t-sex{color:var(--c-sex);background:var(--c-sex-bg)}
+  .t-andro{color:var(--c-andro);background:var(--c-andro-bg)}
+  .t-ped{color:var(--c-ped);background:var(--c-ped-bg)}
+  .t-geral{color:var(--c-geral);background:var(--c-geral-bg)}
+  .t-reg{color:var(--c-reg);background:var(--c-reg-bg)}
+  .item h3{font-size:1.02rem;color:var(--azul);line-height:1.35;margin-bottom:6px}
+  .item .resumo{font-size:.92rem;color:var(--txt)}
+  .item .fonte-curta{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.74rem;color:var(--mut);margin-top:8px}
+  .chev{float:right;margin-left:10px;color:var(--azul);font-family:'Segoe UI',Arial,sans-serif;font-size:.95rem;font-weight:600;transition:transform .25s ease;display:inline-block}
+  .item.open .chev{transform:rotate(90deg)}
+  .det{display:none;border-top:1px solid var(--bord);background:var(--card);padding:16px 16px 18px}
+  .item.open .det{display:block}
+  .det h4{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--acc);margin:14px 0 4px}
+  .det h4:first-child{margin-top:0}
+  .det p{font-size:.9rem;margin-bottom:8px}
+  .det ul{margin:0 0 8px 20px}
+  .det li{font-size:.9rem;margin-bottom:4px}
+  .refs{margin-top:14px;padding-top:10px;border-top:1px dashed var(--bord)}
+  .refs h4{color:var(--azul)}
+  .refs p{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.8rem;color:var(--mut);margin-bottom:6px}
+  a{color:var(--azul);word-break:break-word}
+  .fontes-finais{background:var(--card);border:1px solid var(--bord);border-radius:10px;padding:18px 18px 12px;margin-top:8px}
+  .fontes-finais ol{margin-left:20px}
+  .fontes-finais li{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.8rem;color:var(--mut);margin-bottom:8px}
+  .nota{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.75rem;color:var(--mut);margin-top:20px;text-align:center}
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#000000; --card:#1C1C1E; --txt:#E5E5EA; --mut:#98989F; --bord:#38383A;
+      --tag-bg:rgba(255,255,255,.10); --acc:#5EEAD4;
+      --c-onco:#FF9F6E; --c-onco-bg:rgba(255,159,110,.14);
+      --c-sex:#D8B4FE;  --c-sex-bg:rgba(216,180,254,.14);
+      --c-andro:#5EEAD4;--c-andro-bg:rgba(94,234,212,.13);
+      --c-ped:#7DD3FC;  --c-ped-bg:rgba(125,211,252,.14);
+      --c-geral:#64A8FF;--c-geral-bg:rgba(100,168,255,.15);
+      --c-reg:#FDBA74;  --c-reg-bg:rgba(253,186,116,.14);
+    }
+    body{background:var(--bg);color:var(--txt)}
+    .item,.fontes-finais{box-shadow:none}
+    .item h3{color:#FFFFFF}
+    h2.sec .n,.chev,a{color:#0A84FF}
+    h2.sec{border-bottom-color:#0A84FF}
+    .tag:not([class*="t-"]){color:#E5E5EA}
+    header .data{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25)}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Boletim de Obstetrícia</h1>
+    <div class="sub">Atualização científica semanal para a prática clínica</div>
+    <span class="data">Edição de 13 de setembro de 2026</span>
+  </div>
+</header>
+<div class="wrap">
+  <h2 class="sec"><span class="n">1 ·</span> Essencial — os destaques do período</h2>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Pré-eclâmpsia</span>
+      <h3>Dispensação universal de aspirina associou-se a menos pré-eclâmpsia com sinais de gravidade em população de alto risco</h3>
+      <p class="resumo">Coorte observacional antes-depois em serviço obstétrico de alto volume nos Estados Unidos comparou duas épocas com 18.457 pacientes cada. Após a dispensação direta de 162 mg/dia de aspirina na primeira consulta até 16 semanas, a pré-eclâmpsia com sinais de gravidade caiu de 6,9% para 5,1% (aOR 0,65; IC 95% 0,60–0,72), sem aumento de descolamento de placenta ou hemorragia pós-parto.</p>
+      <div class="fonte-curta">American Journal of Obstetrics &amp; Gynecology, 27/08/2026 · Duryea et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>Os distúrbios hipertensivos da gestação são causa importante de morbimortalidade materna. A aspirina em baixa dose tem benefício demonstrado em populações de alto risco, mas a triagem baseada em características clínicas é trabalhosa. Como o risco da exposição à aspirina é baixo, os autores testaram uma estratégia de prescrição universal com dispensação direta na consulta pré-natal.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Coorte observacional de todos os partos entre abril de 2020 e julho de 2025 em um serviço com clínicas comunitárias capazes de dispensar medicação durante a consulta.</li>
+        <li>A partir de 3 de agosto de 2022, pacientes que iniciaram pré-natal até 16 semanas passaram a receber 162 mg/dia de aspirina; antes disso, a aspirina não era recomendada independentemente de fatores de risco. Partos no período de transição (03/08/2022 a 03/02/2023) foram excluídos.</li>
+        <li>Desfecho primário: pré-eclâmpsia com sinais de gravidade (diagnóstico clínico caracterizado por uso de sulfato de magnésio por hipertensão grave, alterações laboratoriais ou eclâmpsia).</li>
+        <li>Duas coortes de 18.457 pacientes, antes e depois da implementação: incidência de 6,9% vs. 5,1% (p&lt;0,001), aOR 0,65 (0,60–0,72). O tempo até o diagnóstico foi maior na época com aspirina (p&lt;0,001).</li>
+        <li>Pacientes com hipertensão crônica também tiveram menor chance do desfecho na época com aspirina: aOR 0,72 (0,59–0,86).</li>
+        <li>Descolamento de placenta, hemorragia pós-parto e complicações neonatais não aumentaram.</li>
+        <li>Dados de farmácia confirmaram que ao menos 14.754 pacientes (80,4%) com consulta até 16 semanas receberam aspirina na época posterior, com mediana de 180 comprimidos dispensados.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Na prática, este dado sugere que uma abordagem universal de prescrição de aspirina, sobretudo com dispensação direta, pode reduzir a pré-eclâmpsia grave em nível populacional em cenários de alta prevalência de distúrbios hipertensivos, sem sinal de aumento de sangramento. Por ser um desenho antes-depois, o estudo não permite atribuir causalidade nem estimar o efeito em populações de baixo risco, e a dose de 162 mg não foi comparada a outras doses.</p>
+      <h4>Limitações</h4>
+      <p>Desenho observacional com comparação entre épocas, sujeito a mudanças concomitantes de prática ao longo de 2020 a 2025. Serviço único com população de alto risco, o que limita a generalização. A adesão foi inferida por dados de dispensação, não por uso confirmado. Outras limitações não detalhadas no material disponível.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Duryea E, Ambia A, Pruszynski J, Miller J, Hubbard S, Berge C et al. Universal Aspirin Dispensation for Prevention of Preeclampsia in a High-Risk Population. American Journal of Obstetrics and Gynecology. 2026. DOI: <a href="https://doi.org/10.1016/j.ajog.2026.08.036">https://doi.org/10.1016/j.ajog.2026.08.036</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42660215/">https://pubmed.ncbi.nlm.nih.gov/42660215/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-ped">Parto prematuro</span>
+      <h3>Sulfato de magnésio para neuroproteção fetal reduz paralisia cerebral até 2 anos: atualização Cochrane</h3>
+      <p class="resumo">A revisão Cochrane atualizada reuniu seis ensaios clínicos randomizados (5.917 mulheres, 6.759 fetos) em gestações de risco de parto antes de 34 semanas. Até dois anos de idade corrigida, o sulfato de magnésio reduziu paralisia cerebral (RR 0,71; IC 95% 0,57–0,89; NNT 60) e morte ou paralisia cerebral (RR 0,87; IC 95% 0,77–0,98), ambos com evidência de alta certeza. Na idade escolar, as diferenças não se mantiveram, com baixa certeza.</p>
+      <div class="fonte-curta">Cochrane Database of Systematic Reviews, 03/09/2026 · Shepherd et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>O benefício do sulfato de magnésio para neuroproteção fetal foi demonstrado em revisão Cochrane de 2009 e seu uso para prevenção de paralisia cerebral em prematuros é hoje prática recomendada internacionalmente. Desde então, novos ensaios e seguimentos de longo prazo dos ensaios anteriores foram publicados, motivando esta atualização.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Busca até 17 de março de 2023; incluídos ensaios randomizados e cluster-randomizados de sulfato de magnésio pré-natal para neuroproteção vs. placebo ou nenhum tratamento, por qualquer via. Excluídos estudos com objetivo primário de tocólise ou prevenção/tratamento de eclâmpsia.</li>
+        <li>Seis ECR (5.917 mulheres; 6.759 fetos vivos à randomização), todos em países de alta renda, comparando sulfato de magnésio com placebo abaixo de 34 semanas, com regimes e critérios de inclusão variados. Risco de viés global baixo; certeza da evidência (GRADE) variou de alta a muito baixa.</li>
+        <li><strong>Desfechos primários até 2 anos de idade corrigida:</strong> paralisia cerebral RR 0,71 (0,57–0,89; 6 ECR, 6.107 crianças; NNT 60, IC 95% 41–158); morte ou paralisia cerebral RR 0,87 (0,77–0,98; 6 ECR, 6.481 crianças; NNT 56, IC 95% 32–363). Ambos alta certeza.</li>
+        <li>Provavelmente pouca ou nenhuma diferença em morte (RR 0,96; 0,82–1,13), incapacidade neurodesenvolvimental maior (RR 1,09; 0,83–1,44; 1 ECR) ou morte/incapacidade maior (RR 0,95; 0,85–1,07). Certeza moderada.</li>
+        <li><strong>Idade escolar precoce:</strong> pode haver pouca ou nenhuma diferença em morte (RR 0,82; 0,66–1,02), paralisia cerebral (RR 0,99; 0,69–1,41), morte ou paralisia cerebral (RR 0,90; 0,67–1,20) e morte ou incapacidade maior (RR 0,81; 0,59–1,12). Baixa certeza; incapacidade maior isolada com certeza muito baixa.</li>
+        <li><strong>Secundário:</strong> hemorragia intraventricular grave (graus 3 ou 4) provavelmente sem diferença (RR 0,81; 0,64–1,04; certeza moderada).</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>A atualização consolida, com alta certeza, o benefício do sulfato de magnésio na redução de paralisia cerebral até os dois anos em gestações com risco de parto antes de 34 semanas. O dado novo é que, na idade escolar, os estudos de seguimento disponíveis não mostraram diferença, mas com poucos participantes e baixa certeza, o que não permite concluir perda do efeito. O material não permite comparar regimes ou vias de administração.</p>
+      <h4>Limitações</h4>
+      <p>Declaradas no material: todos os ensaios em países de alta renda; regimes e critérios de inclusão heterogêneos; certeza rebaixada por limitações dos estudos, imprecisão e inconsistência em vários desfechos; busca encerrada em março de 2023. O resumo disponível estava truncado, de modo que desfechos secundários maternos e demais análises não foram verificados nesta edição.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Shepherd ES, Goldsmith S, Doyle LW, Middleton P, Marret S, Rouse DJ et al. Magnesium sulphate for women at risk of preterm birth for neuroprotection of the fetus. Cochrane Database of Systematic Reviews. 2026. DOI: <a href="https://doi.org/10.1002/14651858.CD004661.pub5">https://doi.org/10.1002/14651858.CD004661.pub5</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42689525/">https://pubmed.ncbi.nlm.nih.gov/42689525/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-andro">Diabetes gestacional</span>
+      <h3>Metformina não reduziu diabetes gestacional em gestações de alto risco metabólico, mas associou-se a menos parto prematuro</h3>
+      <p class="resumo">Metanálise de dados individuais de ensaios duplo-cegos contra placebo em gestantes sem diabetes (2.297 gestações harmonizadas) não encontrou redução de diabetes gestacional pelos critérios OMS 1999 ou NICE 2015 (aOR 1,00; IC 95% 0,71–1,41). A metformina associou-se a gestação 0,30 semana mais longa e menor chance de parto prematuro (aOR 0,64; IC 95% 0,47–0,89), com mais efeitos gastrointestinais.</p>
+      <div class="fonte-curta">NEJM Evidence, 25/08/2026 · Mousa et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A metformina é usada em gestações de alto risco metabólico com a expectativa de prevenir diabetes gestacional (DMG) e desfechos adversos, mas os ensaios individuais tiveram resultados heterogêneos. Esta análise de dados de participantes individuais (IPD) buscou responder se a metformina previne DMG e desfechos adversos em gestantes sem diabetes.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Busca até 9 de maio de 2025 por ECR duplo-cegos, controlados por placebo, com metformina em gestações sem diabetes. Dez ensaios elegíveis (N=2.695); sete forneceram dados individuais (n=2.485; 92,2% dos dados disponíveis). Após harmonização, 2.297 gestações (1.159 metformina; 1.138 placebo).</li>
+        <li>Modelos mistos de um estágio ajustados para idade materna, IMC, idade gestacional no início e glicemia basal.</li>
+        <li><strong>Desfechos primários maternos (DMG e índices glicêmicos):</strong> sem redução de DMG pelos critérios OMS 1999 (OR 1,04; 0,80–1,36; aOR 1,00; 0,71–1,41) nem NICE 2015 (OR 0,98; 0,76–1,27; aOR 1,00; 0,71–1,41). Exceção: na análise ajustada pelos limiares IADPSG, aOR 0,71 (0,52–0,98).</li>
+        <li>Glicemia de jejum marginalmente menor com metformina (DM −0,06 mmol/L; −0,10 a −0,01), sem diferença aparente na glicemia de 2 horas.</li>
+        <li><strong>Desfechos neonatais primários (idade gestacional ao parto e antropometria):</strong> gestação mais longa (DM 0,30 semana; 0,06–0,54); menor chance de parto prematuro (aOR 0,64; 0,47–0,89); maior perímetro cefálico neonatal (DM 2,43 percentil; 0,13–4,72).</li>
+        <li>Efeitos gastrointestinais mais relatados com metformina.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Na prática, este dado sugere que a metformina não deve ser esperada como estratégia de prevenção de DMG em gestações de alto risco metabólico, já que não houve redução pelos critérios principais analisados. O achado de gestação mais longa e menos parto prematuro é consistente entre as análises, mas o material não informa se o parto prematuro foi desfecho pré-especificado como tal, e não há dados aqui sobre desfechos de longo prazo da prole. Não se trata de recomendação de uso para prevenção de prematuridade.</p>
+      <h4>Limitações</h4>
+      <p>Três dos dez ensaios elegíveis não forneceram dados individuais. O resultado com critérios IADPSG divergiu dos demais apenas na análise ajustada. Populações e regimes dos ensaios originais não estão detalhados no material. Outras limitações não detalhadas no material disponível.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Mousa A, Løvvik TS, Carlsen SM, Belsti Y, Enticott J, Tay CT et al. Metformin in High Metabolic Risk Pregnancies - A Patient-Level Meta-Analysis. NEJM Evidence. 2026. DOI: <a href="https://doi.org/10.1056/EVIDoa2500337">https://doi.org/10.1056/EVIDoa2500337</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42640169/">https://pubmed.ncbi.nlm.nih.gov/42640169/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Pré-eclâmpsia</span>
+      <h3>Recorrência de pré-eclâmpsia grave, HELLP e eclâmpsia na gestação seguinte: dados de 560 mil pacientes nos EUA</h3>
+      <p class="resumo">Coorte retrospectiva do banco hospitalar Premier identificou 560.295 pacientes com duas ou mais gestações entre 2015 e 2020. Após distúrbio hipertensivo grave na gestação índice, 14,9% tiveram forma grave recorrente (RR 16,0 vs. sem hipertensão). Quando o quadro grave ocorreu antes de 28 semanas, o risco subiu para 22,9%. Recorrência de HELLP (4,6%) e de eclâmpsia (1,1%) foi infrequente.</p>
+      <div class="fonte-curta">Obstetrics &amp; Gynecology, 05/09/2026 · Trawick et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>Estudos anteriores relatam taxas inconsistentes de recorrência de distúrbios hipertensivos graves da gestação (DHG), o que dificulta o aconselhamento pré-concepcional. Este estudo estimou o risco de recorrência em uma grande coorte norte-americana, estratificado pela gravidade e pela idade gestacional do evento índice.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Coorte retrospectiva com o banco de internações Premier; pacientes com duas ou mais gestações observadas entre outubro de 2015 e dezembro de 2020. Características clínicas por códigos CID-10.</li>
+        <li>DHG grave definido como pré-eclâmpsia com sinais de gravidade, pré-eclâmpsia sobreposta, síndrome HELLP (hemólise, enzimas hepáticas elevadas e plaquetopenia) ou eclâmpsia. Risco relativo (RR) estimado por regressão multivariável.</li>
+        <li>Entre 560.295 pacientes, 57.584 (10,3%) tiveram DHG e 11.433 (2,0%) tiveram DHG grave na gestação índice. Destas, 1.703 (14,9%) tiveram recorrência.</li>
+        <li>DHG grave em qualquer idade gestacional: risco de DHG grave subsequente 14,9% (RR 16,0; IC 95% 15,2–17,0) vs. sem DHG na gestação índice. DHG grave antes de 28 semanas: 22,9% (RR 23,1; 19,1–27,9), e risco de DHG antes de 28 semanas na gestação seguinte de 4,7% (RR 184,9; 107,2–318,9).</li>
+        <li>História de HELLP: risco de DHG grave 11,5% (RR 9,7; 8,3–11,3); história de eclâmpsia: 11,0% (RR 9,2; 7,2–11,8). Recorrência de HELLP 4,6% (RR 61,0; 46,2–80,6) e de eclâmpsia 1,1% (RR 40,1; 16,3–98,3), fenótipos infrequentes.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Os números oferecem base quantitativa para o aconselhamento sobre risco de recorrência, com destaque para o grupo com DHG grave de início precoce, cujo risco absoluto de nova forma grave se aproxima de um em cada quatro. O estudo não avaliou intervenções preventivas, portanto não permite concluir sobre o efeito de aspirina ou outras medidas sobre a recorrência. A aplicabilidade a populações fora dos EUA não foi testada.</p>
+      <h4>Limitações</h4>
+      <p>Desenho retrospectivo com base em códigos administrativos CID-10, sujeito a erro de classificação. Apenas gestações observadas dentro do mesmo banco de dados foram pareadas. Outras limitações não detalhadas no material disponível.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Trawick E, Kucirka LM, Fuller M, Jones Pullins M, Federspiel JJ, Boggess K et al. Risk of Recurrent Severe Preeclampsia, HELLP (Hemolysis, Elevated Liver Enzymes, and Low Platelet Count) Syndrome, and Eclampsia in a Subsequent Pregnancy. Obstetrics and Gynecology. 2026. DOI: <a href="https://doi.org/10.1097/AOG.0000000000006398">https://doi.org/10.1097/AOG.0000000000006398</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42623674/">https://pubmed.ncbi.nlm.nih.gov/42623674/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-sex">Vacinação na gestação</span>
+      <h3>Vacina RSVpreF na gestação associou-se a pequeno aumento de hipertensão gestacional em metanálise</h3>
+      <p class="resumo">Nove estudos (3 ensaios randomizados e 6 coortes retrospectivas; n = 148.267) foram reunidos para avaliar distúrbios hipertensivos da gestação após a vacina RSVpreF. O risco global aumentou discretamente (RR 1,08; IC 95% 1,02–1,13), à custa de hipertensão gestacional e movido pelos estudos observacionais; nos ensaios randomizados, o RR foi 1,12 (0,87–1,43), não significativo. Não houve associação com pré-eclâmpsia ou eclâmpsia.</p>
+      <div class="fonte-curta">Vaccine, 11/09/2026 · Alami et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A vacina bivalente de proteína F pré-fusão do vírus sincicial respiratório (RSVpreF) foi aprovada nos Estados Unidos em agosto de 2023 para uso na gestação, visando prevenir doença do trato respiratório inferior por VSR no lactente. O ensaio pivotal de fase 3 identificou um desequilíbrio numérico em distúrbios hipertensivos da gestação (DHG) que não atingiu significância, e os estudos observacionais pós-comercialização trouxeram resultados inconsistentes.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Revisão sistemática com busca até 26 de janeiro de 2026 em MEDLINE, Embase, CENTRAL, Scopus, ClinicalTrials.gov e WHO ICTRP; registro PROSPERO CRD420251026835.</li>
+        <li>Incluídos ECR e estudos observacionais comparando DHG em vacinadas vs. não vacinadas ou placebo. RR não ajustados agrupados por modelo de efeitos aleatórios; estimativas ajustadas dos observacionais agrupadas separadamente.</li>
+        <li>Nove estudos (3 ECR, 6 coortes retrospectivas; n = 148.267).</li>
+        <li>DHG global: RR 1,08 (IC 95% 1,02–1,13; p = 0,004; I² = 44%), movido pelo grupo observacional (1,08; 1,02–1,14; I² = 61%). ECR: RR 1,12 (0,87–1,43; I² = 0%), direção consistente, sem significância.</li>
+        <li>A associação foi atribuível à hipertensão gestacional; sem associação significativa para pré-eclâmpsia/eclâmpsia.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>O achado reforça a necessidade de discutir com a gestante um possível pequeno aumento de hipertensão gestacional, sem sinal para pré-eclâmpsia, no contexto de decisão compartilhada. Como o resultado agrupado depende de coortes retrospectivas, confundimento residual permanece possível e a magnitude do efeito não está estabelecida. Os autores afirmam que os benefícios da prevenção do VSR no lactente permanecem substanciais e defendem vigilância pós-comercialização continuada. Situação regulatória no Brasil não verificada nesta edição.</p>
+      <h4>Limitações</h4>
+      <p>Declaradas no material: efeito movido por estudos observacionais retrospectivos, com possibilidade de confundimento residual; heterogeneidade moderada no agrupamento observacional; ECR sem significância estatística. Outras limitações não detalhadas no material disponível.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Alami A, Lewis M, El-Chaâr D, Walker M, Wen SW, Krewski D et al. Maternal vaccination with RSVpreF and risk of hypertensive disorders of pregnancy: a systematic review and meta-analysis. Vaccine. 2026. DOI: <a href="https://doi.org/10.1016/j.vaccine.2026.129070">https://doi.org/10.1016/j.vaccine.2026.129070</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42667900/">https://pubmed.ncbi.nlm.nih.gov/42667900/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="sec"><span class="n">2 ·</span> Outras novidades — vale o registro</h2>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-onco">Ruptura de membranas</span>
+      <h3>Quatro categorias intra-amnióticas na ruptura prematura de membranas pré-termo: infecção intra-amniótica associou-se a mais sepse neonatal precoce</h3>
+      <p class="resumo">Coorte de instituição única com 961 gestações únicas entre 23 0/7 e 36 6/7 semanas submetidas a amniocentese na admissão. Infecção intra-amniótica ocorreu em 17% e associou-se a maior chance de sepse neonatal precoce (aOR 3,4; IC 95% 1,7–7,0) e de desfecho perinatal adverso composto (aOR 2,0; IC 95% 1,1–3,4). Ureaplasma spp. respondeu por quase dois terços das detecções microbianas.</p>
+      <div class="fonte-curta">American Journal of Obstetrics &amp; Gynecology, 31/08/2026 · Kacerovsky et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A ruptura prematura de membranas pré-termo (RPM pré-termo) pode ser subdividida em quatro categorias pela presença ou ausência de inflamação intra-amniótica e de invasão microbiana da cavidade amniótica, mas a distribuição por idade gestacional, os perfis microbianos e os desfechos dessas categorias não haviam sido caracterizados de forma abrangente.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Inflamação definida por interleucina-6 no líquido amniótico (teste rápido ou imunoensaio automatizado) acima do limiar da plataforma; invasão microbiana por cultura e métodos moleculares.</li>
+        <li>Entre 961 gestações: infecção intra-amniótica 158 (17%); inflamação estéril 70 (7%); invasão microbiana sem inflamação 106 (11%); líquido negativo 627 (65%). Distribuição variou com a idade gestacional.</li>
+        <li>Sepse neonatal precoce não ajustada: 12%, 4%, 5% e 2%, respectivamente (P &lt; 0,0001). Infecção intra-amniótica vs. demais categorias combinadas: sepse precoce aOR 3,4 (1,7–7,0; P &lt; 0,001); desfecho perinatal adverso grave composto aOR 2,0 (1,1–3,4; P = 0,02).</li>
+        <li>64 espécies identificadas; bactérias diferentes de Ureaplasma spp. associaram-se a piores desfechos do que Ureaplasma isolado ou combinado.</li>
+        <li>Amniocentese transabdominal obteve líquido em 93% das gestações elegíveis e 98% dos procedimentos tentados.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>O estudo mostra que a RPM pré-termo é uma síndrome heterogênea e que a classificação intra-amniótica é factível quando há amniocentese disponível. Não testou intervenções guiadas por essa classificação, portanto não permite concluir que a estratificação altere desfechos.</p>
+      <h4>Limitações</h4>
+      <p>Instituição única; frequências de sepse apresentadas sem ajuste por categoria individual. Outras limitações não detalhadas no material disponível.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Kacerovsky M, Andrys C, Bolehovska R, Kukla R, Maly J, Hornychova H et al. Intra-amniotic Categories of Preterm Prelabor Rupture of Membranes: Gestational Age-Specific Distribution, Amniotic fluid Microbial Profiles, and Neonatal Outcomes. American Journal of Obstetrics and Gynecology. 2026. DOI: <a href="https://doi.org/10.1016/j.ajog.2026.08.038">https://doi.org/10.1016/j.ajog.2026.08.038</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42674304/">https://pubmed.ncbi.nlm.nih.gov/42674304/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-andro">Diabetes gestacional</span>
+      <h3>Monitorização contínua de glicose no diabetes gestacional associou-se a melhor controle glicêmico em metanálise de 21 estudos</h3>
+      <p class="resumo">Revisão sistemática com ensaios randomizados e estudos observacionais (21 estudos; 5.650 gestantes) comparou monitorização contínua de glicose (CGM) com automonitorização capilar. A CGM associou-se a glicemia média menor (DM −0,24 mmol/L; IC 95% −0,41 a −0,06), menos tempo acima de 7,8 mmol/L e, como desfecho secundário, redução de 8% a 35% em desfechos maternos e neonatais adversos, com 21% mais uso de medicação.</p>
+      <div class="fonte-curta">Diabetes Research and Clinical Practice, 29/08/2026 · Yang et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A CGM pode oferecer vantagens sobre a automonitorização de glicemia capilar (SMBG) em gestações com diabetes gestacional (DMG), mas a evidência era inconsistente.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Busca de janeiro de 1980 a abril de 2026; registro PROSPERO CRD420251084931. Risco de viés por escala de Jadad e Newcastle-Ottawa, baixo a moderado.</li>
+        <li>Desfechos primários (controle glicêmico): glicemia média DM −0,24 mmol/L (−0,41 a −0,06); coeficiente de variação −0,78% (−1,50 a −0,06); amplitude média das excursões glicêmicas −0,22 mmol/L (−0,43 a −0,02); tempo acima de 7,8 mmol/L −2,19% (−3,78 a −0,60).</li>
+        <li>Desfechos secundários: aumento de 21% no uso de medicação; redução de 8% a 35% em desfechos adversos, incluindo cesariana, macrossomia, hipoglicemia neonatal e hiperbilirrubinemia.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Os dados sugerem que a CGM melhora indicadores de controle glicêmico no DMG. A redução de desfechos clínicos é secundária, mistura estudos randomizados e observacionais e não deve ser lida como efeito estabelecido. Custo e disponibilidade no Brasil não foram abordados pelo material.</p>
+      <h4>Limitações</h4>
+      <p>Inclusão de estudos observacionais junto a ECR; os intervalos dos desfechos secundários não constam no material. Outras limitações não detalhadas no material disponível.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Yang S, Boon ET, Yang Q, Chen QY, Shen J, Li J et al. Comparing efficacy in glycaemic control and pregnancy outcomes between continuous glucose monitoring and self-monitoring of blood glucose in pregnancies complicated by gestational diabetes mellitus: a systematic review and meta-analysis. Diabetes Research and Clinical Practice. 2026. DOI: <a href="https://doi.org/10.1016/j.diabres.2026.113488">https://doi.org/10.1016/j.diabres.2026.113488</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42595054/">https://pubmed.ncbi.nlm.nih.gov/42595054/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-sex">Vacinação na gestação</span>
+      <h3>Vacinação materna contra VSR e parto prematuro: sem associação global, mas sinal nos ensaios randomizados</h3>
+      <p class="resumo">Metanálise de sete estudos (três ensaios randomizados com 12.833 nascimentos e quatro observacionais com 4.245) avaliou parto prematuro e admissão em UTI neonatal após vacinas RSV-PreF na gestação. Nos ensaios, houve maior risco de parto prematuro (RR 1,26; IC 95% 1,08–1,46); nos observacionais, não (RR 0,78; 0,46–1,32). A análise agrupada não mostrou associação (RR 0,96; 0,68–1,38), com certeza baixa a muito baixa.</p>
+      <div class="fonte-curta">Immunity, Inflammation and Disease, 09/09/2026 · Leskinen et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>O vírus sincicial respiratório (VSR) é causa importante de morbimortalidade infantil. A vacinação materna levantou preocupação de segurança por possível associação com parto prematuro.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Busca em 1º de agosto de 2025; incluídos ECR e observacionais com vacinas RSV-PreF aprovadas, relatando parto prematuro (&lt;37 semanas) ou admissão em UTI neonatal. Risco de viés por RoB 2.0 e ROBINS-I; certeza pelo GRADE.</li>
+        <li>ECR: RR 1,26 (1,08–1,46) para parto prematuro. Observacionais: RR 0,78 (0,46–1,32). Agrupado: RR 0,96 (0,68–1,38). UTI neonatal: RR 0,74 (0,34–1,61).</li>
+        <li>Certeza da evidência classificada pelos autores como baixa a muito baixa.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>O dado agrupado não sustenta uma associação entre vacinação materna e parto prematuro, mas o subgrupo de ensaios randomizados mantém um sinal que os autores consideram merecedor de vigilância continuada. A discordância entre desenhos impede conclusão firme em qualquer direção.</p>
+      <h4>Limitações</h4>
+      <p>Poucos estudos, heterogeneidade entre desenhos e certeza baixa a muito baixa, conforme o material. Outras limitações não detalhadas no material disponível.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Leskinen N, Haapanen M, Kuitunen I. RSV-Pre-F Vaccination During Pregnancy and Neonatal Outcomes-A Systematic Review and Meta-Analysis. Immunity, Inflammation and Disease. 2026. DOI: <a href="https://doi.org/10.1002/iid3.70510">https://doi.org/10.1002/iid3.70510</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42712161/">https://pubmed.ncbi.nlm.nih.gov/42712161/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Pré-natal</span>
+      <h3>Covid longa não se associou a parto prematuro em coorte prospectiva; sinal para distúrbios hipertensivos em análise de sensibilidade</h3>
+      <p class="resumo">Na coorte multicêntrica RECOVER-Adult, 603 participantes com infecção prévia por SARS-CoV-2 foram classificadas por escore de Covid longa antes ou durante a gestação; 118 (19,6%) tinham classificação provável. Não houve associação com parto prematuro (8,1% vs. 9,6%; ARR 0,82; IC 95% 0,36–1,90). Em análise de sensibilidade, houve associação com distúrbios hipertensivos da gestação (39,0% vs. 25,9%; ARR 1,51; IC 95% 1,12–2,03).</p>
+      <div class="fonte-curta">Obstetrics &amp; Gynecology, 30/08/2026 · Metz et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>Não estava claro se a classificação materna de Covid longa se associa a desfechos gestacionais adversos. O estudo usou a coorte prospectiva RECOVER-Adult, com inscrição entre outubro de 2021 e janeiro de 2024.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Classificação por escore LCRI (Long COVID Research Index) ≥ 11 (provável) vs. 0–10 (indeterminada). Pareamento por escore de propensão com pareamento completo; efeito médio do tratamento (análise primária) e efeito entre tratadas (sensibilidade).</li>
+        <li>Desfecho primário: parto prematuro &lt; 37 semanas. Secundários: distúrbios hipertensivos, cesariana, admissão em UTI neonatal, peso pequeno para a idade gestacional.</li>
+        <li>Grupo com Covid longa provável tinha mais determinantes sociais adversos (dificuldade financeira, insegurança alimentar, cuidado perdido por custo, discriminação) e maior IMC pré-gestacional.</li>
+        <li>Análise primária: sem associação com parto prematuro (ARR 0,82; 0,36–1,90) nem com secundários. Análise entre tratadas: sem associação com prematuridade (ARR 1,11; 0,60–2,06), mas associação com distúrbios hipertensivos (ARR 1,51; 1,12–2,03).</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>O dado é tranquilizador para prematuridade, mas a associação com distúrbios hipertensivos, presente apenas na análise de sensibilidade, é exploratória e precisa de confirmação antes de qualquer mudança de vigilância.</p>
+      <h4>Limitações</h4>
+      <p>Amostra modesta (603 participantes, 118 expostas), classificação por questionário e resultado divergente entre as duas abordagens analíticas. Outras limitações não detalhadas no material disponível.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Metz TD, Sandoval GJ, Allshouse AA, Anderson K, Braverman A, Coombs K et al. Pregnancy Outcomes in Individuals With Long COVID. Obstetrics and Gynecology. 2026. DOI: <a href="https://doi.org/10.1097/AOG.0000000000006410">https://doi.org/10.1097/AOG.0000000000006410</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42659593/">https://pubmed.ncbi.nlm.nih.gov/42659593/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-ped">Parto prematuro</span>
+      <h3>Anemia materna associou-se a maior risco de parto prematuro em metanálise com 2,1 milhões de gestantes</h3>
+      <p class="resumo">Metanálise de 45 artigos (60 populações; 2.119.392 gestantes) encontrou associação entre anemia materna e parto prematuro (OR 1,28; IC 95% 1,20–1,36), com heterogeneidade muito alta (I² 95,54%). A associação foi mais forte no terceiro trimestre (OR 1,65; 1,42–1,91) e não significativa no segundo (OR 1,10; 0,99–1,22). Testes de assimetria indicaram possível viés de publicação.</p>
+      <div class="fonte-curta">The Journal of Maternal-Fetal &amp; Neonatal Medicine, 03/09/2026 · Karimi et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A anemia é um dos distúrbios nutricionais mais comuns na gestação e tem sido proposta como contribuinte para o parto prematuro, mas a evidência não oferecia consenso claro.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Busca até 1º de janeiro de 2025 em PubMed, Scopus, Web of Science, Embase e Cochrane; PRISMA e MOOSE; efeitos aleatórios.</li>
+        <li>OR agrupado 1,28 (1,20–1,36; p &lt; 0,001); análises de sensibilidade confirmaram a robustez.</li>
+        <li>Por região: Ásia OR 1,30 (1,22–1,40); Europa OR 1,24 (1,08–1,41). Por trimestre: primeiro OR 1,12 (1,03–1,51); segundo OR 1,10 (0,99–1,22); terceiro OR 1,65 (1,42–1,91).</li>
+        <li>Assimetria do funnel plot e teste de Egger significativo (p = 0,001); Begg não significativo (p = 0,425).</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>O achado reforça a associação entre anemia, sobretudo no terceiro trimestre, e prematuridade. Por ser síntese de estudos observacionais, não demonstra que corrigir a anemia reduz o parto prematuro; a recomendação dos autores de rastreio e suplementação é inferência, não resultado de intervenção testada aqui.</p>
+      <h4>Limitações</h4>
+      <p>Heterogeneidade muito alta, possível viés de publicação e ausência de dados sobre gravidade da anemia no material. Outras limitações não detalhadas no material disponível.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Karimi P, Nourollahi Z, Nourollahi MM, Azami M. Maternal anemia and the risk of preterm birth: a meta-analysis. The Journal of Maternal-Fetal &amp; Neonatal Medicine. 2026. DOI: <a href="https://doi.org/10.1080/14767058.2026.2722830">https://doi.org/10.1080/14767058.2026.2722830</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42692818/">https://pubmed.ncbi.nlm.nih.gov/42692818/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-andro">Endócrino-metabólico</span>
+      <h3>Síndrome dos ovários policísticos passa a se chamar síndrome ovariana metabólica poliendócrina: o que muda para o obstetra</h3>
+      <p class="resumo">Relatório especial descreve a renomeação, resultado de processo de consenso internacional endossado por 56 organizações profissionais e de pacientes. Os critérios diagnósticos permanecem os mesmos; muda o enquadramento clínico. A condição afeta cerca de 10% a 13% das mulheres em idade reprodutiva e associa-se a aborto, diabetes gestacional, distúrbios hipertensivos, cesariana, prematuridade e restrição de crescimento fetal, muitas vezes após ajuste para idade e IMC.</p>
+      <div class="fonte-curta">American Journal of Obstetrics &amp; Gynecology, 10/09/2026 · Bahri-Khomami et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>Segundo os autores, o termo "ovários policísticos" é um equívoco histórico: a morfologia ovariana reflete folículos antrais parados, não cistos patológicos, e o nome reforçou uma visão centrada no ovário e na fertilidade de uma condição endócrino-metabólica de longo prazo.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Relatório especial, não estudo primário. Renomeação após processo multietapas de consenso internacional com endosso de 56 organizações.</li>
+        <li>Critérios diagnósticos inalterados: 2 de 3 entre ciclos irregulares/disfunção ovulatória, hiperandrogenismo clínico ou bioquímico, e hormônio anti-Mülleriano elevado ou múltiplos folículos ao ultrassom em adultas.</li>
+        <li>Na gestação, associa-se a maior risco de aborto, DMG, distúrbios hipertensivos, cesariana, parto prematuro, restrição de crescimento fetal, baixo peso e recém-nascido pequeno para a idade gestacional.</li>
+        <li>Os autores apontam que a condição não é captada rotineiramente como modificador de risco obstétrico na primeira consulta nem embutida em vias de decisão pré-natal.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Para o obstetra, a mensagem é registrar o diagnóstico como fator de risco obstétrico e considerar rastreio e aconselhamento metabólico, psicológico e cardiometabólico. O relatório não traz recomendações de conduta com força de evidência quantificada.</p>
+      <h4>Limitações</h4>
+      <p>Documento de posicionamento; as magnitudes de risco citadas não constam no material. Limitações não detalhadas no material disponível.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Bahri-Khomami M, Hoeger KM, Huddleston H, Mahalingaiah S, Teede HJ, Dokras A et al. From polycystic ovary syndrome to polyendocrine metabolic ovarian syndrome: what obstetricians and gynecologists need to know. American Journal of Obstetrics and Gynecology. 2026. DOI: <a href="https://doi.org/10.1016/j.ajog.2026.08.024">https://doi.org/10.1016/j.ajog.2026.08.024</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42665241/">https://pubmed.ncbi.nlm.nih.gov/42665241/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Pré-eclâmpsia</span>
+      <h3>Desfechos adversos da gestação como marcadores precoces de risco cardiovascular: revisão da Lancet</h3>
+      <p class="resumo">Revisão final de uma série da Lancet sintetiza dados epidemiológicos sobre risco cardiovascular de longo prazo após distúrbios hipertensivos da gestação, diabetes gestacional e parto prematuro, além de evidências emergentes sobre risco cardiometabólico na prole. Resume recomendações de seguimento e propõe integrar a história obstétrica à avaliação de risco cardiovascular feminino, destacando a ausência de ensaios de prevenção específicos.</p>
+      <div class="fonte-curta">The Lancet, 03/09/2026 · Pabón et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A gestação funciona como teste de estresse cardiovascular, e complicações como distúrbios hipertensivos, diabetes gestacional e parto prematuro identificam mulheres com risco cardiovascular substancialmente maior ao longo da vida, segundo a revisão.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Revisão narrativa; não apresenta estimativas numéricas no material disponível.</li>
+        <li>Discute mecanismos putativos: suscetibilidade cardiometabólica e genética prévia combinada com estressores hemodinâmicos e metabólicos da gestação.</li>
+        <li>Resume diretrizes e recomendações de consenso para seguimento de curto e longo prazo, e propõe abordagens práticas para incorporar a história obstétrica à prevenção guiada por diretrizes.</li>
+        <li>Lacunas apontadas: modelos ótimos de seguimento, limitações das ferramentas de estratificação atuais e ausência de ensaios de prevenção específicos para este grupo.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Útil como referência para organizar o encaminhamento pós-parto de mulheres com desfechos adversos, sem oferecer, por si, evidência de que intervenções específicas reduzam eventos cardiovasculares nessa população.</p>
+      <h4>Limitações</h4>
+      <p>Revisão narrativa; limitações não detalhadas no material disponível.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Pabón MA, Smith G, Sharma G, Catov J, Lewandowski AJ, Adam S et al. Adverse pregnancy outcomes and long-term cardiovascular disease risk. The Lancet. 2026. DOI: <a href="https://doi.org/10.1016/S0140-6736(26)01235-3">https://doi.org/10.1016/S0140-6736(26)01235-3</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42669304/">https://pubmed.ncbi.nlm.nih.gov/42669304/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Pré-eclâmpsia</span>
+      <h3>Encefalopatia posterior reversível na pré-eclâmpsia e eclâmpsia: enzimas hepáticas elevadas e plaquetopenia associaram-se à síndrome</h3>
+      <p class="resumo">Metanálise de 28 estudos estimou incidência agrupada de 38,68% (IC 95% 29,63–48,59) de síndrome de encefalopatia posterior reversível (PRES) nas populações estudadas, com heterogeneidade muito alta (I² 98,5%). Pacientes com PRES tinham ALT e AST mais altas (DM 35,88 e 48,69 UI/L) e plaquetas mais baixas (DM −31,15 × 10⁹/L). Mortalidade materna maior sem significância estatística (RR 4,06).</p>
+      <div class="fonte-curta">Neurological Sciences, 10/09/2026 · Zafarullah et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A PRES é complicação neurológica grave da pré-eclâmpsia e eclâmpsia, com identificação precoce dificultada por apresentações heterogêneas e falta de consenso sobre fatores associados.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Revisão PRISMA 2020; busca até 25 de março de 2025; efeitos aleatórios; risco de viés por Newcastle-Ottawa e ferramenta NIH.</li>
+        <li>Desfecho primário: incidência de PRES, 38,68% (29,63–48,59; I² 98,5%). Secundários: biomarcadores, desfechos maternos e fetais, imagem.</li>
+        <li>Natimorto e parto prematuro sem associação significativa. Bilirrubina total também elevada. Imagem: lobos frontal (43,05%) e temporal (20,33%) mais envolvidos.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Os autores sugerem que alterações hepáticas e plaquetopenia podem auxiliar a suspeita clínica, sobretudo em cenários de recursos limitados. A incidência agrupada não é generalizável, pois depende das populações selecionadas para imagem nos estudos incluídos; não há modelo preditivo validado.</p>
+      <h4>Limitações</h4>
+      <p>Heterogeneidade substancial declarada; autores pedem estudos prospectivos de alta qualidade. Outras limitações não detalhadas no material disponível.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Zafarullah M, Singh PK, Harb A, Muneer SU, Javed MN, Abid M et al. Clinical, Laboratory and Radiological Factors associated with posterior reversible encephalopathy syndrome (PRES) in patients with eclampsia or pre-eclampsia: a systematic review and meta-analysis. Neurological Sciences. 2026. DOI: <a href="https://doi.org/10.1007/s10072-026-09366-w">https://doi.org/10.1007/s10072-026-09366-w</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42717136/">https://pubmed.ncbi.nlm.nih.gov/42717136/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="sec"><span class="n">3 ·</span> Fontes consultadas nesta edição</h2>
+  <div class="fontes-finais">
+    <ol>
+      <li>Duryea E et al. Universal Aspirin Dispensation for Prevention of Preeclampsia in a High-Risk Population. Am J Obstet Gynecol. 2026. <a href="https://doi.org/10.1016/j.ajog.2026.08.036">https://doi.org/10.1016/j.ajog.2026.08.036</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42660215/">https://pubmed.ncbi.nlm.nih.gov/42660215/</a></li>
+      <li>Shepherd ES et al. Magnesium sulphate for women at risk of preterm birth for neuroprotection of the fetus. Cochrane Database Syst Rev. 2026. <a href="https://doi.org/10.1002/14651858.CD004661.pub5">https://doi.org/10.1002/14651858.CD004661.pub5</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42689525/">https://pubmed.ncbi.nlm.nih.gov/42689525/</a></li>
+      <li>Mousa A et al. Metformin in High Metabolic Risk Pregnancies - A Patient-Level Meta-Analysis. NEJM Evidence. 2026. <a href="https://doi.org/10.1056/EVIDoa2500337">https://doi.org/10.1056/EVIDoa2500337</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42640169/">https://pubmed.ncbi.nlm.nih.gov/42640169/</a></li>
+      <li>Trawick E et al. Risk of Recurrent Severe Preeclampsia, HELLP Syndrome, and Eclampsia in a Subsequent Pregnancy. Obstet Gynecol. 2026. <a href="https://doi.org/10.1097/AOG.0000000000006398">https://doi.org/10.1097/AOG.0000000000006398</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42623674/">https://pubmed.ncbi.nlm.nih.gov/42623674/</a></li>
+      <li>Alami A et al. Maternal vaccination with RSVpreF and risk of hypertensive disorders of pregnancy: a systematic review and meta-analysis. Vaccine. 2026. <a href="https://doi.org/10.1016/j.vaccine.2026.129070">https://doi.org/10.1016/j.vaccine.2026.129070</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42667900/">https://pubmed.ncbi.nlm.nih.gov/42667900/</a></li>
+      <li>Kacerovsky M et al. Intra-amniotic Categories of Preterm Prelabor Rupture of Membranes. Am J Obstet Gynecol. 2026. <a href="https://doi.org/10.1016/j.ajog.2026.08.038">https://doi.org/10.1016/j.ajog.2026.08.038</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42674304/">https://pubmed.ncbi.nlm.nih.gov/42674304/</a></li>
+      <li>Yang S et al. Comparing efficacy in glycaemic control and pregnancy outcomes between continuous glucose monitoring and self-monitoring of blood glucose in pregnancies complicated by gestational diabetes mellitus. Diabetes Res Clin Pract. 2026. <a href="https://doi.org/10.1016/j.diabres.2026.113488">https://doi.org/10.1016/j.diabres.2026.113488</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42595054/">https://pubmed.ncbi.nlm.nih.gov/42595054/</a></li>
+      <li>Leskinen N, Haapanen M, Kuitunen I. RSV-Pre-F Vaccination During Pregnancy and Neonatal Outcomes-A Systematic Review and Meta-Analysis. Immun Inflamm Dis. 2026. <a href="https://doi.org/10.1002/iid3.70510">https://doi.org/10.1002/iid3.70510</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42712161/">https://pubmed.ncbi.nlm.nih.gov/42712161/</a></li>
+      <li>Metz TD et al. Pregnancy Outcomes in Individuals With Long COVID. Obstet Gynecol. 2026. <a href="https://doi.org/10.1097/AOG.0000000000006410">https://doi.org/10.1097/AOG.0000000000006410</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42659593/">https://pubmed.ncbi.nlm.nih.gov/42659593/</a></li>
+      <li>Karimi P et al. Maternal anemia and the risk of preterm birth: a meta-analysis. J Matern Fetal Neonatal Med. 2026. <a href="https://doi.org/10.1080/14767058.2026.2722830">https://doi.org/10.1080/14767058.2026.2722830</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42692818/">https://pubmed.ncbi.nlm.nih.gov/42692818/</a></li>
+      <li>Bahri-Khomami M et al. From polycystic ovary syndrome to polyendocrine metabolic ovarian syndrome: what obstetricians and gynecologists need to know. Am J Obstet Gynecol. 2026. <a href="https://doi.org/10.1016/j.ajog.2026.08.024">https://doi.org/10.1016/j.ajog.2026.08.024</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42665241/">https://pubmed.ncbi.nlm.nih.gov/42665241/</a></li>
+      <li>Pabón MA et al. Adverse pregnancy outcomes and long-term cardiovascular disease risk. Lancet. 2026. <a href="https://doi.org/10.1016/S0140-6736(26)01235-3">https://doi.org/10.1016/S0140-6736(26)01235-3</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42669304/">https://pubmed.ncbi.nlm.nih.gov/42669304/</a></li>
+      <li>Zafarullah M et al. Clinical, Laboratory and Radiological Factors associated with PRES in patients with eclampsia or pre-eclampsia: a systematic review and meta-analysis. Neurol Sci. 2026. <a href="https://doi.org/10.1007/s10072-026-09366-w">https://doi.org/10.1007/s10072-026-09366-w</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42717136/">https://pubmed.ncbi.nlm.nih.gov/42717136/</a></li>
+    </ol>
+  </div>
+  <p class="nota">MedBrain · conteúdo gerado com apoio de IA e revisão humana antes da publicação.</p>
+</div>
+<script>
+(function(){
+  var items=document.querySelectorAll('.item');
+  items.forEach(function(it){
+    var btn=it.querySelector('button.head');
+    btn.addEventListener('click',function(){
+      var open=it.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+    });
+  });
+})();
+</script>
+</body>
+</html>
