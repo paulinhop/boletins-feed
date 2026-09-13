@@ -11,6 +11,13 @@
  */
 
 const EUTILS = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils';
+let nextNcbiRequest=0;
+async function ncbiFetch(url) {
+  const wait=Math.max(0,nextNcbiRequest-Date.now());
+  nextNcbiRequest=Math.max(nextNcbiRequest,Date.now())+350;
+  if(wait)await new Promise(resolve=>setTimeout(resolve,wait));
+  return fetch(url,{signal:AbortSignal.timeout(20000)});
+}
 
 function texto(xml, tag) {
   const m = xml.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`));
@@ -30,13 +37,13 @@ export async function pesquisar(query, dias = 30, max = 40) {
   const esearch = `${EUTILS}/esearch.fcgi?db=pubmed&retmode=json&sort=pub_date&retmax=${max}` +
     `&datetype=pdat&mindate=${fmt(inicio)}&maxdate=${fmt(hoje)}` +
     `&term=${encodeURIComponent(query)}`;
-  const res1 = await fetch(esearch, { signal: AbortSignal.timeout(20000) });
+  const res1 = await ncbiFetch(esearch);
   if (!res1.ok) throw new Error(`PubMed esearch HTTP ${res1.status}`);
   const ids = (await res1.json())?.esearchresult?.idlist ?? [];
   if (ids.length === 0) return [];
 
   const efetch = `${EUTILS}/efetch.fcgi?db=pubmed&retmode=xml&id=${ids.join(',')}`;
-  const res2 = await fetch(efetch, { signal: AbortSignal.timeout(20000) });
+  const res2 = await ncbiFetch(efetch);
   if (!res2.ok) throw new Error(`PubMed efetch HTTP ${res2.status}`);
   const xml = await res2.text();
 
@@ -74,6 +81,7 @@ export function formatarParaPrompt(itens) {
     .map((a, i) =>
       [
         `[${i + 1}] ${a.titulo}`,
+        a.ramosCandidatos?.length ? `    Subramos candidatos (query, confirmar pelo conteúdo): ${a.ramosCandidatos.join(', ')}` : '',
         `    Periódico: ${a.periodico} · Data: ${a.data} · Tipos: ${a.tipos.join(', ') || 'n/a'}`,
         `    Autores: ${a.autores.join(', ')}${a.autores.length >= 6 ? ' et al.' : ''}`,
         `    Citações (OpenAlex, dado auxiliar): ${a.citacoes ?? 'n/a'} · DOI: ${a.doi || 'n/a'} · PMID: ${a.pmid} (https://pubmed.ncbi.nlm.nih.gov/${a.pmid}/)`,

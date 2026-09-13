@@ -30,9 +30,11 @@ import { readFileSync, writeFileSync, mkdirSync, renameSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { pesquisar, formatarParaPrompt, enriquecerCitacoes } from './pubmed.mjs';
+import { formatarParaPrompt, enriquecerCitacoes } from './pubmed.mjs';
 import { regulatorio, formatarRegulatorio } from './fontes-extra.mjs';
 import { editionDate, validateEditorial } from './editorial-contract.mjs';
+import { loadHistory, validateUnpublished } from './publication-history.mjs';
+import { collectWeekly, coverageInstructions, validateCoverage } from './weekly-selection.mjs';
 
 const MESES = [
   'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
@@ -222,6 +224,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const saida = resolve(process.argv[2] ?? root);
 const config = JSON.parse(readFileSync(join(root, 'prompts/especialidades.json'), 'utf8'));
 const template = readFileSync(join(root, 'prompts/boletim.md'), 'utf8');
+const history = loadHistory(join(root,'prompts/published-articles.json'));
 // Hífens viram underscore no nome da env (claude-cli → CLAUDE_CLI_MODEL).
 const modelo =
   process.env[`${provider.toUpperCase().replaceAll('-', '_')}_MODEL`] ??
@@ -242,6 +245,12 @@ function salvarRascunho(slug, text, destination = saida) {
   if (!material) throw new Error('Material de origem ausente.');
   const result = validateEditorial(html, material, dataIso);
   const name = `boletim-${slug}-${dataIso}`;
+  const novelty=validateUnpublished(html,material,history,name+'.html');
+  const coverage=validateCoverage(html,config.especialidades.find(e=>e.slug===slug));
+  result.errors.push(...novelty.errors,...coverage.errors);
+  result.warnings.push(...coverage.warnings);
+  result.coverage=coverage.coverage;
+  result.ok=!result.errors.length;
   writeFileSync(join(evidenceDir, `${name}.validation.json`), JSON.stringify(result, null, 2) + '\n');
   if (!result.ok) {
     writeFileSync(join(evidenceDir, `${name}.rejected.txt`), html);
@@ -257,14 +266,14 @@ async function montarPrompt(esp) {
   // Estágio 1 (grátis): material verificado do PubMed (com contagem real de
   // citações via OpenAlex) + notícias regulatórias de FDA/ANVISA — a IA só redige.
   let material = '(Especialidade sem query PubMed configurada — gere menos itens.)';
+  let diversity='';
   if (esp.pubmed) {
-    try {
-      const itens = await enriquecerCitacoes(await pesquisar(esp.pubmed, 30, 25));
+      const report=await collectWeekly(esp,history,`boletim-${esp.slug}-${dataIso}.html`);
+      writeFileSync(join(evidenceDir,`selecao-${esp.slug}-${dataIso}.json`),JSON.stringify(report,null,2)+'\n');
+      const itens = await enriquecerCitacoes(report.selected);
       material = formatarParaPrompt(itens);
-      console.log(`  PubMed: ${itens.length} artigo(s) encontrados para ${esp.slug}`);
-    } catch (erro) {
-      console.warn(`  PubMed falhou para ${esp.slug}: ${erro.message} — seguindo sem material`);
-    }
+      diversity=coverageInstructions(esp,report);
+      console.log(`  PubMed: ${itens.length} candidatos inéditos; ${report.excluded.length} ocorrências já publicadas excluídas para ${esp.slug}`);
   }
   const noticias = await regulatorio(esp.regulatorioKeywords ?? [], 30, esp.regulatorioKeywordsPt ?? esp.regulatorioKeywords ?? []);
   if (noticias.length) console.log(`  Regulatório: ${noticias.length} notícia(s) para ${esp.slug}`);
@@ -280,7 +289,7 @@ async function montarPrompt(esp) {
     .replaceAll('{{DATA_ISO}}', dataIso)
     .replaceAll('{{FOCO}}', esp.foco)
     .replaceAll('{{QTD}}', String(config.edicaoPadrao.artigosPorBoletim))
-    .replaceAll('{{MATERIAL}}', material);
+    .replaceAll('{{MATERIAL}}', material) + diversity;
   promptsMontados.set(esp.slug, prompt);
   return prompt;
 }

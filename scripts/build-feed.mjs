@@ -7,11 +7,18 @@
  * O manifesto é escrito na própria pasta; depois basta subir os arquivos
  * (.html + feed.json) no repositório público do feed.
  */
-import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { readdirSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { digest, validateEditorial } from './editorial-contract.mjs';
+import { loadHistory,validateUnpublished,publishedEntries,appendPublications } from './publication-history.mjs';
+import { validateCoverage } from './weekly-selection.mjs';
 
 const dir = resolve(process.argv[2] ?? '.');
+const historyPath=join(dir,'prompts/published-articles.json');
+let history=loadHistory(historyPath);
+const specialties=JSON.parse(readFileSync(new URL('../prompts/especialidades.json',import.meta.url),'utf8')).especialidades;
+// Previously published immutable versions remain readable under their original contract.
+const knownPublished=new Set(history.articles.map(a=>a.edition+':'+a.htmlSha256));
 const legacy = JSON.parse(
   readFileSync(
     new URL('../prompts/legacy-editions.json', import.meta.url),
@@ -38,8 +45,19 @@ for (const file of files) {
     'utf8',
   );
   const result = validateEditorial(html, material, date);
+  if(!knownPublished.has(file+':'+digest(html))){
+    const novelty=validateUnpublished(html,material,history,file);
+    const coverage=validateCoverage(html,specialties.find(e=>e.slug===slug)||{});
+    result.errors.push(...novelty.errors,...coverage.errors);
+    result.ok=!result.errors.length;
+  }
   if (!result.ok) throw new Error(`${file}: ${result.errors.join(' | ')}`);
+  history=appendPublications(history,publishedEntries(html,file,material));
 }
 const manifest = { version: 1, updatedAt: new Date().toISOString(), files };
-writeFileSync(join(dir, 'feed.json'), JSON.stringify(manifest, null, 2) + '\n');
+// Ledger first: interruption may reserve an article, but never publishes it unrecorded.
+writeFileSync(historyPath+'.pending',JSON.stringify(history,null,2)+'\n');
+renameSync(historyPath+'.pending',historyPath);
+writeFileSync(join(dir, 'feed.json.pending'), JSON.stringify(manifest, null, 2) + '\n');
+renameSync(join(dir,'feed.json.pending'),join(dir,'feed.json'));
 console.log(`feed.json gerado com ${files.length} boletim(ns) em ${dir}`);

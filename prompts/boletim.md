@@ -68,7 +68,15 @@ para médicos especialistas brasileiros, com análise aprofundada e leitura edit
   referência), mas **nunca** favoreça artigo antigo nem penalize novidade por
   ter poucas citações — artigos dos últimos dias mal tiveram tempo de ser
   citados, e isso não diz nada sobre seu valor.
-- **Sem quotas mínimas**: os números abaixo são **tetos, não metas**. Publique
+- **Variedade sem quotas fixas:** em Urologia, buscar equilíbrio entre andrologia,
+  uro-oncologia, litíase, HPB, medicina sexual, urologia de consultório e urologia
+  geral, além de outros subramos relevantes. Não é necessário incluir todas as
+  áreas em cada semana. Não preencher espaço com estudos fracos. A busca é feita
+  separadamente por subramo para que temas dominantes não ocultem os demais.
+  Classifique cada item por um único `data-subramo` principal conforme os IDs
+  enviados no plano de diversidade, ou `outro`; isso alimenta a revisão interna,
+  sem criar filtros, botões ou seções vazias no boletim.
+- **Os números abaixo são tetos, não metas.** Publique
   menos itens sempre que o material não sustentar mais — um boletim com 3
   itens sólidos vale mais que 8 inflados.
 - Regras separadas por natureza do item:
@@ -122,8 +130,15 @@ use a ordem abaixo. Notas breves não inventam blocos sem suporte:
   achado (um HR com IC 95% vale mais que cinco p-valores).
 - **Explique as siglas** na primeira ocorrência (ex.: "síndrome geniturinária
   da menopausa (GSM)") e evite inglês desnecessário.
-- **Não repita** o mesmo estudo em duas seções da edição; não reprise estudo
-  de edição anterior sem novidade relevante.
+- **Não repita** o mesmo estudo em duas seções nem em semanas anteriores.
+  DOI e PMID são comparados com o histórico publicado, mesmo após retirar uma
+  edição do catálogo; também há comparação por título normalizado. O material
+  recuperado já foi filtrado, e a saída será conferida novamente. Não contorne
+  a regra mudando o título, trocando DOI por PMID ou citando outra URL do mesmo
+  estudo. Uma correção, nova diretriz ou seguimento é outra publicação e exige
+  identidade própria e descrição explícita da novidade; não permite republicar
+  o artigo antigo como se fosse novo. Revisões da mesma edição são preservadas
+  como revisões, não novas semanas.
 - **Tags de assunto**: use sempre a primeira tag para o **tema do item
   adequado à especialidade desta edição** (ex.: em ginecologia, "Menopausa",
   "Onco ginecológica", "Endometriose"; em urologia, "Litíase", "HPB",

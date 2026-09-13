@@ -2,7 +2,7 @@
   "edicaoPadrao": {
     "artigosPorBoletim": 5,
     "modelo": "claude-sonnet-5",
-    "observacao": "O modelo pode ser trocado aqui ou pela env ANTHROPIC_MODEL no workflow."
+    "observacao": "Piloto escolhido pelo usuário: versão A, provider claude/model fable pelo gateway privado. Alias exato do backend ainda não fixado; não usar APIs diretas."
   },
   "especialidades": [
     {
@@ -10,7 +10,7 @@
       "nome": "Urologia",
       "ativa": true,
       "foco": "Principais ensaios clínicos e diretrizes recentes em urologia: câncer de próstata, litíase, HPB, disfunção erétil, infecções urinárias. Priorizar NEJM, Lancet, JAMA, European Urology, Journal of Urology e diretrizes EAU/AUA.",
-      "cor": "#005EB8",
+      "cor": "#155A8A",
       "pubmed": "(\"urology\"[MeSH Terms] OR urolog*[tiab] OR prostate[tiab] OR urolithiasis[tiab]) AND (randomized controlled trial[pt] OR guideline[pt] OR meta-analysis[pt] OR \"N Engl J Med\"[ta] OR \"Lancet\"[ta] OR \"JAMA\"[ta] OR \"Eur Urol\"[ta] OR \"J Urol\"[ta])",
       "regulatorioKeywords": [
         "prostate",
@@ -29,6 +29,43 @@
         "renal",
         "urinári",
         "erétil"
+      ],
+      "subramos": [
+        {
+          "id": "andrologia",
+          "nome": "Andrologia",
+          "pubmed": "(\"Infertility, Male\"[MeSH Terms] OR spermatogenesis[tiab] OR varicocele[tiab] OR hypogonadism[tiab]) AND (randomized controlled trial[pt] OR clinical trial[pt] OR guideline[pt] OR systematic review[pt] OR meta-analysis[pt] OR observational study[pt])"
+        },
+        {
+          "id": "uro-oncologia",
+          "nome": "Uro-oncologia",
+          "pubmed": "(\"Urologic Neoplasms\"[MeSH Terms] OR \"prostate cancer\"[tiab] OR \"bladder cancer\"[tiab] OR \"renal cell carcinoma\"[tiab]) AND (randomized controlled trial[pt] OR clinical trial[pt] OR guideline[pt] OR systematic review[pt] OR meta-analysis[pt] OR observational study[pt])"
+        },
+        {
+          "id": "litiase",
+          "nome": "Litíase",
+          "pubmed": "(\"Urolithiasis\"[MeSH Terms] OR \"ureteral stones\"[tiab] OR \"kidney stones\"[tiab]) AND (randomized controlled trial[pt] OR clinical trial[pt] OR guideline[pt] OR systematic review[pt] OR meta-analysis[pt] OR observational study[pt])"
+        },
+        {
+          "id": "hpb",
+          "nome": "HPB",
+          "pubmed": "(\"Prostatic Hyperplasia\"[MeSH Terms] OR \"benign prostatic hyperplasia\"[tiab] OR HoLEP[tiab]) AND (randomized controlled trial[pt] OR clinical trial[pt] OR guideline[pt] OR systematic review[pt] OR meta-analysis[pt] OR observational study[pt])"
+        },
+        {
+          "id": "medicina-sexual",
+          "nome": "Medicina sexual",
+          "pubmed": "(\"Erectile Dysfunction\"[MeSH Terms] OR \"Ejaculation Disorders\"[MeSH Terms] OR \"Peyronie Disease\"[MeSH Terms] OR \"premature ejaculation\"[tiab]) AND (randomized controlled trial[pt] OR clinical trial[pt] OR guideline[pt] OR systematic review[pt] OR meta-analysis[pt] OR observational study[pt])"
+        },
+        {
+          "id": "consultorio",
+          "nome": "Urologia de consultório",
+          "pubmed": "(\"Urinary Incontinence\"[MeSH Terms] OR \"Urinary Bladder, Overactive\"[MeSH Terms] OR \"Urinary Tract Infections\"[MeSH Terms] OR hematuria[tiab]) AND (randomized controlled trial[pt] OR clinical trial[pt] OR guideline[pt] OR systematic review[pt] OR meta-analysis[pt] OR observational study[pt])"
+        },
+        {
+          "id": "urologia-geral",
+          "nome": "Urologia geral",
+          "pubmed": "(\"urology\"[MeSH Terms] OR urolog*[tiab] OR prostate[tiab] OR urolithiasis[tiab]) AND (randomized controlled trial[pt] OR guideline[pt] OR meta-analysis[pt] OR \"N Engl J Med\"[ta] OR \"Lancet\"[ta] OR \"JAMA\"[ta] OR \"Eur Urol\"[ta] OR \"J Urol\"[ta])"
+        }
       ]
     },
     {

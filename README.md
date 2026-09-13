@@ -1,5 +1,7 @@
 # Boletins Feed
 
+**Seleção vigente:** piloto A/Fable escolhido pelo usuário; somente Urologia. Pesquisa em sete recortes (andrologia, uro-oncologia, litíase, HPB, medicina sexual, consultório e geral), com diversidade sem quotas fixas. Exclusão determinística de estudos já publicados antes da IA e checagem novamente na saída/publicação. Regras, limites e histórico: [SELECAO-SEMANAL.md](SELECAO-SEMANAL.md).
+
 **Atualização de 13/09/2026:** geração e publicação agora verificam o contrato editorial v2 e o material de origem. Veja [CONTRATO-EDITORIAL.md](CONTRATO-EDITORIAL.md). O formato de saída continua HTML; a validação mecânica não substitui revisão clínica. As edições existentes foram preservadas.
 
 Repositório público de conteúdo do app **Boletim Médico** (Fase 2 — feed na nuvem).
@@ -32,8 +34,8 @@ A publicação continua após revisão clínica: rascunho → revisão → merge
 ### Manual (fallback)
 
 1. Coloque os `.html` da semana numa pasta local.
-2. Gere o manifesto: `node scripts/build-feed.mjs <pasta>`
-3. Suba os `.html` + `feed.json` aqui (pelo site do GitHub: *Add file → Upload files*,
+2. Preserve também as evidências e uma cópia atual de `prompts/published-articles.json` nessa pasta. Gere o manifesto: `node scripts/build-feed.mjs <pasta>`. Nunca iniciar o histórico vazio para publicar uma edição real.
+3. Suba os `.html`, as evidências, `prompts/published-articles.json` atualizado e `feed.json` aqui (pelo site do GitHub: *Add file → Upload files*,
    ou por git).
 
 Documentação completa: `docs/feed.md` no repositório principal (privado) `boletim-med`.
