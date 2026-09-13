@@ -129,8 +129,8 @@ use a ordem abaixo. Notas breves não inventam blocos sem suporte:
   "Onco ginecológica", "Endometriose"; em urologia, "Litíase", "HPB",
   "Uro-oncologia"). As **classes CSS não mudam** — escolha a classe pela cor
   mais próxima do tema (neutro: `t-geral`) e, quando couber, acrescente a
-  segunda tag de natureza com `t-reg` ("Diretriz", "Regulatório" ou "Prática
-  muda" — esta última só com justificativa, ver fidelidade).
+  segunda tag de natureza com `t-reg` ("Diretriz", "Regulatório" ou "Potencial
+  impacto" — esta última só com justificativa, ver fidelidade).
 
 ### Anatomia de cada item (acordeão)
 

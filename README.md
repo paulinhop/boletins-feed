@@ -19,6 +19,8 @@ boletins `.html` que ainda não existem no aparelho. Leitura 100% offline depois
 
 ### Geração local pelo gateway (política vigente — 13/09/2026)
 
+O piloto e as revisões de versão estão restritos a **Urologia**. As demais especialidades ficam com geração desativada até aprovação do pipeline pelo revisor médico do piloto. As edições existentes permanecem preservadas até a limpeza final autorizada após a aprovação. O comparativo exploratório de modelos usa fontes e prompt congelados, com rascunhos privados no repositório do app; nenhum desses rascunhos deve ser adicionado ao feed antes da revisão.
+
 O cron de geração foi retirado. O workflow **Gerar rascunho semanal** agora apenas informa a pausa; não recebe credenciais nem executa IA. O gateway privado não será exposto ao Actions.
 
 O gerador aceita exclusivamente `PROVIDER=gateway` (também o padrão). Configure `IA_GATEWAY_URL` e `IA_GATEWAY_TOKEN` apenas no ambiente local. APIs de IA e CLIs diretos são rejeitados antes de pesquisa, geração ou escrita, sem fallback. Adaptadores anteriores estão preservados como código histórico bloqueado; sua presença não representa autorização de uso.
