@@ -140,7 +140,7 @@ export function validateEditorial(html, material, date) {
     if (essential && kind !== 'analysis')
       errors.push(prefix + 'Essencial exige análise completa.');
     const headingsRequired =
-      kind === 'brief'
+      kind === 'brief' && source?.level !== 'abstract'
         ? ['Fontes']
         : [
             'Contexto',

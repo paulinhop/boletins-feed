@@ -49,6 +49,14 @@ test('historical CSS comment is not mistaken for clinical approval, but a badge 
   assert.equal(validate(withComment.replace('>Tema</span>', '>Prática muda</span>')).ok, false);
   assert.equal(validate(html.replace('</style>', '.tag::after{content:"Prática muda"}</style>')).ok, false);
 });
+
+test('marking a complete abstract as brief cannot bypass required analytical blocks', () => {
+  const brief = html.replace('>Essencial</h2>', '>Essencial</h2><h2 class="sec">Outras novidades</h2>').replace('data-kind="analysis"', 'data-kind="brief"');
+  assert.equal(validate(brief).ok, true);
+  const result = validate(brief.replace('<h4>Contexto</h4>', '').replace('<h4>Implicação prática</h4>', ''));
+  assert.ok(result.errors.some((error) => error.includes('Contexto')));
+  assert.ok(result.errors.some((error) => error.includes('Implicação prática')));
+});
 test('all references removed fails instead of 0/0 success', () =>
   assert.equal(validate(html.replaceAll(ref, '')).ok, false));
 test('metadata cannot become essential analysis', () =>
