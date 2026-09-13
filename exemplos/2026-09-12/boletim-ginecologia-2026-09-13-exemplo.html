@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ginecologia — Boletim de 12 de setembro de 2026</title>
+<style>
+  :root{
+    --azul:#B84574; --azul2:#B84574; --acc:#0f766e;
+    --bg:#f4f6f8; --card:#ffffff; --txt:#1c2733; --mut:#5b6b7a; --bord:#dde4ea;
+    --tag-bg:#e8f1f8;
+    --c-onco:#7c2d12; --c-onco-bg:#fef0e7;
+    --c-sex:#7e22ce;  --c-sex-bg:#f5ecfd;
+    --c-andro:#0f766e;--c-andro-bg:#e6f4f2;
+    --c-ped:#0369a1;  --c-ped-bg:#e8f3fb;
+    --c-geral:#155a8a;--c-geral-bg:#e8f1f8;
+    --c-reg:#9a3412;  --c-reg-bg:#fdf0e0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(--txt);line-height:1.55;padding-bottom:48px}
+  .wrap{max-width:820px;margin:0 auto;padding:0 14px}
+  header{background:linear-gradient(135deg,var(--azul) 0%,var(--azul2) 100%);color:#fff;padding:30px 14px 24px;margin-bottom:22px}
+  header h1{font-size:1.55rem;letter-spacing:.3px;font-weight:700}
+  header .sub{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.85rem;opacity:.85;margin-top:6px}
+  header .data{display:inline-block;font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.8rem;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:3px 12px;margin-top:12px}
+  h2.sec{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.14em;color:var(--mut);border-bottom:2px solid var(--azul);padding-bottom:6px;margin:28px 0 14px}
+  h2.sec .n{color:var(--azul);font-weight:700}
+  .item{background:var(--card);border:1px solid var(--bord);border-radius:10px;margin-bottom:12px;overflow:hidden;box-shadow:0 1px 2px rgba(16,42,67,.05)}
+  .item>button.head{display:block;width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:14px 16px;font-family:inherit;color:inherit}
+  .tag{display:inline-block;font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;border-radius:4px;padding:2px 7px;margin-bottom:7px;margin-right:6px;color:var(--azul);background:var(--tag-bg)}
+  /* Badges coloridas por assunto — use a que combinar com o item: */
+  .t-onco{color:var(--c-onco);background:var(--c-onco-bg)}   /* Uro-oncologia / câncer */
+  .t-sex{color:var(--c-sex);background:var(--c-sex-bg)}       /* Medicina sexual */
+  .t-andro{color:var(--c-andro);background:var(--c-andro-bg)} /* Andrologia / saúde do homem */
+  .t-ped{color:var(--c-ped);background:var(--c-ped-bg)}       /* Pediátrica / congênito */
+  .t-geral{color:var(--c-geral);background:var(--c-geral-bg)} /* Urologia geral / litíase / HPB */
+  .t-reg{color:var(--c-reg);background:var(--c-reg-bg)}       /* Regulatório / diretriz / prática muda */
+  .item h3{font-size:1.02rem;color:var(--azul);line-height:1.35;margin-bottom:6px}
+  .item .resumo{font-size:.92rem;color:var(--txt)}
+  .item .fonte-curta{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.74rem;color:var(--mut);margin-top:8px}
+  .chev{float:right;margin-left:10px;color:var(--azul);font-family:'Segoe UI',Arial,sans-serif;font-size:.95rem;font-weight:600;transition:transform .25s ease;display:inline-block}
+  .item.open .chev{transform:rotate(90deg)}
+  .det{display:none;border-top:1px solid var(--bord);background:var(--card);padding:16px 16px 18px}
+  .item.open .det{display:block}
+  .det h4{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--acc);margin:14px 0 4px}
+  .det h4:first-child{margin-top:0}
+  .det p{font-size:.9rem;margin-bottom:8px}
+  .det ul{margin:0 0 8px 20px}
+  .det li{font-size:.9rem;margin-bottom:4px}
+  .refs{margin-top:14px;padding-top:10px;border-top:1px dashed var(--bord)}
+  .refs h4{color:var(--azul)}
+  .refs p{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.8rem;color:var(--mut);margin-bottom:6px}
+  a{color:var(--azul);word-break:break-word}
+  .fontes-finais{background:var(--card);border:1px solid var(--bord);border-radius:10px;padding:18px 18px 12px;margin-top:8px}
+  .fontes-finais ol{margin-left:20px}
+  .fontes-finais li{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.8rem;color:var(--mut);margin-bottom:8px}
+  .nota{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:.75rem;color:var(--mut);margin-top:20px;text-align:center}
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#000000; --card:#1C1C1E; --txt:#E5E5EA; --mut:#98989F; --bord:#38383A;
+      --tag-bg:rgba(255,255,255,.10); --acc:#5EEAD4;
+      --c-onco:#FF9F6E; --c-onco-bg:rgba(255,159,110,.14);
+      --c-sex:#D8B4FE;  --c-sex-bg:rgba(216,180,254,.14);
+      --c-andro:#5EEAD4;--c-andro-bg:rgba(94,234,212,.13);
+      --c-ped:#7DD3FC;  --c-ped-bg:rgba(125,211,252,.14);
+      --c-geral:#64A8FF;--c-geral-bg:rgba(100,168,255,.15);
+      --c-reg:#FDBA74;  --c-reg-bg:rgba(253,186,116,.14);
+    }
+    body{background:var(--bg);color:var(--txt)}
+    .item,.fontes-finais{box-shadow:none}
+    .item h3{color:#FFFFFF}
+    h2.sec .n,.chev,a{color:#0A84FF}
+    h2.sec{border-bottom-color:#0A84FF}
+    .tag:not([class*="t-"]){color:#E5E5EA}
+    header .data{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25)}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Boletim de Ginecologia</h1>
+    <div class="sub">Atualização científica semanal para a prática clínica</div>
+    <span class="data">Edição de 12 de setembro de 2026</span>
+  </div>
+</header>
+<div class="wrap">
+  <h2 class="sec"><span class="n">1 ·</span> Essencial — os destaques do período</h2>
+
+  <!-- ESSENCIAL 1 — Salpingectomia -->
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-onco">Prevenção do câncer de ovário</span><span class="tag t-reg">Diretriz</span>
+      <h3>Salpingectomia bilateral para prevenir câncer epitelial de ovário: atualização estende oferta a cirurgias não ginecológicas</h3>
+      <p class="resumo">Documento de atualização de prática clínica reforça o benefício da salpingectomia bilateral completa durante cirurgias obstétricas e ginecológicas. Também propõe ampliar sua oferta em cirurgias abdominopélvicas não ginecológicas, como prevenção primária do câncer epitelial de ovário. Atualiza o Committee Opinion nº 774, de 2019. O material não trazia o detalhamento das recomendações.</p>
+      <div class="fonte-curta">Obstetrics &amp; Gynecology, 24/08/2026 · documento institucional (sem autoria individual listada)</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A salpingectomia oportunista como estratégia de prevenção do câncer epitelial de ovário já era tema do Committee Opinion nº 774 (Obstet Gynecol 2019;133:e279-84). Este Clinical Practice Update atualiza esse documento.</p>
+      <h4>O que mudou</h4>
+      <ul>
+        <li>Traz informações atualizadas que, segundo o documento, <strong>reforçam</strong> o benefício da salpingectomia bilateral <strong>completa</strong> feita durante cirurgias obstétricas e ginecológicas.</li>
+        <li><strong>Novidade descrita:</strong> propõe ampliar a oferta de salpingectomia durante cirurgias abdominopélvicas <strong>não ginecológicas</strong>, com o objetivo de prevenção primária.</li>
+        <li>Substitui o Committee Opinion nº 774, de 2019.</li>
+        <li>O resumo não traz os estudos considerados, a magnitude da redução de risco, os critérios de elegibilidade, os procedimentos cirúrgicos contemplados nem a força das recomendações. Para esses pontos, consulte o documento integral.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Na prática, o documento sugere incluir a salpingectomia bilateral completa na discussão pré-operatória de cirurgias obstétricas e ginecológicas. A novidade é levar essa discussão a equipes de outras especialidades cirúrgicas abdominopélvicas. O material não permite definir quais pacientes e quais procedimentos se enquadram, nem tratar de riscos ou efeitos sobre a função ovariana. A situação regulatória e a cobertura no Brasil não foram verificadas nesta edição.</p>
+      <h4>Limitações</h4>
+      <p>O material disponível não detalha as limitações. O resumo não apresenta dados de eficácia ou de segurança, e o documento foi elaborado no contexto norte-americano.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Salpingectomy for the Prevention of Epithelial Ovarian Cancer. Obstetrics &amp; Gynecology. 2026. DOI: <a href="https://doi.org/10.1097/AOG.0000000000006400">https://doi.org/10.1097/AOG.0000000000006400</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42623672/">https://pubmed.ncbi.nlm.nih.gov/42623672/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESSENCIAL 2 — Oclusão de artérias uterinas -->
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Miomas</span>
+      <h3>Oclusão das artérias uterinas na miomectomia laparoscópica não reduziu a perda sanguínea em ensaio randomizado pequeno</h3>
+      <p class="resumo">Em 60 mulheres com miomas sintomáticos, ocluir as artérias uterinas por clipe, sutura em cadarço ou coagulação bipolar não reduziu a perda sanguínea estimada em relação a não ocluir (diferença de 30 mL; IC 95%: −50 a 110) e alongou a cirurgia (mediana de 160 vs. 120 min). O desfecho primário ficou subdimensionado.</p>
+      <div class="fonte-curta">BMC Women's Health, 27/08/2026 · Shoukry et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A miomectomia laparoscópica pode causar sangramento intraoperatório importante. A oclusão das artérias uterinas é usada para reduzir a perda de sangue, mas seu benefício frente à não oclusão e o desempenho relativo das técnicas eram incertos. <em>Observação: o resumo disponível estava truncado; só o que consta abaixo foi verificado.</em></p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Ensaio clínico randomizado (ECR) prospectivo, simples-cego, com quatro braços, realizado no Egito. Foram randomizadas 61 participantes e 60 entraram na análise por intenção de tratar modificada: clipe (n = 15), sutura em cadarço (n = 15), coagulação bipolar (n = 16) e sem oclusão (n = 14).</li>
+        <li><strong>Desfecho primário</strong> (oclusão, qualquer técnica, vs. sem oclusão): a perda sanguínea estimada teve mediana de 260 mL (IIQ 160–400) vs. 205 mL (IIQ 190–300), com diferença de Hodges-Lehmann de 30 mL (IC 95%: −50 a 110; p = 0,416). A queda de hemoglobina em 24 h foi de 1,17 ± 0,78 vs. 1,11 ± 0,44 g/dL (p = 0,759).</li>
+        <li>O tempo operatório foi maior com oclusão (mediana de 160 vs. 120 min; p = 0,007).</li>
+        <li>Houve transfusão em 11 de 46 participantes (23,9%) com oclusão e em nenhuma das 14 sem oclusão (diferença de risco de 23,9 pontos percentuais; IC 95%: 0,2–37,9; Fisher p = 0,053).</li>
+        <li><strong>Análises exploratórias</strong> entre as quatro técnicas: a coagulação bipolar teve a menor mediana de perda sanguínea e o menor tempo operatório entre as técnicas de oclusão, mas não demonstrou superioridade sobre a não oclusão.</li>
+        <li>Após três meses, não houve diferença detectável no hormônio antimülleriano (AMH) nem na contagem de folículos antrais, com ajuste para valores basais e idade.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Na prática, o estudo não sustenta a oclusão rotineira das artérias uterinas com o único objetivo de reduzir sangramento na miomectomia laparoscópica. Por outro lado, também não demonstra ausência de efeito: segundo os autores, o intervalo é compatível tanto com benefício quanto com dano clinicamente importantes. As transfusões ocorreram só no grupo oclusão, um sinal que merece atenção, mas sem significância estatística. A falta de diferença nos marcadores de reserva ovariana em três meses não comprova segurança ovariana a longo prazo.</p>
+      <h4>Limitações</h4>
+      <p>A variabilidade da perda sanguínea superou a suposição inicial, e por isso a comparação primária ficou subdimensionada. A amostra é pequena, com 14 a 16 participantes por técnica, e o estudo é simples-cego. Havia desequilíbrios basais nos marcadores de reserva ovariana, tratados com ajuste. O seguimento ovariano foi curto (três meses). O resumo estava truncado, então outras limitações ou detalhes não foram verificados.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Shoukry A, Aboali OA, Abdelquader MF, Gouda AMH. Comparing different techniques of uterine artery occlusion during laparoscopic myomectomy: a randomized controlled trial. BMC Women's Health. 2026. DOI: <a href="https://doi.org/10.1186/s12905-026-04799-z">https://doi.org/10.1186/s12905-026-04799-z</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42649498/">https://pubmed.ncbi.nlm.nih.gov/42649498/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESSENCIAL 3 — Menopausa precoce e eventos CV -->
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-andro">Menopausa</span>
+      <h3>Menopausa natural antes dos 45 anos associou-se a eventos cardiovasculares, com resultados diferentes por tabagismo e diabetes</h3>
+      <p class="resumo">Metanálise de sete coortes, com mais de 1,77 milhão de mulheres, encontrou associação com insuficiência cardíaca (HR 1,23; IC 95%: 1,02–1,49) e doença coronariana (RR 1,26; IC 95%: 1,18–1,35) entre não fumantes. Entre fumantes, não houve associação estatisticamente significativa. Cada estimativa estratificada reuniu apenas dois estudos, várias com heterogeneidade elevada.</p>
+      <div class="fonte-curta">Frontiers in Public Health, 04/09/2026 · Chen et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>O impacto da menopausa precoce sobre eventos cardiovasculares pode ser modificado pelo tabagismo e pelo diabetes mellitus tipo 2 (DM2). A revisão estimou essa associação separadamente em cada estrato. A menopausa precoce foi definida como menopausa natural antes dos 45 anos, o que inclui a menopausa prematura (&lt;40 anos).</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Revisão sistemática com metanálise registrada no PROSPERO (CRD420251238709). Buscas em Embase, Web of Science, PubMed e Cochrane até janeiro de 2026. Foram incluídas sete coortes com mais de 1,77 milhão de mulheres na pós-menopausa.</li>
+        <li><strong>Não fumantes:</strong> insuficiência cardíaca (IC) com HR 1,23 (IC 95%: 1,02–1,49; I² = 87,9%) e doença coronariana com RR 1,26 (IC 95%: 1,18–1,35; I² = 0%).</li>
+        <li><strong>Fumantes:</strong> sem associação estatisticamente significativa para IC (HR 1,15; IC 95%: 0,88–1,52) nem para doença coronariana (RR 1,63; IC 95%: 0,90–2,96; I² = 97,2%).</li>
+        <li><strong>Sem DM2:</strong> IC com HR 1,19 (IC 95%: 1,00–1,43; p = 0,050), achado limítrofe que os autores pedem para interpretar com cautela; acidente vascular cerebral com HR 1,11 (IC 95%: 1,09–1,13).</li>
+        <li><strong>Com DM2:</strong> IC com HR 1,29 (IC 95%: 1,11–1,50); para acidente vascular cerebral, sem associação significativa (HR 1,11; IC 95%: 0,99–1,25).</li>
+        <li><strong>Mortalidade por todas as causas:</strong> sem associação estatisticamente significativa com ou sem DM2.</li>
+        <li>Todas as estimativas estratificadas vieram de apenas dois estudos (n = 2).</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Na prática, o dado reforça a idade da menopausa como informação relevante da anamnese para identificar mulheres com maior risco cardiovascular. O desenho observacional não permite concluir que a menopausa precoce cause esses eventos. Também não permite dizer que alguma intervenção modifique o risco, porque o material não aborda tratamento. O resultado sem significância em fumantes não indica ausência de risco nesse grupo: os intervalos são amplos e a heterogeneidade é muito alta.</p>
+      <h4>Limitações</h4>
+      <p>Cada estrato teve apenas dois estudos, e a heterogeneidade foi elevada em várias estimativas (I² de até 97,2%). Os dados são observacionais, e um dos achados é limítrofe. O resumo não detalha o ajuste para confundidores nem a avaliação de qualidade dos estudos incluídos.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Chen Z, Zhang X, Chen Y, Shi W, Ma C, Chen X et al. Association between early menopause and adverse cardiovascular events in postmenopausal women: a systematic review and meta-analysis stratified by smoking status and type 2 diabetes mellitus. Frontiers in Public Health. 2026. DOI: <a href="https://doi.org/10.3389/fpubh.2026.1906440">https://doi.org/10.3389/fpubh.2026.1906440</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42694168/">https://pubmed.ncbi.nlm.nih.gov/42694168/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESSENCIAL 4 — RxPONDER AMH -->
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-onco">Câncer de mama e reserva ovariana</span>
+      <h3>Hormônio antimülleriano (AMH) associou-se ao benefício da quimioterapia adjuvante em análise do ensaio RxPONDER</h3>
+      <p class="resumo">Em 1.556 participantes com menos de 55 anos e câncer de mama com receptor hormonal positivo, HER2 negativo e linfonodo positivo, a quimioterapia somada à endocrinoterapia melhorou a sobrevida livre de doença invasiva quando o AMH era ≥10 pg/mL (HR 0,46; IC 95%: 0,33–0,65). Com AMH &lt;10 pg/mL, não houve benefício (HR 1,27; IC 95%: 0,81–1,99).</p>
+      <div class="fonte-curta">Annals of Oncology, 18/08/2026 · Kalinsky et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>O ensaio de fase 3 RxPONDER comparou endocrinoterapia isolada com endocrinoterapia mais quimioterapia em câncer de mama RH+/HER2− com escore de recorrência ≤25. O benefício da quimioterapia no desfecho primário, a sobrevida livre de doença invasiva (SLDI), limitou-se a mulheres na pré-menopausa, que em sua maioria não receberam supressão da função ovariana. Esta análise investigou se hormônios ligados à reserva ovariana refinam a previsão desse benefício.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Análise de biomarcadores séricos pré-tratamento em 1.556 participantes com menos de 55 anos: estradiol, progesterona, hormônio foliculoestimulante (FSH), hormônio luteinizante (LH), AMH e inibina B. As dosagens foram cegas, com pontos de corte predefinidos, ajuste para o escore de recorrência e correção para multiplicidade. Não se trata da análise primária do ensaio.</li>
+        <li>Estradiol, progesterona, LH e FSH basais não previram benefício da quimioterapia.</li>
+        <li>O AMH ≥10 pg/mL mostrou interação significativa com o benefício da quimioterapia na SLDI (P ajustado = 0,0034).</li>
+        <li>Nas 64% com AMH ≥10 pg/mL, a SLDI foi melhor com quimioterapia mais endocrinoterapia (HR 0,46; IC 95%: 0,33–0,65; P ajustado = 0,00012). Nas 36% com AMH &lt;10 pg/mL, não houve benefício (HR 1,27; IC 95%: 0,81–1,99; P ajustado = 0,47).</li>
+        <li>A sobrevida livre de recidiva a distância teve padrão semelhante. A inibina B ultrassensível também foi preditiva.</li>
+        <li>Segundo os autores, o AMH foi melhor indicador do benefício da quimioterapia que o status menopausal, a idade ou os outros hormônios.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Na prática, este dado sugere que medidas de reserva ovariana podem ajudar a selecionar quem se beneficia de quimioterapia adjuvante, de forma mais precisa que o status menopausal clínico. O ginecologista que acompanha essas pacientes deve conhecer o dado. Ainda não é possível concluir que o AMH deva orientar a decisão terapêutica: o resultado vem de análise de biomarcadores e o material não descreve validação externa. Também não se sabe se estratégias como a supressão ovariana mudariam esse cenário. A situação no Brasil não foi verificada nesta edição.</p>
+      <h4>Limitações</h4>
+      <p>O material disponível não detalha as limitações. É uma análise de biomarcadores em um subconjunto do ensaio, e não a comparação primária randomizada. O resumo não descreve validação em coorte independente.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Kalinsky K, Barlow WE, Pathak HB, Puri RV, Mitra A, Home T et al. Ovarian reserve as a measure of adjuvant chemotherapy benefit in hormone receptor positive (HR-positive), HER2-negative, node-positive breast cancer in SWOG S1007 (RxPONDER). Annals of Oncology. 2026. DOI: <a href="https://doi.org/10.1016/j.annonc.2026.05.697">https://doi.org/10.1016/j.annonc.2026.05.697</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42613139/">https://pubmed.ncbi.nlm.nih.gov/42613139/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="sec"><span class="n">2 ·</span> Outras novidades — vale o registro</h2>
+
+  <!-- OUTRAS 1 — Aromaterapia -->
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-andro">Menopausa</span>
+      <h3>Aromaterapia para sintomas da menopausa: metanálise sugere benefício, com certeza da evidência baixa ou muito baixa</h3>
+      <p class="resumo">A revisão reuniu 17 estudos (n = 1.347), entre ensaios randomizados e quase-experimentais. A aromaterapia associou-se a melhora de sintomas vasomotores (diferença média padronizada, SMD, −0,79; IC 95%: −1,11 a −0,47), do sono e da função sexual, sem efeito nos sintomas urogenitais. Os autores afirmam que ainda não é possível fazer recomendações clínicas firmes.</p>
+      <div class="fonte-curta">Journal of Obstetrics and Gynaecology, 08/09/2026 · Bagheri et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>Algumas mulheres procuram opções não hormonais para os sintomas vasomotores, psicológicos e do sono na pós-menopausa. A revisão sintetizou os estudos sobre aromaterapia, por inalação ou massagem.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Revisão sistemática registrada no PROSPERO (CRD420261303084), com buscas até 02/01/2026. Incluiu 21 artigos de 17 estudos. Os autores usaram a ferramenta de risco de viés Cochrane e o GRADE.</li>
+        <li>Resultados: sintomas menopausais globais com SMD −1,00 (IC 95%: −1,43 a −0,58); qualidade do sono com diferença média (MD) −3,95 (IC 95%: −5,94 a −1,97); função sexual com MD 7,05 (IC 95%: 3,64–10,45); ansiedade com SMD −0,63; depressão com SMD −0,57. Sem efeito significativo nos sintomas urogenitais.</li>
+        <li>Certeza GRADE declarada pelos autores: muito baixa para função sexual e sono, baixa para os demais desfechos.</li>
+        <li>No resumo leigo, os autores relatam benefício maior com massagem do que com inalação isolada. O número de estudos por subgrupo foi limitado.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Este dado sugere um possível papel complementar para a aromaterapia, mas não permite considerá-la eficaz nem segura: poucos estudos relataram eventos adversos. Também não sustenta a substituição de tratamentos com eficácia estabelecida.</p>
+      <h4>Limitações</h4>
+      <p>Heterogeneidade substancial, limitações metodológicas, poucos estudos para análises de subgrupo, intervenções não padronizadas e relato inconsistente de eventos adversos.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Bagheri L, Ghiasi A, Biabani F. Effects of aromatherapy on menopausal symptoms: a systematic review and meta-analysis. Journal of Obstetrics and Gynaecology. 2026. DOI: <a href="https://doi.org/10.1080/01443615.2026.2723303">https://doi.org/10.1080/01443615.2026.2723303</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42709539/">https://pubmed.ncbi.nlm.nih.gov/42709539/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTRAS 2 — Cardiometabólico -->
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-andro">Menopausa</span>
+      <h3>Transição menopausal como janela para identificar risco cardiovascular: revisão do Green Journal</h3>
+      <p class="resumo">Revisão da Clinical Expert Series sobre fatores associados a risco cardiovascular: momento e tipo de menopausa, sintomas vasomotores, distúrbios do sono e depressão. Descreve também mudanças longitudinais em lipídios, pressão arterial, glicemia, composição corporal e estrutura vascular. Propõe incorporar fatores específicos da menopausa à avaliação de risco cardiovascular de rotina.</p>
+      <div class="fonte-curta">Obstetrics &amp; Gynecology, 03/09/2026 · Karam et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A doença cardiovascular (DCV) é a principal causa de morte entre mulheres e costuma ser subestimada na meia-idade. Segundo os autores, o ginecologista é muitas vezes o clínico principal nessa fase da vida.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Revisão de especialistas, sem metodologia sistemática descrita no resumo.</li>
+        <li>Segundo os autores, evidências emergentes indicam que a menopausa é uma janela de alterações cardiometabólicas e vasculares adversas que vão além do envelhecimento cronológico.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Este dado sugere considerar a consulta da transição menopausal uma oportunidade de rastrear fatores de risco cardiovascular e articular o cuidado com a atenção primária ou a cardiologia. O resumo não traz estimativas numéricas nem protocolos específicos.</p>
+      <h4>Limitações</h4>
+      <p>Revisão narrativa. O material disponível não detalha as limitações.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Karam J, Lau ES, Shufelt CL. The Cardiometabolic Effects of Menopause. Obstetrics &amp; Gynecology. 2026. DOI: <a href="https://doi.org/10.1097/AOG.0000000000006418">https://doi.org/10.1097/AOG.0000000000006418</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42691325/">https://pubmed.ncbi.nlm.nih.gov/42691325/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTRAS 3 — Dermatoses vulvares -->
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-sex">Patologia vulvar</span>
+      <h3>Dermatoses vulvares ou síndrome geniturinária da menopausa (GSM)? Roteiro diagnóstico baseado na morfologia</h3>
+      <p class="resumo">Revisão prática propõe diferenciar a GSM de dermatoses vulvares inflamatórias, infecciosas e neoplásicas pela morfologia e distribuição das lesões e pelos achados mucocutâneos associados. Recomenda biópsia quando indicada e encaminhamento em caso de dúvida diagnóstica, doença refratária ou multifocal, cicatrização, prejuízo funcional ou necessidade de terapia sistêmica.</p>
+      <div class="fonte-curta">Obstetrics &amp; Gynecology, 03/09/2026 · Negris et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A GSM é uma condição hipoestrogênica crônica, com palidez vulvovaginal, afinamento epitelial, perda de rugosidade e atrofia mucosa. Causa sintomas como secura, disúria, urgência e dispareunia, que se sobrepõem aos de muitas dermatoses vulvares.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Revisão com abordagem estruturada: anamnese dirigida, exame físico focado e biópsia oportuna quando indicada.</li>
+        <li>Recomenda encaminhar à dermatologia ou a especialista em vulva nas situações descritas no resumo.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>A proposta pode reduzir a classificação errônea de dermatoses como GSM e antecipar o tratamento dirigido. O material não traz dados de desempenho diagnóstico da abordagem.</p>
+      <h4>Limitações</h4>
+      <p>Revisão prática, sem validação da abordagem descrita no resumo. O material disponível não detalha as limitações.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Negris O, Ghafari-Saravi A, Mauskar MM. A Practical Management Approach to Vulvar Dermatoses and Genitourinary Syndrome of Menopause. Obstetrics &amp; Gynecology. 2026. DOI: <a href="https://doi.org/10.1097/AOG.0000000000006422">https://doi.org/10.1097/AOG.0000000000006422</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42691326/">https://pubmed.ncbi.nlm.nih.gov/42691326/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTRAS 4 — Sono -->
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-andro">Menopausa</span>
+      <h3>Distúrbios do sono na perimenopausa e na pós-menopausa: revisão narrativa</h3>
+      <p class="resumo">Revisão da literatura de 2015 a 2026 sobre insônia, apneia obstrutiva do sono, síndrome das pernas inquietas e transtorno de movimentos periódicos dos membros, com seus fatores biopsicossociais. A prevalência de distúrbios do sono foi maior na perimenopausa e na pós-menopausa que na pré-menopausa, e variou com sintomas vasomotores e método de aferição.</p>
+      <div class="fonte-curta">Obstetrics &amp; Gynecology, 06/09/2026 · Lyu e Kravitz</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>Os distúrbios do sono afetam a qualidade de vida na transição menopausal. A revisão organiza os distúrbios primários e os fatores secundários.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Revisão narrativa com buscas em PubMed/MEDLINE, Embase e Google Scholar (janeiro de 2015 a março de 2026).</li>
+        <li>A prevalência variou conforme o estágio menopausal, a presença de sintomas vasomotores e a forma de medir (questionários ou medidas objetivas). Fatores modificáveis e não modificáveis influenciaram os resultados.</li>
+        <li>Inclui considerações práticas para avaliar as queixas de sono.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>A revisão sugere não atribuir automaticamente a queixa de sono aos sintomas vasomotores e investigar distúrbios primários, como apneia e pernas inquietas. O resumo não traz números de prevalência nem algoritmos específicos.</p>
+      <h4>Limitações</h4>
+      <p>Revisão narrativa. O material disponível não detalha as limitações.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Lyu AC, Kravitz HM. Sleep Disruption in the Menopausal Transition and Postmenopause: A Narrative Review. Obstetrics &amp; Gynecology. 2026. DOI: <a href="https://doi.org/10.1097/AOG.0000000000006420">https://doi.org/10.1097/AOG.0000000000006420</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42691327/">https://pubmed.ncbi.nlm.nih.gov/42691327/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTRAS 5 — PMOS -->
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-ped">Endocrinologia ginecológica</span>
+      <h3>Síndrome ovariana metabólica poliendócrina (PMOS) além da idade reprodutiva: melhora dos sinais não parece indicar resolução</h3>
+      <p class="resumo">Revisão narrativa descreve que regularidade menstrual, ovulação, morfologia ovariana e hiperandrogenismo bioquímico tendem a melhorar com a idade, o que dificulta o diagnóstico entre os 30 e os 40 anos. Mesmo assim, a carga metabólica, cardiovascular e psicológica persiste na meia-idade. Estudos longitudinais que se estendam após a menopausa ainda são escassos.</p>
+      <div class="fonte-curta">Fertility and Sterility, 07/09/2026 · HogenEsch e Huddleston</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A PMOS é um dos distúrbios endócrinos mais comuns em mulheres em idade reprodutiva e vem sendo reconhecida como condição que acompanha toda a vida.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Revisão narrativa sobre mudanças do fenótipo reprodutivo e endócrino com a idade, desafios diagnósticos e implicações cardiometabólicas, psicológicas e cognitivas de longo prazo.</li>
+        <li>Os autores apontam como prioridade de pesquisa a escassez de estudos longitudinais que acompanhem as mulheres após a menopausa.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>A revisão sugere manter a avaliação de risco e o cuidado preventivo multidisciplinar em mulheres com PMOS mesmo depois que os sintomas reprodutivos melhoram. O resumo não quantifica riscos nem define protocolos de seguimento.</p>
+      <h4>Limitações</h4>
+      <p>Revisão narrativa. Os autores reconhecem a escassez de dados longitudinais após a menopausa.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>HogenEsch E, Huddleston HG. PMOS beyond the reproductive years: menopause and long-term health outcomes. Fertility and Sterility. 2026. DOI: <a href="https://doi.org/10.1016/j.fertnstert.2026.08.1133">https://doi.org/10.1016/j.fertnstert.2026.08.1133</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42705588/">https://pubmed.ncbi.nlm.nih.gov/42705588/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTRAS 6 — Imagem corporal na dor pélvica -->
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-sex">Endometriose e dor pélvica</span>
+      <h3>Endometriose e dor pélvica crônica associaram-se a pior imagem corporal em metanálise</h3>
+      <p class="resumo">A revisão reuniu 22 estudos (N = 7.609). Pessoas com dor pélvica crônica, incluindo endometriose e vulvodínia, tiveram preocupações com a imagem corporal mais intensas que controles saudáveis (tamanho de efeito g = 0,50; IC 95%: 0,30–0,69). Ansiedade, depressão, solidão e disfunção sexual associaram-se à imagem corporal. Muitos estudos eram transversais.</p>
+      <div class="fonte-curta">Body Image, 30/08/2026 · Sullivan-Myers et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A alteração da imagem corporal é um impacto psicológico comum da endometriose e de outras condições de dor pélvica crônica (DPC).</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Revisão sistemática com metanálise de estudos quantitativos, com buscas em Medline, CINAHL, EMBASE, PsycINFO, Scopus e ProQuest. O risco de viés foi avaliado por ferramentas Cochrane e para estudos não randomizados.</li>
+        <li>Houve alta prevalência de alteração da imagem corporal em todos os tipos de DPC.</li>
+        <li>Os autores sugerem a funcionalidade corporal como possível alvo de intervenção.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Este dado sugere incluir a imagem corporal e fatores psicossociais na abordagem da mulher com endometriose ou dor pélvica crônica. Por serem associações, não se pode concluir sobre a direção causal nem sobre a eficácia de intervenções.</p>
+      <h4>Limitações</h4>
+      <p>Predomínio de desenho transversal, pouco uso de teoria para interpretar os achados e qualidade limitada de muitos estudos incluídos.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Sullivan-Myers C, Sherman KA, Kopp E. Body image concerns in individuals with endometriosis and chronic pelvic pain conditions: A systematic review and meta-analysis. Body Image. 2026. DOI: <a href="https://doi.org/10.1016/j.bodyim.2026.102161">https://doi.org/10.1016/j.bodyim.2026.102161</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42600312/">https://pubmed.ncbi.nlm.nih.gov/42600312/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTRAS 7 — Escetamina -->
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-geral">Cirurgia ambulatorial</span>
+      <h3>Escetamina não melhorou a recuperação no primeiro dia após procedimentos ginecológicos ambulatoriais sob sedação</h3>
+      <p class="resumo">Ensaio duplo-cego com 126 mulheres comparou escetamina 0,2 mg/kg e sufentanil 0,1 µg/kg, ambos associados a propofol. A pontuação de qualidade de recuperação (QoR-15) no primeiro dia não diferiu entre os grupos (137,9 vs. 137,8; diferença de 0,2; IC 95%: −4,2 a 4,6). A escetamina reduziu a dor à injeção, mas aumentou a dor precoce e a fadiga.</p>
+      <div class="fonte-curta">Annals of Medicine, 04/09/2026 · Wang et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A escetamina perioperatória tem sido associada a melhor qualidade de recuperação precoce, mas havia poucos dados em cirurgia ambulatorial.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>ECR duplo-cego, iniciado pelos investigadores (ChiCTR2500098466), com mulheres de 18 a 65 anos. Das 126 randomizadas, 125 foram analisadas.</li>
+        <li><strong>Primário</strong> (QoR-15 no primeiro dia pós-operatório): não demonstrou diferença (p = 0,93).</li>
+        <li><strong>Secundários</strong> com escetamina: permanência maior na sala de recuperação pós-anestésica (mediana de 28 vs. 23 min; p &lt; 0,001), menos dor intensa à injeção (22,6% vs. 50,8%; p = 0,002), mais dor ≥4 aos 30 min (30,6% vs. 6,3%; p = 0,001) e mais fadiga (mediana de 3,0 vs. 2,0; p = 0,01). Os demais desfechos secundários não diferiram.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>Não há, neste estudo, ganho de recuperação que justifique trocar o sufentanil pela escetamina nesse cenário. Por outro lado, a ausência de diferença não demonstra equivalência. Os achados secundários mostram vantagens e desvantagens, e não conclusões definitivas.</p>
+      <h4>Limitações</h4>
+      <p>O material disponível não detalha as limitações. O estudo tem amostra de porte moderado, e o resumo não especifica quais procedimentos ginecológicos foram incluídos.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Wang XL, Li YN, Ma QL, Qu MC, Zhang JW, Jing MZ et al. Esketamine vs. sufentanil for quality of recovery after outpatient gynecological surgery: a randomized clinical trial. Annals of Medicine. 2026. DOI: <a href="https://doi.org/10.1080/07853890.2026.2723715">https://doi.org/10.1080/07853890.2026.2723715</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42693883/">https://pubmed.ncbi.nlm.nih.gov/42693883/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTRAS 8 — Agenesia cervicovaginal -->
+  <div class="item">
+    <button class="head" aria-expanded="false">
+      <span class="chev">›</span>
+      <span class="tag t-ped">Malformações mullerianas</span>
+      <h3>Técnica laparoscópica que preserva o útero na agenesia cervicovaginal com remanescentes funcionais: série de sete casos</h3>
+      <p class="resumo">A neovaginoplastia por tração peritoneal, combinada à anastomose uterovaginal guiada por cateter, restaurou a drenagem menstrual nas sete pacientes operadas entre 2019 e 2024. Não houve lesão intraoperatória de bexiga, reto, ureter ou vasos. Uma paciente precisou de histerectomia por doença inflamatória pélvica recorrente. O potencial reprodutivo ainda não foi estabelecido.</p>
+      <div class="fonte-curta">BJOG, 02/09/2026 · Aslan et al.</div>
+    </button>
+    <div class="det">
+      <h4>Contexto</h4>
+      <p>A agenesia cervicovaginal com remanescentes uterinos funcionais é uma anomalia mulleriana rara. Pode causar obstrução do fluxo menstrual, dor pélvica, hematometra, hematossalpinge e endometriose. Preservar o útero exige criar uma neovagina e garantir drenagem uterina duradoura.</p>
+      <h4>Desenho e achados</h4>
+      <ul>
+        <li>Descrição de técnica em sete pacientes: dissecção vesicorretal guiada por laparoscopia, neovaginoplastia por tração peritoneal, drenagem do remanescente, sonda de Foley intrauterina e anastomose circunferencial. Nos remanescentes bilaterais, as cavidades foram unificadas.</li>
+        <li>A histeroscopia ambulatorial confirmou anastomose pérvia e cavidade acessível. Não houve estenose tardia no seguimento disponível.</li>
+        <li>Uma paciente teve duas transferências de embriões congelados sem sucesso.</li>
+      </ul>
+      <h4>Implicação prática</h4>
+      <p>A técnica pode ser uma opção viável que preserva o útero em pacientes selecionadas, em centros com experiência. Segundo os autores, uma cavidade acessível não comprova função uterina normal, potencial de implantação nem segurança gestacional.</p>
+      <h4>Limitações</h4>
+      <p>Amostra muito pequena e seguimento reprodutivo limitado. Os autores pedem experiência multicêntrica, com imagem objetiva e dados reprodutivos.</p>
+      <div class="refs">
+        <h4>Fontes</h4>
+        <p>Aslan K, Kasapoglu I, Kosan B, Uncu G. A Uterus-Preserving Laparoscopic Technique for Cervicovaginal Agenesis With Functional Uterine Remnants. BJOG. 2026. DOI: <a href="https://doi.org/10.1111/1471-0528.70329">https://doi.org/10.1111/1471-0528.70329</a> · PubMed: <a href="https://pubmed.ncbi.nlm.nih.gov/42684013/">https://pubmed.ncbi.nlm.nih.gov/42684013/</a></p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="sec"><span class="n">3 ·</span> Fontes consultadas nesta edição</h2>
+  <div class="fontes-finais">
+    <ol>
+      <li>Salpingectomy for the Prevention of Epithelial Ovarian Cancer. Obstetrics &amp; Gynecology. 2026. <a href="https://doi.org/10.1097/AOG.0000000000006400">https://doi.org/10.1097/AOG.0000000000006400</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42623672/">https://pubmed.ncbi.nlm.nih.gov/42623672/</a></li>
+      <li>Shoukry A, Aboali OA, Abdelquader MF, Gouda AMH. Comparing different techniques of uterine artery occlusion during laparoscopic myomectomy: a randomized controlled trial. BMC Women's Health. 2026. <a href="https://doi.org/10.1186/s12905-026-04799-z">https://doi.org/10.1186/s12905-026-04799-z</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42649498/">https://pubmed.ncbi.nlm.nih.gov/42649498/</a></li>
+      <li>Chen Z, Zhang X, Chen Y, Shi W, Ma C, Chen X et al. Association between early menopause and adverse cardiovascular events in postmenopausal women: a systematic review and meta-analysis stratified by smoking status and type 2 diabetes mellitus. Frontiers in Public Health. 2026. <a href="https://doi.org/10.3389/fpubh.2026.1906440">https://doi.org/10.3389/fpubh.2026.1906440</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42694168/">https://pubmed.ncbi.nlm.nih.gov/42694168/</a></li>
+      <li>Kalinsky K, Barlow WE, Pathak HB, Puri RV, Mitra A, Home T et al. Ovarian reserve as a measure of adjuvant chemotherapy benefit in hormone receptor positive (HR-positive), HER2-negative, node-positive breast cancer in SWOG S1007 (RxPONDER). Annals of Oncology. 2026. <a href="https://doi.org/10.1016/j.annonc.2026.05.697">https://doi.org/10.1016/j.annonc.2026.05.697</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42613139/">https://pubmed.ncbi.nlm.nih.gov/42613139/</a></li>
+      <li>Bagheri L, Ghiasi A, Biabani F. Effects of aromatherapy on menopausal symptoms: a systematic review and meta-analysis. Journal of Obstetrics and Gynaecology. 2026. <a href="https://doi.org/10.1080/01443615.2026.2723303">https://doi.org/10.1080/01443615.2026.2723303</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42709539/">https://pubmed.ncbi.nlm.nih.gov/42709539/</a></li>
+      <li>Karam J, Lau ES, Shufelt CL. The Cardiometabolic Effects of Menopause. Obstetrics &amp; Gynecology. 2026. <a href="https://doi.org/10.1097/AOG.0000000000006418">https://doi.org/10.1097/AOG.0000000000006418</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42691325/">https://pubmed.ncbi.nlm.nih.gov/42691325/</a></li>
+      <li>Negris O, Ghafari-Saravi A, Mauskar MM. A Practical Management Approach to Vulvar Dermatoses and Genitourinary Syndrome of Menopause. Obstetrics &amp; Gynecology. 2026. <a href="https://doi.org/10.1097/AOG.0000000000006422">https://doi.org/10.1097/AOG.0000000000006422</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42691326/">https://pubmed.ncbi.nlm.nih.gov/42691326/</a></li>
+      <li>Lyu AC, Kravitz HM. Sleep Disruption in the Menopausal Transition and Postmenopause: A Narrative Review. Obstetrics &amp; Gynecology. 2026. <a href="https://doi.org/10.1097/AOG.0000000000006420">https://doi.org/10.1097/AOG.0000000000006420</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42691327/">https://pubmed.ncbi.nlm.nih.gov/42691327/</a></li>
+      <li>HogenEsch E, Huddleston HG. PMOS beyond the reproductive years: menopause and long-term health outcomes. Fertility and Sterility. 2026. <a href="https://doi.org/10.1016/j.fertnstert.2026.08.1133">https://doi.org/10.1016/j.fertnstert.2026.08.1133</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42705588/">https://pubmed.ncbi.nlm.nih.gov/42705588/</a></li>
+      <li>Sullivan-Myers C, Sherman KA, Kopp E. Body image concerns in individuals with endometriosis and chronic pelvic pain conditions: A systematic review and meta-analysis. Body Image. 2026. <a href="https://doi.org/10.1016/j.bodyim.2026.102161">https://doi.org/10.1016/j.bodyim.2026.102161</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42600312/">https://pubmed.ncbi.nlm.nih.gov/42600312/</a></li>
+      <li>Wang XL, Li YN, Ma QL, Qu MC, Zhang JW, Jing MZ et al. Esketamine vs. sufentanil for quality of recovery after outpatient gynecological surgery: a randomized clinical trial. Annals of Medicine. 2026. <a href="https://doi.org/10.1080/07853890.2026.2723715">https://doi.org/10.1080/07853890.2026.2723715</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42693883/">https://pubmed.ncbi.nlm.nih.gov/42693883/</a></li>
+      <li>Aslan K, Kasapoglu I, Kosan B, Uncu G. A Uterus-Preserving Laparoscopic Technique for Cervicovaginal Agenesis With Functional Uterine Remnants. BJOG. 2026. <a href="https://doi.org/10.1111/1471-0528.70329">https://doi.org/10.1111/1471-0528.70329</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42684013/">https://pubmed.ncbi.nlm.nih.gov/42684013/</a></li>
+    </ol>
+  </div>
+  <p class="nota">MedBrain · conteúdo gerado com apoio de IA e revisão humana antes da publicação.</p>
+</div>
+<script>
+(function(){
+  var items=document.querySelectorAll('.item');
+  items.forEach(function(it){
+    var btn=it.querySelector('button.head');
+    btn.addEventListener('click',function(){
+      var open=it.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+    });
+  });
+})();
+</script>
+</body>
+</html>

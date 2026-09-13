@@ -49,6 +49,10 @@ export async function pesquisar(query, dias = 30, max = 40) {
       art.match(/<ArticleId IdType="doi">([^<]+)</)?.[1] ??
       art.match(/<ELocationID EIdType="doi"[^>]*>([^<]+)</)?.[1] ??
       '';
+    const resumoBruto = todos(art, 'AbstractText').map((t) => t.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()).join(' ');
+    // Teto explícito e generoso (fidelidade à fonte). Abaixo dele o resumo
+    // vai INTEGRAL; acima, marcado como TRUNCADO — nunca corte silencioso.
+    const RESUMO_MAX = 4000;
     return {
       pmid: texto(art, 'PMID'),
       titulo: texto(art, 'ArticleTitle'),
@@ -56,7 +60,8 @@ export async function pesquisar(query, dias = 30, max = 40) {
       data: [texto(art, 'Year'), texto(art, 'Month'), texto(art, 'Day')].filter(Boolean).join(' '),
       autores,
       doi,
-      resumo: todos(art, 'AbstractText').map((t) => t.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()).join(' ').slice(0, 900),
+      resumo: resumoBruto.slice(0, RESUMO_MAX),
+      resumoStatus: !resumoBruto ? 'ausente' : resumoBruto.length > RESUMO_MAX ? 'truncado' : 'completo',
       tipos: todos(art, 'PublicationType').map((t) => t.replace(/<[^>]+>/g, '').trim()),
     };
   });
@@ -71,9 +76,10 @@ export function formatarParaPrompt(itens) {
         `[${i + 1}] ${a.titulo}`,
         `    Periódico: ${a.periodico} · Data: ${a.data} · Tipos: ${a.tipos.join(', ') || 'n/a'}`,
         `    Autores: ${a.autores.join(', ')}${a.autores.length >= 6 ? ' et al.' : ''}`,
-        `    Citações (OpenAlex): ${a.citacoes ?? 'n/a'} · DOI: ${a.doi || 'n/a'} · PMID: ${a.pmid} (https://pubmed.ncbi.nlm.nih.gov/${a.pmid}/)`,
-        a.resumo ? `    Resumo: ${a.resumo}` : '    (sem resumo no PubMed)',
-      ].join('\n')
+        `    Citações (OpenAlex, dado auxiliar): ${a.citacoes ?? 'n/a'} · DOI: ${a.doi || 'n/a'} · PMID: ${a.pmid} (https://pubmed.ncbi.nlm.nih.gov/${a.pmid}/)`,
+        `    Material disponível: ${a.resumoStatus === 'completo' ? 'resumo INTEGRAL' : a.resumoStatus === 'truncado' ? 'resumo TRUNCADO (corte no limite de caracteres — o que não estiver escrito aqui NÃO foi verificado)' : 'SÓ METADADOS (sem resumo — usar apenas para menção breve ou omitir)'}`,
+        a.resumo ? `    Resumo: ${a.resumo}` : '',
+      ].filter(Boolean).join('\n')
     )
     .join('\n\n');
 }

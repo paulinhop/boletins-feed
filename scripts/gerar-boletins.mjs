@@ -27,7 +27,8 @@
  * publicação só após revisão médica (merge do PR — ver .github/workflows/).
  */
 import { readFileSync, writeFileSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { join, dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { pesquisar, formatarParaPrompt, enriquecerCitacoes } from './pubmed.mjs';
 import { regulatorio, formatarRegulatorio } from './fontes-extra.mjs';
@@ -114,11 +115,11 @@ const PROVEDORES = {
   // Mesma ideia dos modos CLI, mas por HTTP: POST /ask + polling em /job/<id>.
   // Sem API key de IA em lugar nenhum — só o token do gateway (secret
   // IA_GATEWAY_TOKEN; URL em IA_GATEWAY_URL, padrão: endpoint público HTTPS).
-  // ATENÇÃO: o gateway limita o prompt a 16000 chars (vai como argv do CLI
-  // no Windows) — prompts maiores recebem 413. Ver IA_GATEWAY.md / docs.
+  // O gateway não limita mais o tamanho do prompt (limite de 16k removido em
+  // 12/09/2026); o teto real é a janela de contexto do modelo.
   gateway: {
     envKey: 'IA_GATEWAY_TOKEN',
-    modeloPadrao: '', // vazio = default_model do provider no gateway
+    modeloPadrao: 'fable', // topo de linha da assinatura Claude; IA_GATEWAY_MODEL sobrescreve
     async chamar(prompt, modelo, apiKey) {
       const base = (process.env.IA_GATEWAY_URL ?? 'https://ia-api.polottosoftware.com').replace(/\/$/, '');
       const gwProvider = process.env.IA_GATEWAY_PROVIDER ?? 'claude';
@@ -206,7 +207,7 @@ if (cfg.envKey && !apiKey) {
   process.exit(1);
 }
 
-const root = resolve(new URL('..', import.meta.url).pathname);
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const saida = resolve(process.argv[2] ?? root);
 const config = JSON.parse(readFileSync(join(root, 'prompts/especialidades.json'), 'utf8'));
 const template = readFileSync(join(root, 'prompts/boletim.md'), 'utf8');
