@@ -27,3 +27,13 @@ Comparação por DOI normalizado (inclusive URL, caixa e dx.doi.org), PMID e tí
 31 testes aprovados. Pesquisa bibliográfica real em 13/09/2026: sete consultas, 40 candidatos após deduplicação/limite e 10 ocorrências já publicadas excluídas; as consultas de andrologia e medicina sexual retornaram candidatos. Contagens podem se sobrepor entre subramos; não são uma avaliação clínica nem garantia de pertinência.
 
 Nenhuma nova inferência foi feita nesta etapa. O MVP preserva o conteúdo da A escolhida para teste visual; não foi reescrito retroativamente para se ajustar à pesquisa nova. Ele continua em revisão, com seis análises que precisam de Contexto e Implicação prática e com a identificação de comentário de diretriz a corrigir antes de publicação clínica. O validador de publicação permanece estrito; o empacotamento interno do MVP não o substitui. Geração semanal continua pausada, inferência exclusivamente pelo gateway privado.
+
+
+## Ginecologia — edição solicitada em 13/09/2026
+
+A configuração ganhou seis consultas independentes: endometriose/miomas, menopausa, contracepção, reprodução, oncologia/rastreamento e assoalho pélvico. Mesma regra de variedade sem quotas, DOI/PMID/título e exclusão antes/depois da IA. A geração é pontual pelo gateway Fable no script `generate-specialty-edition.cjs` do app; `ativa` permanece falsa e o cron continua pausado. Coleta real: 36 candidatos após deduplicação e nove ocorrências históricas excluídas. Consultas são candidatas temáticas, não classificação clínica.
+
+
+Correção de datas na mesma entrega: a coleta anterior lia o primeiro Year/Month/Day do XML, podendo usar DateCompleted/DateRevised. Agora mantém componentes no nó de publicação, prefere a data eletrônica, preserva mês sem inventar dia e exclui registros já conhecidos no PubMed antes da janela, mesmo com fascículo recente. Datas de indexação servem apenas para excluir falsa novidade; nunca são exibidas como publicação. Três testes de regressão cobrem esses casos; 34 testes do feed passaram.
+
+A rodada corrigida recuperou 19 candidatos e excluiu seis ocorrências históricas. Após auditoria de datas e ajustes de fidelidade pelo gateway, sete artigos foram entregues no aplicativo de testes junto com os 12 de Urologia A. Distribuição Android/iOS confirmada no grupo EAS `89dba36c-b687-4bfe-9836-188e4eb5ec8d`, em 13/09/2026 às 16:49 UTC. O histórico agora inclui essas 19 exposições no app (203 registros de artigo/versão), para bloquear reutilização em semanas futuras. Isso registra entrega, não aprovação clínica. Apenas identidades e hashes foram acrescentados aqui; nenhum HTML ou manifesto novo foi publicado no feed, e a geração semanal segue pausada.

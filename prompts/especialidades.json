@@ -108,6 +108,38 @@
         "endométrio",
         "contracept",
         "menopausa"
+      ],
+      "subramos": [
+        {
+          "id": "endometriose-miomas",
+          "nome": "Endometriose, miomas e sangramento",
+          "pubmed": "(endometriosis[tiab] OR adenomyosis[tiab] OR \"uterine fibroids\"[tiab] OR \"heavy menstrual bleeding\"[tiab]) AND (randomized controlled trial[pt] OR guideline[pt] OR systematic review[pt] OR meta-analysis[pt] OR clinical trial[pt] OR \"Obstet Gynecol\"[ta] OR \"Fertil Steril\"[ta] OR \"Lancet\"[ta] OR \"N Engl J Med\"[ta])"
+        },
+        {
+          "id": "menopausa",
+          "nome": "Climatério e menopausa",
+          "pubmed": "(menopause[tiab] OR menopausal[tiab] OR postmenopausal[tiab]) AND (randomized controlled trial[pt] OR guideline[pt] OR systematic review[pt] OR meta-analysis[pt] OR clinical trial[pt] OR \"Obstet Gynecol\"[ta] OR \"Fertil Steril\"[ta] OR \"Lancet\"[ta] OR \"N Engl J Med\"[ta])"
+        },
+        {
+          "id": "contracepcao",
+          "nome": "Contracepção",
+          "pubmed": "(contraception[tiab] OR contraceptive[tiab] OR \"intrauterine device\"[tiab]) AND (randomized controlled trial[pt] OR guideline[pt] OR systematic review[pt] OR meta-analysis[pt] OR clinical trial[pt] OR \"Obstet Gynecol\"[ta] OR \"Fertil Steril\"[ta] OR \"Lancet\"[ta] OR \"N Engl J Med\"[ta])"
+        },
+        {
+          "id": "reproducao",
+          "nome": "Reprodução e endocrinologia ginecológica",
+          "pubmed": "(\"Infertility, Female\"[MeSH Terms] OR \"polycystic ovary\"[tiab] OR \"in vitro fertilization\"[tiab]) AND (randomized controlled trial[pt] OR guideline[pt] OR systematic review[pt] OR meta-analysis[pt] OR clinical trial[pt] OR \"Obstet Gynecol\"[ta] OR \"Fertil Steril\"[ta] OR \"Lancet\"[ta] OR \"N Engl J Med\"[ta])"
+        },
+        {
+          "id": "onco-ginecologia",
+          "nome": "Oncologia e rastreamento ginecológico",
+          "pubmed": "(\"ovarian cancer\"[tiab] OR \"endometrial cancer\"[tiab] OR \"cervical cancer\"[tiab] OR \"cervical screening\"[tiab] OR \"HPV screening\"[tiab]) AND (randomized controlled trial[pt] OR guideline[pt] OR systematic review[pt] OR meta-analysis[pt] OR clinical trial[pt] OR \"Obstet Gynecol\"[ta] OR \"Fertil Steril\"[ta] OR \"Lancet\"[ta] OR \"N Engl J Med\"[ta])"
+        },
+        {
+          "id": "assoalho-pelvico",
+          "nome": "Uroginecologia e assoalho pélvico",
+          "pubmed": "(\"pelvic organ prolapse\"[tiab] OR \"female urinary incontinence\"[tiab] OR \"vulvar\"[tiab]) AND (randomized controlled trial[pt] OR guideline[pt] OR systematic review[pt] OR meta-analysis[pt] OR clinical trial[pt] OR \"Obstet Gynecol\"[ta] OR \"Fertil Steril\"[ta] OR \"Lancet\"[ta] OR \"N Engl J Med\"[ta])"
+        }
       ]
     },
     {

@@ -28,6 +28,36 @@ function todos(xml, tag) {
   return [...xml.matchAll(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`, 'g'))].map((m) => m[1]);
 }
 
+// Keep all date components inside one publication date node. PubMed also
+// includes DateCompleted/DateRevised, which are indexing dates, not publication.
+export function publicationDates(article) {
+  const months={jan:'01',feb:'02',mar:'03',apr:'04',may:'05',jun:'06',jul:'07',aug:'08',sep:'09',oct:'10',nov:'11',dec:'12'};
+  const parse=(node)=>{
+    if(!node)return '';
+    const year=texto(node,'Year'),raw=texto(node,'Month'),month=months[raw.toLowerCase().slice(0,3)] || (/^\d{1,2}$/.test(raw)?raw.padStart(2,'0'):'');
+    const day=texto(node,'Day');
+    if(!year)return texto(node,'MedlineDate');
+    return [year,month,month&&day?day.padStart(2,'0'):''].filter(Boolean).join(' ');
+  };
+  const issue=article.match(/<JournalIssue\b[^>]*>[\s\S]*?<PubDate>([\s\S]*?)<\/PubDate>/)?.[1];
+  const online=article.match(/<ArticleDate\b[^>]*DateType="Electronic"[^>]*>([\s\S]*?)<\/ArticleDate>/)?.[1];
+  const dataOnline=parse(online),dataEdicao=parse(issue);
+  const indexed=article.match(/<PubMedPubDate\b[^>]*PubStatus="pubmed"[^>]*>([\s\S]*?)<\/PubMedPubDate>/)?.[1];
+  return {data:dataOnline||dataEdicao,dataOnline,dataEdicao,dataIndexacaoInicial:parse(indexed)};
+}
+export function recentPublication(article, start, end) {
+  const date=article.data.replace(/ /g,'-');
+  const indexed=(article.dataIndexacaoInicial||'').replace(/ /g,'-');
+  // An old PubMed record is already known, even if a newer print issue has
+  // no electronic date. Exclude it without mislabelling indexing as publication.
+  if(/^\d{4}-\d{2}-\d{2}$/.test(indexed)&&indexed<start)return false;
+  // Do not fabricate a day for month-only citations. Compare the month only
+  // when it is entirely after the cutoff month; unknown dates stay excluded.
+  if(/^\d{4}-\d{2}-\d{2}$/.test(date))return date>=start&&date<=end;
+  if(/^\d{4}-\d{2}$/.test(date))return date>start.slice(0,7)&&date<=end.slice(0,7);
+  return false;
+}
+
 /** Busca artigos dos últimos `dias` dias. Retorna lista com metadados + resumo. */
 export async function pesquisar(query, dias = 30, max = 40) {
   const hoje = new Date();
@@ -64,14 +94,14 @@ export async function pesquisar(query, dias = 30, max = 40) {
       pmid: texto(art, 'PMID'),
       titulo: texto(art, 'ArticleTitle'),
       periodico: texto(art, 'Title') || texto(art, 'ISOAbbreviation'),
-      data: [texto(art, 'Year'), texto(art, 'Month'), texto(art, 'Day')].filter(Boolean).join(' '),
+      ...publicationDates(art),
       autores,
       doi,
       resumo: resumoBruto.slice(0, RESUMO_MAX),
       resumoStatus: !resumoBruto ? 'ausente' : resumoBruto.length > RESUMO_MAX ? 'truncado' : 'completo',
       tipos: todos(art, 'PublicationType').map((t) => t.replace(/<[^>]+>/g, '').trim()),
     };
-  });
+  }).filter(article=>recentPublication(article,fmt(inicio).replaceAll('/','-'),fmt(hoje).replaceAll('/','-')));
 }
 
 /** Formata a lista como material bruto para o prompt editorial. */
@@ -83,6 +113,7 @@ export function formatarParaPrompt(itens) {
         `[${i + 1}] ${a.titulo}`,
         a.ramosCandidatos?.length ? `    Subramos candidatos (query, confirmar pelo conteúdo): ${a.ramosCandidatos.join(', ')}` : '',
         `    Periódico: ${a.periodico} · Data: ${a.data} · Tipos: ${a.tipos.join(', ') || 'n/a'}`,
+        a.dataOnline && a.dataEdicao && a.dataOnline !== a.dataEdicao ? `    Data da edição do periódico: ${a.dataEdicao}. Data principal acima = publicação eletrônica original; não confundir com indexação.` : '',
         `    Autores: ${a.autores.join(', ')}${a.autores.length >= 6 ? ' et al.' : ''}`,
         `    Citações (OpenAlex, dado auxiliar): ${a.citacoes ?? 'n/a'} · DOI: ${a.doi || 'n/a'} · PMID: ${a.pmid} (https://pubmed.ncbi.nlm.nih.gov/${a.pmid}/)`,
         `    Material disponível: ${a.resumoStatus === 'completo' ? 'resumo INTEGRAL' : a.resumoStatus === 'truncado' ? 'resumo TRUNCADO (corte no limite de caracteres — o que não estiver escrito aqui NÃO foi verificado)' : 'SÓ METADADOS (sem resumo — usar apenas para menção breve ou omitir)'}`,
