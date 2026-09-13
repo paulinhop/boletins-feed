@@ -24,7 +24,7 @@ jobs:
         run: |
           git config user.name "boletim-med-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add feed.json prompts/published-articles.json
+          git add feed.json
           if git diff --cached --quiet; then
             echo "feed.json já estava atualizado."
             exit 0
