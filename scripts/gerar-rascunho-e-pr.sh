@@ -47,7 +47,7 @@ for PROV in $LISTA; do
   # Se o PR do branch já existe (re-geração no mesmo dia), o push acima já o
   # atualizou — não tratar como erro.
   gh pr create --title "Rascunho: edição de $DATA [$PROV]" --body-file - <<EOF || echo "PR já existia; branch atualizado."
-Boletins gerados automaticamente (**$PROV** + busca web).
+Boletins gerados automaticamente (**$PROV**; estágio 1 grátis: PubMed + OpenAlex + FDA/ANVISA).
 
 $(cat "custo-$DATA.md" 2>/dev/null || echo "Custo estimado: n/d")
 
