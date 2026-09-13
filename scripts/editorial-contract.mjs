@@ -93,7 +93,11 @@ export function validateEditorial(html, material, date) {
   }
   if (/\bFAMERP\b/i.test(html))
     errors.push('Identificação pessoal/institucional proibida.');
-  if (/\bPrática muda\b/i.test(html))
+  // CSS comments are not editorial claims. Keep actual CSS content and body
+  // text subject to the rule; never weaken the check for a visible badge.
+  const claimText = html.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,
+    (style) => style.replace(/\/\*[\s\S]*?\*\//g, ''));
+  if (/\bPrática muda\b/i.test(claimText))
     errors.push(
       'Use Potencial impacto; a IA não pode conceder aprovação clínica.',
     );

@@ -42,6 +42,13 @@ test('valid sourced contract passes but clinical review remains pending', () => 
   assert.deepEqual(r.errors, []);
   assert.equal(r.clinicalReview, 'pending');
 });
+
+test('historical CSS comment is not mistaken for clinical approval, but a badge is blocked', () => {
+  const withComment = html.replace('</style>', '/* Regulatório / diretriz / prática muda */</style>');
+  assert.equal(validate(withComment).ok, true);
+  assert.equal(validate(withComment.replace('>Tema</span>', '>Prática muda</span>')).ok, false);
+  assert.equal(validate(html.replace('</style>', '.tag::after{content:"Prática muda"}</style>')).ok, false);
+});
 test('all references removed fails instead of 0/0 success', () =>
   assert.equal(validate(html.replaceAll(ref, '')).ok, false));
 test('metadata cannot become essential analysis', () =>
