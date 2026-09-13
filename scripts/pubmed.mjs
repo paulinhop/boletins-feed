@@ -27,16 +27,16 @@ export async function pesquisar(query, dias = 30, max = 40) {
   const inicio = new Date(hoje.getTime() - dias * 86400e3);
   const fmt = (d) => `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}`;
 
-  const esearch = `${EUTILS}/esearch.fcgi?db=pubmed&retmode=json&retmax=${max}` +
+  const esearch = `${EUTILS}/esearch.fcgi?db=pubmed&retmode=json&sort=pub_date&retmax=${max}` +
     `&datetype=pdat&mindate=${fmt(inicio)}&maxdate=${fmt(hoje)}` +
     `&term=${encodeURIComponent(query)}`;
-  const res1 = await fetch(esearch);
+  const res1 = await fetch(esearch, { signal: AbortSignal.timeout(20000) });
   if (!res1.ok) throw new Error(`PubMed esearch HTTP ${res1.status}`);
   const ids = (await res1.json())?.esearchresult?.idlist ?? [];
   if (ids.length === 0) return [];
 
   const efetch = `${EUTILS}/efetch.fcgi?db=pubmed&retmode=xml&id=${ids.join(',')}`;
-  const res2 = await fetch(efetch);
+  const res2 = await fetch(efetch, { signal: AbortSignal.timeout(20000) });
   if (!res2.ok) throw new Error(`PubMed efetch HTTP ${res2.status}`);
   const xml = await res2.text();
 
@@ -95,7 +95,7 @@ export async function enriquecerCitacoes(itens) {
     const filtro = comDoi.map((a) => a.doi).join('|');
     const url = `https://api.openalex.org/works?per-page=50&filter=doi:${encodeURIComponent(filtro)}` +
       `&select=doi,cited_by_count&mailto=boletim-med@users.noreply.github.com`;
-    const res = await fetch(url);
+    const res = await fetch(url, { signal: AbortSignal.timeout(20000) });
     if (!res.ok) throw new Error(`OpenAlex HTTP ${res.status}`);
     const porDoi = new Map(
       ((await res.json())?.results ?? []).map((w) => [String(w.doi).replace('https://doi.org/', '').toLowerCase(), w.cited_by_count])

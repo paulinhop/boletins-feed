@@ -34,6 +34,7 @@ for PROV in $LISTA; do
   BRANCH="rascunho/$DATA-$PROV"
   git checkout -B "$BRANCH"
   git add boletim-*-"$DATA".html "custo-$DATA.md"
+  git add "evidencias/material-"*"-$DATA.md" "evidencias/boletim-"*"-$DATA.validation.json"
   if git diff --cached --quiet; then
     echo "Nenhum boletim novo gerado por $PROV; sem PR."
     git checkout main

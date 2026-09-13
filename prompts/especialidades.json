@@ -20,6 +20,15 @@
         "renal",
         "erectile",
         "urinary"
+      ],
+      "regulatorioKeywordsPt": [
+        "próstata",
+        "bexiga",
+        "urolog",
+        "rim",
+        "renal",
+        "urinári",
+        "erétil"
       ]
     },
     {
@@ -52,6 +61,16 @@
         "hpv",
         "menopaus",
         "contracepti"
+      ],
+      "regulatorioKeywordsPt": [
+        "ginecol",
+        "ovário",
+        "útero",
+        "uterin",
+        "cervical",
+        "endométrio",
+        "contracept",
+        "menopausa"
       ]
     },
     {
@@ -68,6 +87,15 @@
         "prenatal",
         "maternal",
         "fetal"
+      ],
+      "regulatorioKeywordsPt": [
+        "gesta",
+        "gravidez",
+        "obstetr",
+        "materna",
+        "fetal",
+        "pré-eclâmpsia",
+        "parto"
       ]
     },
     {

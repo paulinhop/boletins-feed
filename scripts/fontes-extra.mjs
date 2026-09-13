@@ -23,10 +23,13 @@ const ANVISA_API =
   '&sort_on=effective&sort_order=descending&b_size=60' +
   '&metadata_fields=effective&metadata_fields=description';
 
+const normalizar = text => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
 async function anvisa(keywords, dias) {
   const corte = Date.now() - dias * 86400e3;
   try {
     const res = await fetch(ANVISA_API, {
+      signal: AbortSignal.timeout(20000),
       headers: { 'User-Agent': 'boletim-med/1.0', Accept: 'application/json' },
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -39,8 +42,8 @@ async function anvisa(keywords, dias) {
       if (isNaN(dataItem.getTime()) || dataItem.getTime() < corte) continue;
       const titulo = (item.title ?? '').trim();
       const descricao = (item.description ?? '').trim();
-      const alvo = `${titulo} ${descricao}`.toLowerCase();
-      if (keywords.length && !keywords.some((k) => alvo.includes(k.toLowerCase()))) continue;
+      const alvo = normalizar(`${titulo} ${descricao}`);
+      if (keywords.length && !keywords.some((k) => alvo.includes(normalizar(k)))) continue;
       achados.push({
         fonte: 'ANVISA',
         titulo,
@@ -62,12 +65,12 @@ function texto(xml, tag) {
 }
 
 /** Notícias dos últimos `dias` dias que batem em alguma das keywords. */
-export async function regulatorio(keywords = [], dias = 30) {
+export async function regulatorio(keywords = [], dias = 30, keywordsPt = keywords) {
   const corte = Date.now() - dias * 86400e3;
-  const achados = await anvisa(keywords, dias);
+  const achados = await anvisa(keywordsPt, dias);
   for (const fonte of FONTES) {
     try {
-      const res = await fetch(fonte.url, { headers: { 'User-Agent': 'boletim-med/1.0' } });
+      const res = await fetch(fonte.url, { signal: AbortSignal.timeout(20000), headers: { 'User-Agent': 'boletim-med/1.0' } });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const xml = await res.text();
       for (const [item] of xml.matchAll(/<item>[\s\S]*?<\/item>/g)) {

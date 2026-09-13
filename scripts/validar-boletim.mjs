@@ -12,11 +12,19 @@
  * Saída: relatório no console; exit 1 se houver ERRO (avisos não reprovam).
  */
 import { readFileSync } from 'node:fs';
+import { validateEditorial } from './editorial-contract.mjs';
 
 const [htmlPath, materialPath] = process.argv.slice(2);
 if (!htmlPath) { console.error('uso: validar-boletim.mjs <boletim.html> [material.md]'); process.exit(1); }
 const html = readFileSync(htmlPath, 'utf8');
 const material = materialPath ? readFileSync(materialPath, 'utf8') : null;
+if (/data-editorial-version=["']2["']/.test(html)) {
+  if (!material) { console.error('Contrato v2 exige material de origem.'); process.exit(1); }
+  const date = htmlPath.match(/(\d{4}-\d{2}-\d{2})\.html$/)?.[1];
+  const result = validateEditorial(html, material, date);
+  console.log(JSON.stringify(result, null, 2));
+  process.exit(result.ok ? 0 : 1);
+}
 
 const erros = [];
 const avisos = [];
@@ -61,6 +69,7 @@ if (material) {
     ...[...html.matchAll(/doi\.org\/([^\s"<)]+)/g)].map((m) => m[1].replace(/[.,;]+$/, '').toLowerCase()),
     ...[...html.matchAll(/pubmed\.ncbi\.nlm\.nih\.gov\/(\d+)/g)].map((m) => m[1]),
   ]);
+  if (!citados.size && !/href=["']https?:\/\/(?:www\.)?(?:fda\.gov|gov\.br\/anvisa)/.test(html)) err('nenhuma referência identificável no boletim');
   let verificados = 0;
   for (const ref of citados) {
     if (material.toLowerCase().includes(ref)) verificados++;

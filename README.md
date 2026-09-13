@@ -1,5 +1,7 @@
 # Boletins Feed
 
+**Atualização de 13/09/2026:** geração e publicação agora verificam o contrato editorial v2 e o material de origem. Veja [CONTRATO-EDITORIAL.md](CONTRATO-EDITORIAL.md). O formato de saída continua HTML; a validação mecânica não substitui revisão clínica. As edições existentes foram preservadas.
+
 Repositório público de conteúdo do app **Boletim Médico** (Fase 2 — feed na nuvem).
 
 O app lê o manifesto `feed.json` via `raw.githubusercontent.com` e baixa apenas os

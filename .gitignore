@@ -1,0 +1,4 @@
+evidencias/*.rejected.txt
+*.pending
+node_modules/
+.env*

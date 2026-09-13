@@ -26,12 +26,13 @@
  * e escreve na pasta de saída (padrão: raiz do repo). NÃO toca no feed.json —
  * publicação só após revisão médica (merge do PR — ver .github/workflows/).
  */
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, renameSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { pesquisar, formatarParaPrompt, enriquecerCitacoes } from './pubmed.mjs';
 import { regulatorio, formatarRegulatorio } from './fontes-extra.mjs';
+import { editionDate, validateEditorial } from './editorial-contract.mjs';
 
 const MESES = [
   'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
@@ -217,11 +218,32 @@ const modelo =
   (provider === 'claude' ? config.edicaoPadrao.modelo : cfg.modeloPadrao);
 
 /** Data da edição em America/Sao_Paulo (o cron roda em UTC). */
-const agora = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
-const dataIso = agora.toISOString().slice(0, 10);
-const dataExtenso = `${agora.getDate()} de ${MESES[agora.getMonth()]} de ${agora.getFullYear()}`;
+const dataIso = editionDate();
+const [anoEdicao, mesEdicao, diaEdicao] = dataIso.split('-');
+const dataExtenso = `${Number(diaEdicao)} de ${MESES[Number(mesEdicao) - 1]} de ${anoEdicao}`;
+const materiais = new Map();
+const promptsMontados = new Map();
+const evidenceDir = join(saida, 'evidencias');
+mkdirSync(evidenceDir, { recursive: true });
+
+function salvarRascunho(slug, text, destination = saida) {
+  const html = extrairHtml(text) + '\n';
+  const material = materiais.get(slug);
+  if (!material) throw new Error('Material de origem ausente.');
+  const result = validateEditorial(html, material, dataIso);
+  const name = `boletim-${slug}-${dataIso}`;
+  writeFileSync(join(evidenceDir, `${name}.validation.json`), JSON.stringify(result, null, 2) + '\n');
+  if (!result.ok) {
+    writeFileSync(join(evidenceDir, `${name}.rejected.txt`), html);
+    throw new Error(`Contrato editorial: ${result.errors.join(' | ')}`);
+  }
+  const target = join(destination, `${name}.html`);
+  writeFileSync(`${target}.pending`, html);
+  renameSync(`${target}.pending`, target);
+}
 
 async function montarPrompt(esp) {
+  if (promptsMontados.has(esp.slug)) return promptsMontados.get(esp.slug);
   // Estágio 1 (grátis): material verificado do PubMed (com contagem real de
   // citações via OpenAlex) + notícias regulatórias de FDA/ANVISA — a IA só redige.
   let material = '(Especialidade sem query PubMed configurada — gere menos itens.)';
@@ -234,10 +256,13 @@ async function montarPrompt(esp) {
       console.warn(`  PubMed falhou para ${esp.slug}: ${erro.message} — seguindo sem material`);
     }
   }
-  const noticias = await regulatorio(esp.regulatorioKeywords ?? [], 30);
+  const noticias = await regulatorio(esp.regulatorioKeywords ?? [], 30, esp.regulatorioKeywordsPt ?? esp.regulatorioKeywords ?? []);
   if (noticias.length) console.log(`  Regulatório: ${noticias.length} notícia(s) para ${esp.slug}`);
   material += `\n\nNOTÍCIAS REGULATÓRIAS (FDA/ANVISA — verificadas, podem virar itens com tag t-reg "Regulatório"):\n${formatarRegulatorio(noticias)}`;
-  return template
+  material += '\n';
+  materiais.set(esp.slug, material);
+  writeFileSync(join(evidenceDir, `material-${esp.slug}-${dataIso}.md`), material);
+  const prompt = template
     .replaceAll('{{NOME}}', esp.nome)
     .replaceAll('{{SLUG}}', esp.slug)
     .replaceAll('{{COR}}', esp.cor ?? '#1d4ed8')
@@ -246,6 +271,8 @@ async function montarPrompt(esp) {
     .replaceAll('{{FOCO}}', esp.foco)
     .replaceAll('{{QTD}}', String(config.edicaoPadrao.artigosPorBoletim))
     .replaceAll('{{MATERIAL}}', material);
+  promptsMontados.set(esp.slug, prompt);
+  return prompt;
 }
 
 // ── Estimativa de custo (roadmap 2.12 — alerta semanal no PR) ─────────────
@@ -388,7 +415,7 @@ async function gerarViaBatchOpenAI(ativas, modelo, apiKey, saidaDir, dataIsoEdic
         throw new Error(`request ${item.custom_id} falhou: ${item.response?.status_code}`);
       }
       registrarUso(modelo, item.response.body?.usage, true);
-      writeFileSync(join(saidaDir, arquivo), extrairHtml(openaiExtrairTexto(item.response.body)) + '\n');
+      salvarRascunho(item.custom_id, openaiExtrairTexto(item.response.body), saidaDir);
       console.log(`✔ ${arquivo} (batch)`);
       geradosBatch++;
     } catch (erro) {
@@ -428,7 +455,7 @@ for (const esp of ativas.filter((e) => pendentes.has(e.slug))) {
   for (let tentativa = 1; tentativa <= 2 && !feito; tentativa++) {
     try {
       const texto = await cfg.chamar(await montarPrompt(esp), modelo, apiKey);
-      writeFileSync(join(saida, arquivo), extrairHtml(texto) + '\n');
+      salvarRascunho(esp.slug, texto);
       console.log(`✔ ${arquivo}${tentativa > 1 ? ` (tentativa ${tentativa})` : ''}`);
       gerados++;
       feito = true;
