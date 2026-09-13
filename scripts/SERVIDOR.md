@@ -1,5 +1,7 @@
 # Geração de boletins no servidor local (192.168.1.11)
 
+> **Documento histórico — não executar os comandos abaixo.** Desde 13/09/2026, toda execução de IA do projeto usa exclusivamente o gateway privado, sem APIs ou CLIs diretos. O cron de geração no Actions está pausado. O piloto atual gera somente Urologia, com comparação privada e revisão médica antes da publicação. A política vigente e a execução autorizada estão no [README](../README.md#geração-local-pelo-gateway-política-vigente--13092026). As referências abaixo a custo, modelos, produção e comandos descrevem o desenho anterior, não o estado atual.
+
 O servidor 24/7 roda o estágio 2 (redação) via **assinatura** (Claude Pro/Max
 ou ChatGPT Plus) autenticada por OAuth — custo zero na fase de validação.
 O estágio 1 (PubMed/OpenAlex/FDA) já é gratuito em qualquer lugar.
