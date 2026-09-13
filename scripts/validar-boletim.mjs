@@ -49,7 +49,7 @@ const itens = html.split(/<div class="item">/).slice(1);
 const BLOCOS = ['Contexto', 'Desenho e achados|O que mudou', 'Implicação prática', 'Limitações', 'Fontes'];
 let blocosCompletos = 0;
 itens.forEach((item, i) => {
-  const faltando = BLOCOS.filter((b) => !new RegExp(`<h4>(${b})</h4>`).test(item));
+  const faltando = BLOCOS.filter((b) => !new RegExp(`<h4>(${b})[^<]*</h4>`).test(item));
   if (faltando.length === 0) blocosCompletos++;
   else err(`item ${i + 1}: faltam blocos: ${faltando.join(', ')}`);
 });
