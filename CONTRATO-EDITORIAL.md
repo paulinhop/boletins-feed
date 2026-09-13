@@ -1,5 +1,7 @@
 # Contrato editorial v2 — 13/09/2026
 
+**Política de execução atual:** IA somente pelo gateway local, sem APIs diretas ou CLIs fora do gateway. O gerador usa gateway por padrão e rejeita demais opções antes de consultas/escritas; falta de configuração aborta sem fallback. Cron de geração no GitHub Actions removido; workflow manual só informa a pausa. O gateway permanece privado. Publicação/revisão do feed seguem ativas. 8 testes novos de bloqueio sem rede somados aos 13 testes editoriais passaram; nenhuma geração clínica foi executada nessa mudança.
+
 O prompt continua gerando HTML compatível com o aplicativo, com todas as badges e análises aprofundadas para especialistas. A fonte principal de cada item é declarada em `data-source-id` e corresponde a um registro numerado do material recuperado. `data-kind` distingue análise de nota breve; `data-edition` fixa a data da edição.
 
 O gerador salva os materiais em `evidencias/material-<slug>-<data>.md`, reutiliza o mesmo pacote nas tentativas e valida antes de gravar um HTML. Resultados reprovados ficam em `.rejected.txt`, fora do feed. O relatório `.validation.json` registra hashes com finais de linha normalizados e indica revisão clínica pendente. Os pacotes e relatórios aprovados acompanham o PR.

@@ -17,28 +17,15 @@ boletins `.html` que ainda não existem no aparelho. Leitura 100% offline depois
 
 ## Como publicar uma edição nova
 
-### Automático (padrão — roadmap 2.8)
+### Geração local pelo gateway (política vigente — 13/09/2026)
 
-Toda segunda 07:12 (BRT) o workflow **Gerar rascunho semanal** chama a API de
-IA (com busca web), gera os boletins das especialidades ativas em
-`prompts/especialidades.json` e abre um **PR de rascunho**. A publicação só
-acontece após **revisão médica**: merge do PR → o workflow **Publicar feed**
-regenera o `feed.json` → o app baixa a edição sozinho. Edição extra fora do
-cron: aba *Actions → Gerar rascunho semanal → Run workflow*.
+O cron de geração foi retirado. O workflow **Gerar rascunho semanal** agora apenas informa a pausa; não recebe credenciais nem executa IA. O gateway privado não será exposto ao Actions.
 
-**Provedores** (`scripts/gerar-boletins.mjs`, env `PROVIDER`; padrão `claude`):
+O gerador aceita exclusivamente `PROVIDER=gateway` (também o padrão). Configure `IA_GATEWAY_URL` e `IA_GATEWAY_TOKEN` apenas no ambiente local. APIs de IA e CLIs diretos são rejeitados antes de pesquisa, geração ou escrita, sem fallback. Adaptadores anteriores estão preservados como código histórico bloqueado; sua presença não representa autorização de uso.
 
-| Provedor | Secret | Env de modelo (padrão) |
-|---|---|---|
-| `claude` | `ANTHROPIC_API_KEY` | `ANTHROPIC_MODEL` (`claude-sonnet-4-5`) |
-| `openai` | `OPENAI_API_KEY` | `OPENAI_MODEL` (`gpt-5`) |
-| `kimi` | `MOONSHOT_API_KEY` | `MOONSHOT_MODEL` (`kimi-latest`) |
+Execute `node scripts/gerar-boletins.mjs <pasta-saida>` no ambiente autorizado. As consultas bibliográficas/regulatórias existentes continuam separadas da execução de IA; não foram substituídas por referências inventadas pelo modelo. Nenhuma geração foi disparada ao implantar essa restrição.
 
-Secrets em *Settings → Secrets and variables → Actions*. No *Run workflow*,
-escolher `todos` roda o **comparativo A/B/C**: um PR por provedor
-(`rascunho/DATA-provedor`); a revisão médica faz merge de no máximo um.
-Ajustes editoriais (especialidades, foco, quantidade de itens, modelo) ficam
-em `prompts/` — sem mexer em código.
+A publicação continua após revisão clínica: rascunho → revisão → merge → **Publicar feed**. Não foram alterados HTMLs ou manifesto por essa mudança. Testes sem rede/IA: `node --test scripts/editorial-contract.test.mjs scripts/gateway-policy.test.mjs`.
 
 ### Manual (fallback)
 

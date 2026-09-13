@@ -1,41 +1,15 @@
-# Gera o rascunho semanal dos boletins via API de IA e abre PR para revisão
-# médica (roadmap 2.8). A publicação real só acontece no merge — ver
-# publicar-feed.yml.
+# IA exclusivamente pelo gateway local (13/09/2026).
+# O gateway privado nao e exposto ao Actions; geracao automatica pausada.
 name: Gerar rascunho semanal
-
 on:
-  schedule:
-    # Segundas 07:12 em America/Sao_Paulo (10:12 UTC) — provedor padrão: Claude
-    - cron: '12 10 * * 1'
   workflow_dispatch:
-    inputs:
-      provider:
-        description: 'Provedor de IA (todos = comparativo A/B/C, um PR por provedor)'
-        required: true
-        default: 'claude'
-        type: choice
-        options: [claude, openai, kimi, gateway, todos]
-
 permissions:
-  contents: write
-  pull-requests: write
-
+  contents: read
 jobs:
-  gerar:
+  orientacao:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Gera boletins e abre PR(s) de rascunho
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          MOONSHOT_API_KEY: ${{ secrets.MOONSHOT_API_KEY }}
-          # Gateway das assinaturas (Claude/GPT/Grok/Kimi via OAuth no servidor)
-          IA_GATEWAY_TOKEN: ${{ secrets.IA_GATEWAY_TOKEN }}
-          # Batch API (50% off) no redator OpenAI; o script cai no modo
-          # síncrono automaticamente se o batch falhar/expirar (roadmap 2.12).
-          OPENAI_BATCH: '1'
-          ESCOLHA: ${{ inputs.provider || 'claude' }}
-        run: bash scripts/gerar-rascunho-e-pr.sh
+      - name: Geracao pausada no Actions
+        run: |
+          echo 'Gere localmente pelo gateway autorizado e encaminhe o rascunho para revisao.'
+          echo 'APIs diretas de IA estao bloqueadas. Nenhum boletim foi gerado por este workflow.'

@@ -14,5 +14,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --test scripts/editorial-contract.test.mjs
+      - run: node --test scripts/editorial-contract.test.mjs scripts/gateway-policy.test.mjs
       - run: node scripts/build-feed.mjs .

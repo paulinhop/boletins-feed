@@ -1,11 +1,19 @@
 #!/usr/bin/env bash
 # Gera os rascunhos da edição (um provedor ou o comparativo A/B/C) e abre um PR
 # por provedor. Chamado pelo workflow gerar-rascunho.yml; também roda local:
-#   ESCOLHA=todos GH_TOKEN=... ANTHROPIC_API_KEY=... bash scripts/gerar-rascunho-e-pr.sh
+#   ESCOLHA=gateway bash scripts/gerar-rascunho-e-pr.sh
 set -euo pipefail
 
+ESCOLHA="${ESCOLHA:-gateway}"
+if [ "$ESCOLHA" != "gateway" ]; then
+  echo "IA_GATEWAY_ONLY: somente ESCOLHA=gateway está autorizado." >&2
+  exit 1
+fi
+if [ -z "${IA_GATEWAY_URL:-}" ] || [ -z "${IA_GATEWAY_TOKEN:-}" ]; then
+  echo "Configure IA_GATEWAY_URL e IA_GATEWAY_TOKEN localmente; não há fallback." >&2
+  exit 1
+fi
 DATA=$(TZ=America/Sao_Paulo date +%F)
-ESCOLHA="${ESCOLHA:-claude}"
 
 git config user.name "boletim-med-bot"
 git config user.email "bot@users.noreply.github.com"
@@ -18,8 +26,7 @@ for PROV in $LISTA; do
   if [ "$PROV" = "claude-cli" ] || [ "$PROV" = "codex-cli" ]; then
     KEY_VAR=""
   elif [ "$PROV" = "gateway" ]; then
-    # Gateway HTTP das assinaturas (servidor 192.168.1.111): precisa do token
-    # do gateway, não de API key de IA.
+    # Gateway privado das assinaturas; endpoint e credenciais só no ambiente local.
     KEY_VAR="IA_GATEWAY_TOKEN"
   else
     KEY_VAR=$(echo "$PROV" | tr 'a-z' 'A-Z' | sed -e 's/KIMI/MOONSHOT/' -e 's/CLAUDE/ANTHROPIC/')_API_KEY

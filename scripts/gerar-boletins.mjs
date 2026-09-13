@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Gera os rascunhos dos boletins da semana via API de IA (roadmap 2.8).
+ * Gera rascunhos exclusivamente pelo gateway local (política de 13/09/2026).
  *
- * Uso:  PROVIDER=claude ANTHROPIC_API_KEY=... node scripts/gerar-boletins.mjs [pasta-saida]
+ * Uso:  PROVIDER=gateway node scripts/gerar-boletins.mjs [pasta-saida]
  *
  * Pipeline em 2 estágios (custo inteligente):
  *   1. PESQUISA grátis e determinística via PubMed E-utilities (scripts/pubmed.mjs)
@@ -12,7 +12,7 @@
  *      era o loop de busca que consumia o orçamento (cada rodada reenvia o
  *      contexto todo como input).
  *
- * Provedores suportados (env PROVIDER, padrão "claude"):
+ * Adaptadores históricos preservados mas bloqueados (somente gateway autorizado):
  *   claude  — Anthropic Messages API  (secret ANTHROPIC_API_KEY, env ANTHROPIC_MODEL)
  *   openai  — OpenAI Responses API    (secret OPENAI_API_KEY,    env OPENAI_MODEL)
  *   kimi    — Moonshot chat completions (secret MOONSHOT_API_KEY, env MOONSHOT_MODEL)
@@ -195,7 +195,17 @@ async function executarCli(binario, args) {
   });
 }
 
-const provider = (process.env.PROVIDER ?? 'claude').toLowerCase();
+const provider = (process.env.PROVIDER ?? 'gateway').toLowerCase();
+// Política do usuário (13/09/2026): antes de pesquisa, escrita ou geração.
+// Adaptadores históricos abaixo ficam bloqueados, sem flag de fallback.
+if (provider !== 'gateway') {
+  console.error('IA_GATEWAY_ONLY: somente PROVIDER=gateway está autorizado. APIs de IA e CLIs diretos estão bloqueados.');
+  process.exit(1);
+}
+if (!process.env.IA_GATEWAY_URL || !process.env.IA_GATEWAY_TOKEN) {
+  console.error('IA_GATEWAY_ONLY: configure IA_GATEWAY_URL e IA_GATEWAY_TOKEN no ambiente local. Não há fallback.');
+  process.exit(1);
+}
 const cfg = PROVEDORES[provider];
 if (!cfg) {
   console.error(`PROVIDER "${provider}" desconhecido. Use: ${Object.keys(PROVEDORES).join(', ')}.`);
