@@ -121,7 +121,7 @@ const PROVEDORES = {
     envKey: 'IA_GATEWAY_TOKEN',
     modeloPadrao: 'fable', // topo de linha da assinatura Claude; IA_GATEWAY_MODEL sobrescreve
     async chamar(prompt, modelo, apiKey) {
-      const base = (process.env.IA_GATEWAY_URL ?? 'https://ia-api.polottosoftware.com').replace(/\/$/, '');
+      const base = (process.env.IA_GATEWAY_URL ?? (() => { throw new Error('IA_GATEWAY_URL não definida — endpoint do gateway não fica no repo'); })()).replace(/\/$/, '');
       const gwProvider = process.env.IA_GATEWAY_PROVIDER ?? 'claude';
       const headers = { 'X-Token': apiKey, 'content-type': 'application/json' };
       const askRes = await fetch(`${base}/ask`, {

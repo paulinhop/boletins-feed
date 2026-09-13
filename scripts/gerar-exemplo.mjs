@@ -8,7 +8,7 @@
  *   node scripts/gerar-exemplo.mjs submit <slug> <pasta-saida>   # pesquisa (grátis) e envia o job
  *   node scripts/gerar-exemplo.mjs poll <slug> <pasta-saida>     # consulta; grava o HTML ao concluir
  *
- * Env: IA_GATEWAY_URL (padrão https://ia-api.polottosoftware.com),
+ * Env: IA_GATEWAY_URL (obrigatória — endpoint do gateway NÃO fica no repo),
  *      IA_GATEWAY_TOKEN (obrigatória), IA_GATEWAY_PROVIDER (padrão claude).
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
@@ -27,7 +27,7 @@ if (!cmd || !slug || !saidaArg) {
 }
 const saida = resolve(saidaArg);
 const jobFile = join(saida, `${slug}.job.json`);
-const base = (process.env.IA_GATEWAY_URL ?? 'https://ia-api.polottosoftware.com').replace(/\/$/, '');
+const base = (process.env.IA_GATEWAY_URL ?? (() => { throw new Error('IA_GATEWAY_URL não definida — endpoint do gateway não fica no repo'); })()).replace(/\/$/, '');
 const token = process.env.IA_GATEWAY_TOKEN;
 if (!token) { console.error('IA_GATEWAY_TOKEN não definida'); process.exit(1); }
 const headers = { 'X-Token': token, 'content-type': 'application/json' };
